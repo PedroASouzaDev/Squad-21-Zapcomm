@@ -1,0 +1,187 @@
+body {
+    margin: 0;
+    line-height: normal;
+    }
+    .popup-overlay {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    }
+    
+.nova-tag-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: -14px 30px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    background-color: #fff;
+    width: 466px;
+    height: 291px;
+}
+.nova-tag1 {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    font-size: 20px;
+    display: inline-block;
+    width: 187px;
+    height: 20px;
+}
+.group-item {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+    background-color: #0c2454;
+    width: 93px;
+    height: 40px;
+}
+.salvar {
+    position: absolute;
+    top: 11px;
+    left: 19px;
+    display: inline-block;
+    width: 54px;
+    height: 14px;
+}
+.rectangle-parent {
+    position: absolute;
+    top: 238px;
+    left: 343px;
+    width: 93px;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+}
+.group-inner {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+    border: 1px solid #605bff;
+    box-sizing: border-box;
+    width: 93px;
+    height: 40px;
+    opacity: 0.1;
+}
+.fechar {
+    position: absolute;
+    top: 11px;
+    left: 25px;
+}
+.rectangle-group {
+    position: absolute;
+    top: 238px;
+    left: 230px;
+    width: 93px;
+    height: 40px;
+    text-align: center;
+    color: #0c2454;
+}
+.rectangle-div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+    background-color: #f7f7f8;
+    width: 406px;
+    height: 42px;
+}
+.nome1 {
+    position: absolute;
+    top: 12px;
+    left: 20.1px;
+    display: inline-block;
+    width: 65.3px;
+    height: 15px;
+    opacity: 0.2;
+}
+.rectangle-container {
+    position: absolute;
+    top: 86px;
+    left: 30px;
+    width: 406px;
+    height: 42px;
+    font-size: 16px;
+}
+.cor {
+    position: absolute;
+    top: calc(50% - 11px);
+    left: 20.1px;
+    display: inline-block;
+    width: 25px;
+    opacity: 0.2;
+}
+.sip-line-icon {
+    position: absolute;
+    top: calc(50% - 9px);
+    left: 368px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+.group-div {
+    position: absolute;
+    top: 145px;
+    left: 30px;
+    width: 406px;
+    height: 42px;
+    font-size: 16px;
+}
+.kanban1 {
+    position: absolute;
+    top: 204px;
+    left: 39px;
+    font-weight: 600;
+    color: #000;
+}
+.container {
+    width: 18px;
+    position: relative;
+    border-radius: 2px;
+    background-color: #0c2454;
+    height: 18px;
+    z-index: 0;
+}
+.check-small-icon {
+    width: 24px;
+    position: absolute;
+    margin: 0 !important;
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+    height: 24px;
+    z-index: 1;
+}
+.state-layer {
+    border-radius: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 11px;
+    position: relative;
+}
+.checkboxes {
+    position: absolute;
+    top: 190px;
+    left: 99px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+}
+.nova-tag {
+    width: 466px;
+    position: relative;
+    height: 291px;
+    overflow: hidden;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: left;
+    font-size: 14px;
+    color: #030229;
+    font-family: Nunito;
+}
+
