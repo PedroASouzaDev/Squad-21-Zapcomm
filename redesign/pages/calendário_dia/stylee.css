@@ -1,0 +1,1491 @@
+.dia1 {
+    position: relative;
+    font-weight: 600;
+}
+.dia {
+    width: 67px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #0c2454;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: #fff;
+}
+.ms {
+    width: 82px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #f2f2fb;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 27px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.ano {
+    width: 69px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #f2f2fb;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 21px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.btn {
+    position: absolute;
+    top: 58px;
+    left: 1127px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.bg-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 266px;
+    height: 723px;
+}
+.section-line-icon {
+    position: absolute;
+    top: 239.75px;
+    left: 0px;
+    width: 206px;
+    height: 0px;
+}
+.tkacheveantongmailcom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 121px;
+    height: 13.1px;
+    opacity: 0.5;
+}
+.email {
+    position: absolute;
+    top: 20.6px;
+    left: 49px;
+    width: 121px;
+    height: 13.1px;
+}
+.anton-tkacheve {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 88px;
+    height: 15px;
+}
+.name {
+    position: absolute;
+    top: 2.81px;
+    left: 49px;
+    width: 88px;
+    height: 15px;
+    font-size: 12px;
+}
+.image-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 34px;
+    height: 31.8px;
+}
+.people-3 {
+    position: absolute;
+    top: 196.67px;
+    left: 10px;
+    width: 170px;
+    height: 33.7px;
+}
+.section-line-icon1 {
+    position: absolute;
+    top: 190.12px;
+    left: 0px;
+    width: 206px;
+    height: 0px;
+}
+.alexeystgmailcom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 93px;
+    height: 13.1px;
+    opacity: 0.5;
+}
+.email1 {
+    position: absolute;
+    top: 18.73px;
+    left: 49px;
+    width: 93px;
+    height: 13.1px;
+}
+.alexey-stave {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 71px;
+    height: 15px;
+}
+.name1 {
+    position: absolute;
+    top: 0.94px;
+    left: 49px;
+    width: 71px;
+    height: 15px;
+    font-size: 12px;
+}
+.people-2 {
+    position: absolute;
+    top: 148.91px;
+    left: 10px;
+    width: 142px;
+    height: 31.8px;
+}
+.section-line-icon2 {
+    position: absolute;
+    top: 139.54px;
+    left: 0px;
+    width: 206px;
+    height: 0px;
+}
+.laboanovskiygmailcom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 114px;
+    height: 13.1px;
+    opacity: 0.5;
+}
+.email2 {
+    position: absolute;
+    top: 17.79px;
+    left: 49px;
+    width: 114px;
+    height: 13.1px;
+}
+.eddie-lobanovskiy {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: inline-block;
+    width: 100px;
+    height: 15px;
+}
+.name2 {
+    position: absolute;
+    top: 0px;
+    left: 49px;
+    width: 100px;
+    height: 15px;
+    font-size: 12px;
+}
+.people-1 {
+    position: absolute;
+    top: 98.34px;
+    left: 10px;
+    width: 163px;
+    height: 31.8px;
+}
+.search-icon {
+    position: absolute;
+    height: 4.67%;
+    width: 5.83%;
+    top: 22.26%;
+    right: 84.47%;
+    bottom: 73.07%;
+    left: 9.71%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+.sesrch-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+    background-color: #fafafb;
+    width: 206px;
+    height: 42.1px;
+}
+.buscar-clientes {
+    position: absolute;
+    top: 14.05px;
+    left: calc(50% - 42px);
+    display: inline-block;
+    width: 84px;
+    height: 15px;
+    opacity: 0.7;
+}
+.sesrch {
+    position: absolute;
+    top: 37.46px;
+    left: 0px;
+    width: 206px;
+    height: 42.1px;
+    font-size: 12px;
+}
+.clientes {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: 600;
+    display: inline-block;
+    width: 60px;
+    height: 20.6px;
+}
+.card-head {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 60px;
+    height: 20.6px;
+    font-size: 16px;
+}
+.add-people {
+    position: absolute;
+    top: 324.98px;
+    left: 30px;
+    width: 206px;
+    height: 239.8px;
+}
+.calender-bg-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 7px;
+    border: 1px solid #fafafb;
+    box-sizing: border-box;
+    width: 206px;
+    height: 207.9px;
+}
+.calender-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 206px;
+    height: 207.9px;
+}
+.date-selected-icon {
+    position: absolute;
+    top: 22.48px;
+    left: 99px;
+    width: 24px;
+    height: 22.5px;
+}
+.div {
+    position: absolute;
+    top: 131.11px;
+    left: 0px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div1 {
+    position: absolute;
+    top: 131.11px;
+    left: 26px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div2 {
+    position: absolute;
+    top: 131.11px;
+    left: 52px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div3 {
+    position: absolute;
+    top: 131.11px;
+    left: 78px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div4 {
+    position: absolute;
+    top: 131.11px;
+    left: 104px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div5 {
+    position: absolute;
+    top: 131.11px;
+    left: 133px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.5;
+}
+.div6 {
+    position: absolute;
+    top: 131.11px;
+    left: 159px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.5;
+}
+.s {
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    font-weight: 600;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.7;
+}
+.s1 {
+    position: absolute;
+    top: 0px;
+    left: 29px;
+    font-weight: 600;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.7;
+}
+.m {
+    position: absolute;
+    top: 0px;
+    left: 56px;
+    font-weight: 600;
+    display: inline-block;
+    width: 11px;
+    height: 15px;
+    opacity: 0.7;
+}
+.t {
+    position: absolute;
+    top: 0px;
+    left: 81px;
+    font-weight: 600;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.7;
+}
+.w {
+    position: absolute;
+    top: 0px;
+    left: 104px;
+    font-weight: 600;
+    display: inline-block;
+    width: 14px;
+    height: 15px;
+    opacity: 0.7;
+}
+.t1 {
+    position: absolute;
+    top: 0px;
+    left: 133px;
+    font-weight: 600;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.7;
+}
+.f {
+    position: absolute;
+    top: 0px;
+    left: 160px;
+    font-weight: 600;
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    opacity: 0.7;
+}
+.div7 {
+    position: absolute;
+    top: 26.22px;
+    left: 0px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.5;
+}
+.div8 {
+    position: absolute;
+    top: 26.22px;
+    left: 26px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.5;
+}
+.div9 {
+    position: absolute;
+    top: 26.22px;
+    left: 55px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div10 {
+    position: absolute;
+    top: 26.22px;
+    left: 81px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div11 {
+    position: absolute;
+    top: 26.22px;
+    left: 107px;
+    color: #fff;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+}
+.div12 {
+    position: absolute;
+    top: 26.22px;
+    left: 133px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div13 {
+    position: absolute;
+    top: 26.22px;
+    left: 159px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div14 {
+    position: absolute;
+    top: 52.45px;
+    left: 3px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div15 {
+    position: absolute;
+    top: 52.45px;
+    left: 29px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div16 {
+    position: absolute;
+    top: 52.45px;
+    left: 55px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div17 {
+    position: absolute;
+    top: 52.45px;
+    left: 81px;
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div18 {
+    position: absolute;
+    top: 52.45px;
+    left: 104px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div19 {
+    position: absolute;
+    top: 52.45px;
+    left: 130px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div20 {
+    position: absolute;
+    top: 52.45px;
+    left: 156px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div21 {
+    position: absolute;
+    top: 78.67px;
+    left: 0px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div22 {
+    position: absolute;
+    top: 78.67px;
+    left: 26px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div23 {
+    position: absolute;
+    top: 78.67px;
+    left: 52px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div24 {
+    position: absolute;
+    top: 78.67px;
+    left: 78px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div25 {
+    position: absolute;
+    top: 78.67px;
+    left: 104px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div26 {
+    position: absolute;
+    top: 78.67px;
+    left: 130px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div27 {
+    position: absolute;
+    top: 78.67px;
+    left: 156px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div28 {
+    position: absolute;
+    top: 104.89px;
+    left: 0px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div29 {
+    position: absolute;
+    top: 104.89px;
+    left: 26px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div30 {
+    position: absolute;
+    top: 104.89px;
+    left: 52px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div31 {
+    position: absolute;
+    top: 104.89px;
+    left: 78px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div32 {
+    position: absolute;
+    top: 104.89px;
+    left: 104px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div33 {
+    position: absolute;
+    top: 104.89px;
+    left: 130px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.div34 {
+    position: absolute;
+    top: 104.89px;
+    left: 156px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    opacity: 0.8;
+}
+.calender-elements {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 171px;
+    height: 146.1px;
+}
+.calender {
+    position: absolute;
+    top: 46.83px;
+    left: 20px;
+    width: 171px;
+    height: 146.1px;
+}
+.arrow-icon {
+    position: absolute;
+    height: 3.61%;
+    width: 12.62%;
+    top: 11.26%;
+    right: 9.22%;
+    bottom: 85.13%;
+    left: 78.16%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.december-2-2021 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: 600;
+    display: inline-block;
+    width: 104px;
+    height: 11.2px;
+    opacity: 0.8;
+}
+.card-name {
+    position: absolute;
+    top: 18.73px;
+    left: 20px;
+    width: 104px;
+    height: 11.2px;
+    text-align: left;
+}
+.menu-calender {
+    position: absolute;
+    top: 88.97px;
+    left: 30px;
+    width: 206px;
+    height: 207.9px;
+    text-align: center;
+    font-size: 12px;
+}
+.novo-agendamento {
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 49.5px);
+    font-weight: 600;
+}
+.group-child {
+    position: absolute;
+    height: 73.68%;
+    width: 8.92%;
+    top: 5.26%;
+    right: 91.08%;
+    bottom: 21.05%;
+    left: 0%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+}
+.novo-agendamento-parent {
+    position: absolute;
+    top: 0px;
+    left: calc(50% - 78.5px);
+    width: 157px;
+    height: 19px;
+}
+.creatre-schedule-btn-inner {
+    width: 157px;
+    position: relative;
+    height: 19px;
+}
+.creatre-schedule-btn {
+    position: absolute;
+    top: 28.1px;
+    left: 30px;
+    border-radius: 10px;
+    background-color: #0c2454;
+    width: 206px;
+    height: 42.1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #fff;
+}
+.create-shedule-card {
+    width: 266px;
+    position: relative;
+    height: 723px;
+}
+.working-list-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    width: 933px;
+    height: 723px;
+}
+.line-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-item {
+    position: absolute;
+    top: 42px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-inner {
+    position: absolute;
+    top: 84px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-div {
+    position: absolute;
+    top: 126px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child1 {
+    position: absolute;
+    top: 168px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child2 {
+    position: absolute;
+    top: 210px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child3 {
+    position: absolute;
+    top: 252px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child4 {
+    position: absolute;
+    top: 294px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child5 {
+    position: absolute;
+    top: 336px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child6 {
+    position: absolute;
+    top: 378px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child7 {
+    position: absolute;
+    top: 420px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child8 {
+    position: absolute;
+    top: 462px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child9 {
+    position: absolute;
+    top: 504px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child10 {
+    position: absolute;
+    top: 546px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line-child11 {
+    position: absolute;
+    top: 588px;
+    left: 0px;
+    border-top: 1px solid #030229;
+    box-sizing: border-box;
+    width: 853.2px;
+    height: 1px;
+    opacity: 0.1;
+}
+.line {
+    position: absolute;
+    top: 93px;
+    left: 80.8px;
+    width: 852.2px;
+    height: 588px;
+}
+.time-child {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    width: 80px;
+    height: 723px;
+}
+.am {
+    position: absolute;
+    top: 65px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.am1 {
+    position: absolute;
+    top: 107px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.am2 {
+    position: absolute;
+    top: 149px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm {
+    position: absolute;
+    top: 191px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm1 {
+    position: absolute;
+    top: 233px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm2 {
+    position: absolute;
+    top: 275px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm3 {
+    position: absolute;
+    top: 317px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm4 {
+    position: absolute;
+    top: 359px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm5 {
+    position: absolute;
+    top: 401px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm6 {
+    position: absolute;
+    top: 443px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm7 {
+    position: absolute;
+    top: 485px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm8 {
+    position: absolute;
+    top: 527px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm9 {
+    position: absolute;
+    top: 569px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm10 {
+    position: absolute;
+    top: 611px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.pm11 {
+    position: absolute;
+    top: 653px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.am3 {
+    position: absolute;
+    top: 695px;
+    left: 16.16px;
+    font-weight: 600;
+    display: inline-block;
+    width: 48.5px;
+    opacity: 0.6;
+}
+.time {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 80px;
+    height: 723px;
+}
+.arrow-down-3 {
+    position: absolute;
+    height: 42.11%;
+    width: 0.97%;
+    top: 26.32%;
+    right: 0%;
+    bottom: 31.58%;
+    left: 99.03%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.2;
+}
+.arrow-down-4 {
+    position: absolute;
+    height: 42.11%;
+    width: 0.97%;
+    top: 26.32%;
+    right: 2.79%;
+    bottom: 31.58%;
+    left: 96.25%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0.2;
+}
+.div35 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: 600;
+    display: inline-block;
+    width: 127.1px;
+}
+.card-head1 {
+    position: absolute;
+    height: 2.63%;
+    width: 95.38%;
+    top: 2.21%;
+    right: 2.31%;
+    bottom: 95.16%;
+    left: 2.31%;
+    font-size: 14px;
+}
+.working-list {
+    width: 933px;
+    position: relative;
+    height: 723px;
+}
+.create-shedule-card-parent {
+    position: absolute;
+    top: calc(50% - 322.88px);
+    left: 66px;
+    width: 1360px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px 50px;
+    box-sizing: border-box;
+    gap: 50px;
+    font-size: 10px;
+}
+.calendrio {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-weight: 600;
+}
+.page-head {
+    position: absolute;
+    top: 30px;
+    left: 140px;
+    width: 119px;
+    height: 33px;
+    font-size: 24px;
+    color: #0c2454;
+}
+.profile-photo-icon {
+    width: 45px;
+    position: relative;
+    height: 43px;
+    object-fit: cover;
+}
+.log-out {
+    position: absolute;
+    top: 1150.99px;
+    left: 0px;
+    height: 55.3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.category-icon {
+    width: 20px;
+    position: relative;
+    height: 20px;
+}
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+.iconlyboldchart {
+    width: 24px;
+    position: relative;
+    height: 24px;
+    object-fit: cover;
+    opacity: 0.4;
+}
+.kanban-1-icon {
+    width: 24px;
+    position: relative;
+    height: 24px;
+    object-fit: cover;
+}
+.contatos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.icones {
+    position: absolute;
+    top: 82.31px;
+    left: 9px;
+    height: 1003.1px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.down-bluish-gray-1-icon {
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    width: 36px;
+    height: 46.3px;
+    object-fit: contain;
+}
+.menu-name {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 45px;
+    height: 1206.3px;
+}
+.menu {
+    position: absolute;
+    top: 78px;
+    left: 19px;
+    width: 45px;
+    height: 1206.3px;
+}
+.barra-letal-child {
+    position: absolute;
+    top: 327px;
+    left: 55px;
+    border-radius: 50%;
+    background-color: #d11a2a;
+    width: 5px;
+    height: 5px;
+    opacity: 0.5;
+}
+.barra-letal-item {
+    position: absolute;
+    top: 143px;
+    left: 0px;
+    border-radius: 0px 5px 5px 0px;
+    background: linear-gradient(90deg, #34d3a3, rgba(52, 211, 163, 0));
+    width: 80px;
+    height: 48px;
+    opacity: 0.2;
+}
+.image-49-icon {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 56px;
+    height: 65px;
+    object-fit: cover;
+}
+.barra-letal {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    width: 80px;
+    height: 900px;
+    overflow-y: auto;
+}
+.calendrio-dia {
+    width: 100%;
+    position: relative;
+    background-color: #dce5ed;
+    height: 900px;
+    overflow: hidden;
+    text-align: left;
+    font-size: 14px;
+    color: #030229;
+    font-family: Nunito;
+}
+
+
+.novo-agendamento1 {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    font-size: 20px;
+    display: inline-block;
+    width: 187px;
+    height: 20px;
+}
+.salvar {
+    position: absolute;
+    top: 487px;
+    left: 343px;
+    border-radius: 10px;
+    background-color: #0c2454;
+    width: 93px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 19px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+}
+.fechar {
+    position: absolute;
+    top: 487px;
+    left: 230px;
+    border-radius: 10px;
+    border: 1px solid #0c2454;
+    box-sizing: border-box;
+    width: 93px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    text-align: center;
+    color: #0c2454;
+}
+.group-item {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    background-color: #0c2454;
+    width: 40px;
+    height: 40px;
+    opacity: 0.1;
+}
+.div36 {
+    position: absolute;
+    top: 10px;
+    left: 55px;
+    line-height: 20px;
+    white-space: pre-wrap;
+}
+.time-circle-icon {
+    position: absolute;
+    height: 40%;
+    width: 6.23%;
+    top: 30%;
+    right: 89.11%;
+    bottom: 30%;
+    left: 4.67%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+    object-fit: cover;
+}
+.rectangle-parent {
+    position: absolute;
+    top: 242px;
+    left: 30px;
+    width: 257px;
+    height: 40px;
+}
+.event {
+    border-radius: 10px;
+    background-color: #f2f2fb;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+}
+.task {
+    position: relative;
+}
+.task-wrapper {
+    border-radius: 10px;
+    background-color: #0c2454;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    color: #fff;
+}
+.seleo {
+    position: absolute;
+    top: 110px;
+    left: 30px;
+    border-radius: 10px;
+    background-color: rgba(12, 36, 84, 0.1);
+    width: 266px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px;
+    box-sizing: border-box;
+    gap: 35px;
+    text-align: center;
+}
+.cliente {
+    position: absolute;
+    top: 170px;
+    left: 30px;
+    border-radius: 10px;
+    background-color: #f7f7f8;
+    width: 406px;
+    height: 42px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.mensagem {
+    position: relative;
+    opacity: 0.7;
+}
+.mensagem-wrapper {
+    position: absolute;
+    top: 315px;
+    left: 30px;
+    border-radius: 10px;
+    background-color: #f7f7f8;
+    width: 406px;
+    height: 140px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 11px 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.novo-agendamento-task {
+    width: 466.5px;
+    position: relative;
+    box-shadow: 0px 10px 44px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #fff;
+    height: 567px;
+    overflow: hidden;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: left;
+    font-size: 14px;
+    color: #030229;
+    font-family: Nunito;
+}
+
