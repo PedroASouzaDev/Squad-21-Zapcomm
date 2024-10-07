@@ -18,7 +18,7 @@ import logo from "../../assets/logo.png";
 import img from "../../assets/login.png";
 
 
-const Copyright = () => {
+export const Copyright = () => {
 	return (
 		<Typography variant="body2" color="primary" align="center">
 			{"Copyright "}
@@ -57,6 +57,7 @@ const useStyles = makeStyles(theme => ({
 		padding: "2em",
 		justifySelf: "left",
 		height: "100%",
+		width: "30%",
 		boxSizing: "border-box",
 		paddingTop: "3em",
 		paddingBottom: "3em",
@@ -160,7 +161,7 @@ const Login = () => {
 							component={RouterLink}
 							to="/signup"
 						>
-							Login
+							SignUp
 						</Link>
 					</Grid>
 				</Grid> }
