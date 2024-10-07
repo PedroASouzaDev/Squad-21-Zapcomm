@@ -1,0 +1,4 @@
+# Ignore frontend runing
+/frontend/.env
+/frontend/node_modules
+
