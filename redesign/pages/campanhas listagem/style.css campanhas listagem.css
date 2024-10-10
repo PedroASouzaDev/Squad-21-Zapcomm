@@ -1,0 +1,549 @@
+.campanhas {
+  background-color: #dce5ed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.campanhas .div {
+  background-color: #dce5ed;
+  height: 900px;
+  position: relative;
+  width: 1440px;
+}
+
+.campanhas .btn {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  left: 145px;
+  position: absolute;
+  top: 85px;
+  width: 497px;
+}
+
+.campanhas .list {
+  align-items: center;
+  background-color: #0c2454;
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  padding: 12px;
+  position: relative;
+}
+
+.campanhas .text-wrapper {
+  color: #ffffff;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -0.5px;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas .board {
+  align-items: center;
+  background-color: #ffffff;
+  border-color: #9a9aa9db;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 46px;
+  justify-content: center;
+  margin-bottom: -1px;
+  margin-top: -1px;
+  padding: 12px 3px;
+  position: relative;
+}
+
+.campanhas .text-wrapper-2 {
+  color: #030229;
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.7;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas .timeline {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 0px 10px 10px 0px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  padding: 11px 17px;
+  position: relative;
+}
+
+.campanhas .text-wrapper-3 {
+  color: #0c2454;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  left: 140px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 29px;
+}
+
+.campanhas .frame-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 650px;
+  left: 157px;
+  position: absolute;
+  top: 204px;
+  width: 1200px;
+}
+
+.campanhas .tag {
+  align-self: stretch;
+  background-color: #ffffff;
+  border-radius: 10px;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+.campanhas .name {
+  height: 19px;
+  left: 24px;
+  position: absolute;
+  top: 19px;
+  width: 85px;
+}
+
+.campanhas .text-wrapper-4 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 83px;
+}
+
+.campanhas .frame-407 {
+  left: 1107px !important;
+  position: absolute !important;
+  top: 22px !important;
+}
+
+.campanhas .frame-instance {
+  margin-bottom: -0.15px !important;
+  margin-top: -0.15px !important;
+}
+
+.campanhas .button {
+  all: unset;
+  align-items: center;
+  background-color: #0c2454;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 17px;
+  height: 44px;
+  justify-content: center;
+  left: 1137px;
+  padding: 10px 20px;
+  position: absolute;
+  top: 85px;
+  width: 220px;
+}
+
+.campanhas .vector {
+  height: 10px;
+  position: relative;
+  width: 10px;
+}
+
+.campanhas .text-wrapper-5 {
+  color: #ffffff;
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: 153px;
+}
+
+.campanhas .table-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 164px;
+  padding: 0px 30px;
+  position: absolute;
+  top: 176px;
+  width: 1186px;
+}
+
+.campanhas .div-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+}
+
+.campanhas .text-wrapper-6 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  opacity: 0.7;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas .arrow-down {
+  height: 5px;
+  position: relative;
+  width: 4.41px;
+}
+
+.campanhas .agendamento {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  opacity: 0.7;
+  padding: 0;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas .img {
+  height: 5px;
+  position: relative;
+  width: 6.09px;
+}
+
+.campanhas .search-wrapper {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  justify-content: flex-end;
+  left: 889px;
+  position: absolute;
+  top: 85px;
+}
+
+.campanhas .search {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #0000001a;
+  border-radius: 10px;
+  height: 40px;
+  position: relative;
+  width: 230px;
+}
+
+.campanhas .searcha-and-icon {
+  height: 16px;
+  left: 19px;
+  position: relative;
+  top: 11px;
+  width: 192px;
+}
+
+.campanhas .search-2 {
+  height: 13px;
+  left: 178px;
+  position: absolute;
+  top: 2px;
+  width: 13px;
+}
+
+.campanhas .text-wrapper-7 {
+  -webkit-text-stroke: 1px #0000001a;
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: -1px;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.7;
+  position: absolute;
+  top: -1px;
+}
+
+.campanhas .barra-letal {
+  background-color: #ffffff;
+  height: 900px;
+  left: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  width: 80px;
+}
+
+.campanhas .overlap {
+  height: 1206px;
+  left: 0;
+  position: absolute;
+  top: 78px;
+  width: 80px;
+}
+
+.campanhas .menu {
+  height: 1206px;
+  left: 19px;
+  position: absolute;
+  top: 0;
+  width: 45px;
+}
+
+.campanhas .menu-name {
+  height: 1206px;
+  position: relative;
+}
+
+.campanhas .log-out {
+  align-items: center;
+  display: inline-flex;
+  gap: 18px;
+  height: 55px;
+  left: 0;
+  position: absolute;
+  top: 1151px;
+}
+
+.campanhas .profile-photo {
+  background-color: #f7f7f8;
+  border-radius: 12px;
+  height: 43px;
+  position: relative;
+  width: 45px;
+}
+
+.campanhas .overlap-group {
+  background-color: #f7f7f8;
+  border-radius: 12px;
+  height: 43px;
+}
+
+.campanhas .group {
+  height: 8px;
+  left: 18px;
+  position: relative;
+  top: 17px;
+  width: 9px;
+}
+
+.campanhas .camera-wrapper {
+  height: 8px;
+  opacity: 0.7;
+  position: relative;
+}
+
+.campanhas .camera {
+  height: 8px;
+  left: 7343px;
+  position: absolute;
+  top: -8113px;
+  width: 9px;
+}
+
+.campanhas .icones {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  height: 1003px;
+  justify-content: space-between;
+  left: 9px;
+  position: absolute;
+  top: 82px;
+}
+
+.campanhas .dashboard {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.campanhas .div-3 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 14px;
+  position: relative;
+}
+
+.campanhas .div-wrapper {
+  height: 24px;
+  opacity: 0.4;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas .chart {
+  background-image: url(./chart.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 20px;
+}
+
+.campanhas .img-2 {
+  height: 24px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas .document {
+  background-image: url(./document.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.campanhas .calendar {
+  background-image: url(./calendar.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.campanhas .code-bluish-gray {
+  height: 24px;
+  margin-right: -7334px;
+  margin-top: -7805.05px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas .chatbot {
+  height: 24px;
+  margin-right: -7334px;
+  margin-top: -7859.67px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas .user-bluish-gray {
+  height: 24px;
+  margin-right: -7334px;
+  margin-top: -7914.28px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas .ajuda {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.campanhas .question {
+  height: 24px;
+  margin-right: -7334px;
+  margin-top: -7968.9px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas .setting {
+  height: 20px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 19px;
+}
+
+.campanhas .setting-2 {
+  height: 20px;
+  left: 7334px;
+  position: absolute;
+  top: -8024px;
+  width: 19px;
+}
+
+.campanhas .down-bluish-gray {
+  height: 46px;
+  left: 3px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 36px;
+}
+
+.campanhas .ellipse {
+  background-color: var(--red);
+  border-radius: 2.5px;
+  height: 5px;
+  left: 55px;
+  opacity: 0.5;
+  position: absolute;
+  top: 249px;
+  width: 5px;
+}
+
+.campanhas .rectangle {
+  background: linear-gradient(180deg, rgb(52, 211, 163) 0%, rgba(52, 211, 163, 0) 100%);
+  border-radius: 0px 5px 5px 0px;
+  height: 48px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 65px;
+  width: 80px;
+}
+
+.campanhas .image {
+  height: 65px;
+  left: 10px;
+  position: absolute;
+  top: 0;
+  width: 56px;
+}
