@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 		height: "100vh",
 		//background: "linear-gradient(to right, #682EE3 , #682EE3 , #682EE3)",
 		//backgroundImage: "url(https://i.imgur.com/CGby9tN.png)",
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.background.main,
 		//backgroundRepeat: "no-repeat",
 		//backgroundSize: "100% 100%",
 		//backgroundPosition: "center",

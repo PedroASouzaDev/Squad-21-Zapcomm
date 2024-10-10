@@ -9,9 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import { versionSystem } from "../../../package.json";
-import { i18n } from "../../translate/i18n";
 import { nomeEmpresa } from "../../../package.json";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import logo from "../../assets/logo.png";
@@ -39,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 		height: "100vh",
 		//background: "linear-gradient(to right, #682EE3 , #682EE3 , #682EE3)",
 		//backgroundImage: "url(https://i.imgur.com/CGby9tN.png)",
-		backgroundColor: theme.palette.primary.main,
+		backgroundColor: theme.palette.background.main,
 		//backgroundRepeat: "no-repeat",
 		//backgroundSize: "100% 100%",
 		//backgroundPosition: "center",
@@ -154,7 +152,7 @@ const Login = () => {
 				</Button>
 				{ <Grid container>
 					<Grid item>
-						Não tem conta ainda?_
+						Não tem conta ainda?
 						<Link
 							href="#"
 							variant="body2"
