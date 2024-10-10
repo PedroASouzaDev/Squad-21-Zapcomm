@@ -55,6 +55,9 @@ import moment from "moment";
 import { ChartsDate } from "./ChartsDate";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.main,
+  },
   container: {
     paddingTop: theme.spacing(1),
     paddingBottom: theme.padding,
@@ -403,7 +406,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3} justifyContent="flex-end">
 		
@@ -522,7 +525,7 @@ const Dashboard = () => {
                 </Grid>
               </Grid>
             </Paper>
-</Grid>*/}
+          </Grid>*/}
 
           {/* FINALIZADOS */}
           <Grid item xs={12} sm={6} md={4}>
