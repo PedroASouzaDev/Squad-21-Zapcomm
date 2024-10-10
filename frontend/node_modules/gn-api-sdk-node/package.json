@@ -1,0 +1,36 @@
+{
+	"name": "gn-api-sdk-node",
+	"description": "Module for integration with Gerencianet API",
+	"version": "3.0.4",
+	"author": "Gerencianet - Consultoria Tecnica | Palloma Brito | João Vitor Oliveira",
+	"license": "MIT",
+	"repository": "gerencianet/gn-api-sdk-node",
+	"homepage": "https://github.com/gerencianet/gn-api-sdk-node",
+	"keywords": [
+		"gerencianet",
+		"pagamentos",
+		"payment",
+		"sdk",
+		"integração",
+		"integration",
+		"api",
+		"bank slip",
+		"boleto bancario",
+		"credit card",
+		"cartao de credito",
+		"pix",
+		"Open Finance"
+	],
+	"dependencies": {
+		"axios": "^1.2.1",
+		"randomstring": "^1.2.2"
+	},
+	"scripts": {
+		"start": "node app.js",
+		"test": "./node_modules/.bin/jest",
+		"test-cov": "./node_modules/.bin/jest --coverage"
+	},
+	"devDependencies": {
+		"jest": "^28.1.1"
+	}
+}

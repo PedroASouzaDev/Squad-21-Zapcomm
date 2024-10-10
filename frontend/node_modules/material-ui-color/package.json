@@ -1,0 +1,34 @@
+{
+	"name": "material-ui-color",
+	"version": "1.2.0",
+	"description": "The lightest colorpicker for React Material-Ui. No dependencies. It uses Hooks and support Typescript, and more !",
+	"main": "index.js",
+	"module": "./esm/index.js",
+	"typings": "index.d.ts",
+	"homepage": "https://mikbry.github.io/material-ui-color/",
+	"repository": "https://github.com/mikbry/material-ui-color.git",
+	"bugs": "https://github.com/mikbry/material-ui-color/issues",
+	"author": "Mik <mik@miklabs.com>",
+	"license": "MIT",
+	"keywords": [
+		"react",
+		"color picker",
+		"react-component",
+		"colorpicker",
+		"picker",
+		"tiny",
+		"color",
+		"material-ui",
+		"material design",
+		"react-color",
+		"typescript"
+	],
+	"peerDependencies": {
+		"@material-ui/core": "^4.9.5",
+		"material-ui-popup-state": "^1.5.3",
+		"prop-types": "^15.7.2",
+		"react": "^16.0.0 || ^17.0.0",
+		"react-dom": "^16.0.0 || ^17.0.0"
+	},
+	"dependencies": {}
+}
