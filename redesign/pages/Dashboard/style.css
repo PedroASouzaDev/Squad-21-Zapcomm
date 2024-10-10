@@ -1,7 +1,7 @@
 .row{
     display: flex;
+    gap: 2em;
     flex-direction: row;
-    align-items: center;
 }
 
 .wrap{
@@ -77,7 +77,60 @@
     border-radius: 1em;
 }
 
+.byMonth{
+    background-color: white;
+    width: fit-content;
+    padding: 2em;
+    border-radius: 1em;
+}
 
+.monthList{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.month{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.monthName{
+    width: 52px;
+    text-align: center;
+}
+.monthNumber{
+    width: 32px;
+    text-align: right;
+}
+
+.blueRectangle{
+    width: 200px;
+    background-color: #0C2454;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 32px;
+}
+
+.greenRectangle{
+    width: 200px;
+    background-color: #34D3A3;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 32px;
+}
+
+.graph{
+    flex-grow: 1;
+    background-color: white;
+    width: 100%;
+    border-radius: 1em;
+}
 
 .nchamado{
     background-color: #efefff;
