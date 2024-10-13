@@ -27,24 +27,30 @@ import ListIcon from "@material-ui/icons/ListAlt";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import ForumIcon from "@material-ui/icons/Forum";
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
-import RotateRight from "@material-ui/icons/RotateRight";
 import { i18n } from "../translate/i18n";
 import { WhatsAppsContext } from "../context/WhatsApp/WhatsAppsContext";
 import { AuthContext } from "../context/Auth/AuthContext";
-import LoyaltyRoundedIcon from '@material-ui/icons/LoyaltyRounded';
 import { Can } from "../components/Can";
 import { SocketContext } from "../context/Socket/SocketContext";
 import { isArray } from "lodash";
 import TableChartIcon from '@material-ui/icons/TableChart';
 import api from "../services/api";
 import BorderColorIcon from '@material-ui/icons/BorderColor';
-import ToDoList from "../pages/ToDoList/";
 import toastError from "../errors/toastError";
 import { makeStyles } from "@material-ui/core/styles";
 import { AllInclusive, AttachFile, BlurCircular, DeviceHubOutlined, Schedule } from '@material-ui/icons';
 import usePlans from "../hooks/usePlans";
 import Typography from "@material-ui/core/Typography";
 import useVersion from "../hooks/useVersion";
+
+// Account Button
+import {
+  MenuItem,
+  IconButton,
+  Menu,
+} from "@material-ui/core";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import UserModal from "../components/UserModal";
 
 const useStyles = makeStyles((theme) => ({
   ListSubheader: {
@@ -134,6 +140,11 @@ const reducer = (state, action) => {
 
 const MainListItems = (props) => {
   const classes = useStyles();
+  // Account buttton
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [userModalOpen, setUserModalOpen] = useState(false);
+
   const { drawerClose, collapsed } = props;
   const { whatsApps } = useContext(WhatsAppsContext);
   const { user, handleLogout } = useContext(AuthContext);
@@ -160,6 +171,22 @@ const MainListItems = (props) => {
   const { getVersion } = useVersion();
 
   const socketManager = useContext(SocketContext);
+
+  // Account Button
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuOpen(true);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setMenuOpen(false);
+  };
+
+  const handleOpenUserModal = () => {
+    setUserModalOpen(true);
+    handleCloseMenu();
+  };
 
   useEffect(() => {
     async function fetchVersion() {
@@ -317,7 +344,7 @@ const MainListItems = (props) => {
         icon={<FlashOnIcon />}
       />
 	  
-	  <ListItemLink
+	    <ListItemLink
         to="/todolist"
         primary={i18n.t("Tarefas")}
         icon={<BorderColorIcon />}
@@ -498,23 +525,56 @@ const MainListItems = (props) => {
 			
 			
             {!collapsed && <React.Fragment>
-              <Divider />
               {/* 
               // IMAGEM NO MENU
               <Hidden only={['sm', 'xs']}>
                 <img style={{ width: "100%", padding: "10px" }} src={logo} alt="image" />            
               </Hidden> 
               */}
-              <Typography style={{ fontSize: "12px", padding: "10px", textAlign: "right", fontWeight: "bold" }}>
-                {`6.0.0`}
-
-              </Typography>
             </React.Fragment>
             }
 			
           </>
         )}
       />
+      <UserModal
+        open={userModalOpen}
+        onClose={() => setUserModalOpen(false)}
+        userId={user?.id}
+      />
+      <div>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleMenu}
+          variant="contained"
+        >
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          getContentAnchorEl={null}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={menuOpen}
+          onClose={handleCloseMenu}
+        >
+          <MenuItem onClick={handleOpenUserModal}>
+            {i18n.t("mainDrawer.appBar.user.profile")}
+          </MenuItem>
+          <MenuItem onClick={handleClickLogout}>
+            {i18n.t("mainDrawer.appBar.user.logout")}
+          </MenuItem>
+        </Menu>
+      </div>
     </div>
   );
 };

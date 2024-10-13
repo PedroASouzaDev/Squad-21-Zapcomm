@@ -136,9 +136,13 @@ const useStyles = makeStyles((theme) => ({
       width: "100%"
     }
   },
+  appBarSpacer: {
+    minHeight: "48px",
+  },
   content: {
     flex: 1,
     overflow: "auto",
+
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -346,9 +350,11 @@ const LoggedInLayout = ({ children, themeToggle }) => {
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        <Divider />
         <List className={classes.containerWithScroll}>
           <MainListItems drawerClose={drawerClose} collapsed={!drawerOpen} />
         </List>
+        <Divider />
       </Drawer>
       <UserModal
         open={userModalOpen}
@@ -360,8 +366,101 @@ const LoggedInLayout = ({ children, themeToggle }) => {
         className={clsx(classes.appBar, drawerOpen && classes.appBarShift)}
         color="primary"
       >
+        <Toolbar variant="dense" className={classes.toolbar}>
+          <IconButton
+            edge="start"
+            variant="contained"
+            aria-label="open drawer"
+            onClick={() => setDrawerOpen(!drawerOpen)}
+            className={clsx(
+              classes.menuButton,
+              drawerOpen && classes.menuButtonHidden
+            )}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Typography
+            component="h2"
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.title}
+          >
+            {/* {greaterThenSm && user?.profile === "admin" && getDateAndDifDays(user?.company?.dueDate).difData < 7 ? ( */}
+            {greaterThenSm && user?.profile === "admin" && user?.company?.dueDate ? (
+              <>
+                Olá <b>{user.name}</b>, Bem vindo a <b>{user?.company?.name}</b>! (Ativo até {dateToClient(user?.company?.dueDate)})
+              </>
+            ) : (
+              <>
+                Olá  <b>{user.name}</b>, Bem vindo a <b>{user?.company?.name}</b>!
+              </>
+            )}
+          </Typography>
+
+          <IconButton edge="start" onClick={toggleColorMode}>
+            {theme.mode === 'dark' ? <Brightness7Icon style={{ color: "white" }} /> : <Brightness4Icon style={{ color: "white" }} />}
+          </IconButton>
+
+          <NotificationsVolume
+            setVolume={setVolume}
+            volume={volume}
+          />
+
+          <IconButton
+            onClick={handleRefreshPage}
+            aria-label={i18n.t("mainDrawer.appBar.refresh")}
+            color="inherit"
+          >
+            <CachedIcon style={{ color: "white" }} />
+          </IconButton>
+
+          {user.id && <NotificationsPopOver volume={volume} />}
+
+          <AnnouncementsPopover />
+
+          <ChatPopover />
+
+          <div>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              variant="contained"
+              style={{ color: "white" }}
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={menuOpen}
+              onClose={handleCloseMenu}
+            >
+              <MenuItem onClick={handleOpenUserModal}>
+                {i18n.t("mainDrawer.appBar.user.profile")}
+              </MenuItem>
+              <MenuItem onClick={handleClickLogout}>
+                {i18n.t("mainDrawer.appBar.user.logout")}
+              </MenuItem>
+            </Menu>
+          </div>
+        </Toolbar>
       </AppBar>
       <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+
         {children ? children : null}
       </main>
     </div>
