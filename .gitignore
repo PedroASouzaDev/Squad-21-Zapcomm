@@ -1,4 +1,7 @@
 # Ignore frontend runing
 /frontend/.env
-/frontend/node_modules/.cache
+/frontend/node_modules
+
+# Ignore backend
+/backend/.env
 
