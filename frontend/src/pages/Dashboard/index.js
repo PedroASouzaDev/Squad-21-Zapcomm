@@ -58,12 +58,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.main,
     display: "flex",
-  },
-  container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(2),
+  },
+  container: {
   },
   fixedHeightPaper: {
     padding: theme.spacing(2),
@@ -139,6 +139,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
+  },
+
+  //Grafico lateral
+
+  byMonth: {
+    backgroundColor: "white",
+    width: "fit-content",
+    padding: theme.spacing(2),
+    borderRadius: "1em",
   },
 }));
 
@@ -637,8 +646,10 @@ const Dashboard = () => {
 
         </Grid>
       </Container >
-      <div className={classes.container, classes.}>
-        pankakes        
+      <div>
+        <Paper className={classes.byMonth}>
+          pankakes
+        </Paper>
       </div>
     </div >
   );

@@ -34,6 +34,9 @@ const App = () => {
             typography: {
               fontFamily: "nunito",  
             },
+            shape: {
+                borderRadius: ".5em",
+            },
             scrollbarStyles: {
                 "&::-webkit-scrollbar": {
                     width: '8px',
