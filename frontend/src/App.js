@@ -31,6 +31,9 @@ const App = () => {
 
     const theme = createTheme(
         {
+            typography: {
+              fontFamily: "nunito",  
+            },
             scrollbarStyles: {
                 "&::-webkit-scrollbar": {
                     width: '8px',
