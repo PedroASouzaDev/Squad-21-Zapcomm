@@ -419,7 +419,7 @@ const Dashboard = () => {
               elevation={4}
             >
               <Grid container spacing={3}>
-              <Grid item xs={2}>
+              <Grid item xs={4}>
                   <CallIcon
                     style={{
                       fontSize: 100,
