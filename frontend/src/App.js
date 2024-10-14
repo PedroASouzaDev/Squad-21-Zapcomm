@@ -35,7 +35,7 @@ const App = () => {
               fontFamily: "nunito",  
             },
             shape: {
-                borderRadius: ".5em",
+                borderRadius: "1em",
             },
             scrollbarStyles: {
                 "&::-webkit-scrollbar": {

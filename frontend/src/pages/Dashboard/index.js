@@ -133,6 +133,7 @@ const useStyles = makeStyles((theme) => ({
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
     color: "#030229",
+    borderRadius: theme.shape.borderRadius,
   },
   fixedHeightPaper2: {
     padding: theme.spacing(2),
@@ -142,12 +143,50 @@ const useStyles = makeStyles((theme) => ({
   },
 
   //Grafico lateral
-
   byMonth: {
     backgroundColor: "white",
     width: "fit-content",
     padding: theme.spacing(2),
-    borderRadius: "1em",
+    borderRadius: theme.shape.borderRadius,
+  },
+  mTitle: {
+    paddingBottom: theme.spacing(4),
+  },
+  monthList: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(2),
+  },
+  month: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  monthName: {
+    width: "52px",
+    textAlign: "center",
+  },
+  monthNumber: {
+    width: "32px",
+    textAlign: "right",
+  },
+  blueRectangle: {
+    width: "200px", //Backend Integration
+    backgroundColor: "#0C2454",
+    borderBottomRightRadius: "20px",
+    borderTopRightRadius: "20px",
+    borderTopLeftRadius: "5px",
+    borderBottomLeftRadius: "5px",
+    height: "32px",
+  },
+  greenRectangle: {
+    width: "200px", //Backend Integration
+    backgroundColor: "#34D3A3",
+    borderBottomRightRadius: "20px",
+    borderTopRightRadius: "20px",
+    borderTopLeftRadius: "5px",
+    borderBottomLeftRadius: "5px",
+    height: "32px",
   },
 }));
 
@@ -341,6 +380,7 @@ const Dashboard = () => {
               className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={4} - "Box Shadow"
+              elevation={0}
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -378,6 +418,7 @@ const Dashboard = () => {
               className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
+              elevation={0}
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -457,6 +498,7 @@ const Dashboard = () => {
               className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
+              elevation={0}
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -494,6 +536,7 @@ const Dashboard = () => {
               className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
+              elevation={0}
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -532,6 +575,7 @@ const Dashboard = () => {
               className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
+              elevation={0}
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -569,6 +613,7 @@ const Dashboard = () => {
               className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
+              elevation={0}
             >
               <Grid container spacing={3}>
                 <Grid item xs={4}>
@@ -632,14 +677,14 @@ const Dashboard = () => {
 
           {/* TOTAL DE ATENDIMENTOS POR USUARIO */}
           <Grid item xs={12}>
-            <Paper className={classes.fixedHeightPaper2}>
+            <Paper elevation={0} className={classes.fixedHeightPaper2}>
               <ChatsUser />
             </Paper>
           </Grid>
 
           {/* TOTAL DE ATENDIMENTOS */}
           <Grid item xs={12}>
-            <Paper className={classes.fixedHeightPaper2}>
+            <Paper elevation={0} className={classes.fixedHeightPaper2}>
               <ChartsDate />
             </Paper>
           </Grid>
@@ -647,8 +692,120 @@ const Dashboard = () => {
         </Grid>
       </Container >
       <div>
-        <Paper className={classes.byMonth}>
-          pankakes
+        <Paper elevation={0} className={classes.byMonth}>
+          <Typography className={classes.mTitle} component="h2" variant="h5" color="primary">
+            Média de chamados Mensal 
+          </Typography>
+					<div className={classes.monthList}>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Jan 
+              </Typography>
+							<div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Feb 
+              </Typography>
+							<div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Mar
+              </Typography>
+							<div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Abr 
+              </Typography>
+							<div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Mai 
+              </Typography>
+							<div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Jun 
+              </Typography>
+							<div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Jul 
+              </Typography>
+							<div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Ago 
+              </Typography>
+							<div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Set 
+              </Typography>
+							<div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Out 
+              </Typography>
+							<div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Nov 
+              </Typography>
+							<div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+						<div className={classes.month}>
+              <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
+                Dez 
+              </Typography>
+							<div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
+                52
+              </Typography>
+						</div>
+					</div>
         </Paper>
       </div>
     </div >
