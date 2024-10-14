@@ -31,6 +31,9 @@ const App = () => {
 
     const theme = createTheme(
         {
+            typography: {
+                fontFamily: "Nunito",
+            },
             scrollbarStyles: {
                 "&::-webkit-scrollbar": {
                     width: '8px',
@@ -88,7 +91,7 @@ const App = () => {
                 textPrimary: mode === "light" ? "#0C2454" : "#FFFFFF",
                 borderPrimary: mode === "light" ? "#0C2454" : "#FFFFFF",
                 dark: { main: mode === "light" ? "#333333" : "#F3F3F3" },
-                light: { main: mode === "light" ? "#F3F3F3" : "#333333" },
+                light: { main: mode === "light" ? "#FFF" : "#333333" },
                 tabHeaderBackground: mode === "light" ? "#EEE" : "#666",
                 optionsBackground: mode === "light" ? "#fafafa" : "#333",
 				options: mode === "light" ? "#fafafa" : "#666",

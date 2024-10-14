@@ -135,8 +135,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card2: {
     padding: theme.spacing(2),
@@ -146,8 +146,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     //backgroundColor: "palette",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card3: {
     padding: theme.spacing(2),
@@ -156,8 +156,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
   //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card4: {
     padding: theme.spacing(2),
@@ -166,8 +166,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card5: {
     padding: theme.spacing(2),
@@ -176,8 +176,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card6: {
     padding: theme.spacing(2),
@@ -186,8 +186,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card7: {
     padding: theme.spacing(2),
@@ -196,8 +196,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card8: {
     padding: theme.spacing(2),
@@ -206,8 +206,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   card9: {
     padding: theme.spacing(2),
@@ -216,8 +216,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
     //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.primary.main,
-    color: "#eee",
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+    color: "#030229",
   },
   fixedHeightPaper2: {
     padding: theme.spacing(2),
@@ -416,7 +416,7 @@ const Dashboard = () => {
             <Paper
               className={classes.card1}
               style={{ overflow: "hidden" }}
-              elevation={4}
+              //elevation={4} - "Box Shadow"
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -428,19 +428,19 @@ const Dashboard = () => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    Em Conversa
-                  </Typography>
                   <Grid item>
                     <Typography
                       component="h1"
                       variant="h4"
                     >
                       {counters.supportHappening}
+                    </Typography>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      paragraph
+                    >
+                      Em Conversa
                     </Typography>
                   </Grid>
                 </Grid>
@@ -453,7 +453,7 @@ const Dashboard = () => {
             <Paper
               className={classes.card2}
               style={{ overflow: "hidden" }}
-              elevation={6}
+              //elevation={6}  - "Box Shadow"
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -465,19 +465,19 @@ const Dashboard = () => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    Aguardando
-                  </Typography>
                   <Grid item>
                     <Typography
                       component="h1"
                       variant="h4"
                     >
                       {counters.supportPending}
+                    </Typography>
+                    <Typography
+                    component="h3"
+                    variant="h6"
+                    paragraph
+                    >
+                      Aguardando
                     </Typography>
                   </Grid>
                 </Grid>
@@ -532,7 +532,7 @@ const Dashboard = () => {
             <Paper
               className={classes.card3}
               style={{ overflow: "hidden" }}
-              elevation={6}
+              //elevation={6}  - "Box Shadow"
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -544,19 +544,19 @@ const Dashboard = () => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    Finalizados
-                  </Typography>
                   <Grid item>
                     <Typography
                       component="h1"
                       variant="h4"
                     >
                       {counters.supportFinished}
+                    </Typography>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      paragraph
+                    >
+                      Finalizados
                     </Typography>
                   </Grid>
                 </Grid>
@@ -569,7 +569,7 @@ const Dashboard = () => {
             <Paper
               className={classes.card4}
               style={{ overflow: "hidden" }}
-              elevation={6}
+              //elevation={6}  - "Box Shadow"
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -581,19 +581,19 @@ const Dashboard = () => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    Novos Contatos
-                  </Typography>
                   <Grid item>
                     <Typography
                       component="h1"
                       variant="h4"
                     >
                       {GetContacts(true)}
+                    </Typography>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      paragraph
+                    >
+                      Novos Contatos
                     </Typography>
                   </Grid>
                 </Grid>
@@ -607,7 +607,7 @@ const Dashboard = () => {
             <Paper
               className={classes.card8}
               style={{ overflow: "hidden" }}
-              elevation={6}
+              //elevation={6}  - "Box Shadow"
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -619,19 +619,19 @@ const Dashboard = () => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    T.M. de Conversa
-                  </Typography>
                   <Grid item>
                     <Typography
                       component="h1"
                       variant="h4"
                     >
                       {formatTime(counters.avgSupportTime)}
+                    </Typography>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      paragraph
+                    >
+                      T.M. de Conversa
                     </Typography>
                   </Grid>
                 </Grid>
@@ -644,7 +644,7 @@ const Dashboard = () => {
             <Paper
               className={classes.card9}
               style={{ overflow: "hidden" }}
-              elevation={6}
+              //elevation={6}  - "Box Shadow"
             >
               <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -656,19 +656,19 @@ const Dashboard = () => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    component="h3"
-                    variant="h6"
-                    paragraph
-                  >
-                    T.M. de Espera
-                  </Typography>
                   <Grid item>
                     <Typography
                       component="h1"
                       variant="h4"
                     >
                       {formatTime(counters.avgWaitTime)}
+                    </Typography>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      paragraph
+                    >
+                      T.M. de Espera
                     </Typography>
                   </Grid>
                 </Grid>
