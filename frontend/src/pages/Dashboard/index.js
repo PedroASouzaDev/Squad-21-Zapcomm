@@ -57,10 +57,11 @@ import { ChartsDate } from "./ChartsDate";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.main,
+    display: "flex",
   },
   container: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.padding,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(2),
   },
@@ -102,10 +103,6 @@ const useStyles = makeStyles((theme) => ({
     height: "calc(100vh - 64px)",
     border: "none",
   },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
   fixedHeightPaper: {
     padding: theme.spacing(2),
     display: "flex",
@@ -127,89 +124,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100%",
   },
-  card1: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: "palette",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card2: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: "palette",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card3: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-  //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card4: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card5: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card6: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card7: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card8: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: "100%",
-    //backgroundColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
-    color: "#030229",
-  },
-  card9: {
+  card: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
@@ -407,14 +322,14 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container className={classes.container}>
         <Grid container spacing={3} justifyContent="flex-end">
 		
 
           {/* EM ATENDIMENTO */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card1}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={4} - "Box Shadow"
             >
@@ -423,7 +338,7 @@ const Dashboard = () => {
                   <CallIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "primary",
                     }}
                   />
                 </Grid>
@@ -451,7 +366,7 @@ const Dashboard = () => {
           {/* AGUARDANDO */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card2}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
             >
@@ -460,7 +375,7 @@ const Dashboard = () => {
                   <HourglassEmptyIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "primary",
                     }}
                   />
                 </Grid>
@@ -488,7 +403,7 @@ const Dashboard = () => {
           {/* ATENDENTES ATIVOS */}
 			  {/*<Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card6}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               elevation={6}
             >
@@ -530,7 +445,7 @@ const Dashboard = () => {
           {/* FINALIZADOS */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card3}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
             >
@@ -539,7 +454,7 @@ const Dashboard = () => {
                   <CheckCircleIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "primary",
                     }}
                   />
                 </Grid>
@@ -567,7 +482,7 @@ const Dashboard = () => {
           {/* NOVOS CONTATOS */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card4}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
             >
@@ -576,7 +491,7 @@ const Dashboard = () => {
                   <GroupAddIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "#primary",
                     }}
                   />
                 </Grid>
@@ -605,7 +520,7 @@ const Dashboard = () => {
           {/* T.M. DE ATENDIMENTO */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card8}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
             >
@@ -614,7 +529,7 @@ const Dashboard = () => {
                   <AccessAlarmIcon
                     style={{
                       fontSize: 100,
-                      color: "#FFFFFF",
+                      color: "primary",
                     }}
                   />
                 </Grid>
@@ -642,18 +557,18 @@ const Dashboard = () => {
           {/* T.M. DE ESPERA */}
           <Grid item xs={12} sm={6} md={4}>
             <Paper
-              className={classes.card9}
+              className={classes.card}
               style={{ overflow: "hidden" }}
               //elevation={6}  - "Box Shadow"
             >
               <Grid container spacing={3}>
-              <Grid item xs={4}>
-                  <TimerIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
+                <Grid item xs={4}>
+                    <TimerIcon
+                      style={{
+                        fontSize: 100,
+                        color: "primary",
+                      }}
+                    />
                 </Grid>
                 <Grid item xs={8}>
                   <Grid item>
@@ -706,16 +621,6 @@ const Dashboard = () => {
             </ButtonWithSpinner>
           </Grid>
 
-          {/* USUARIOS ONLINE */}
-          <Grid item xs={12}>
-            {attendants.length ? (
-              <TableAttendantsStatus
-                attendants={attendants}
-                loading={loading}
-              />
-            ) : null}
-          </Grid>
-
           {/* TOTAL DE ATENDIMENTOS POR USUARIO */}
           <Grid item xs={12}>
             <Paper className={classes.fixedHeightPaper2}>
@@ -732,6 +637,9 @@ const Dashboard = () => {
 
         </Grid>
       </Container >
+      <div className={classes.container, classes.}>
+        pankakes        
+      </div>
     </div >
   );
 };
