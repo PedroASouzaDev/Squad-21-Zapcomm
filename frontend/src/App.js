@@ -32,7 +32,7 @@ const App = () => {
     const theme = createTheme(
         {
             typography: {
-                fontFamily: "Nunito",
+              fontFamily: "nunito",  
             },
             scrollbarStyles: {
                 "&::-webkit-scrollbar": {
