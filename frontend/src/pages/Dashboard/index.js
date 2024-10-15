@@ -170,9 +170,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     borderRadius: theme.shape.borderRadius,
   },
-  mTitle: {
-    paddingBottom: theme.spacing(4),
-  },
   monthList: {
     display: "flex",
     flexDirection: "column",
@@ -198,7 +195,7 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: "20px",
     borderTopLeftRadius: "5px",
     borderBottomLeftRadius: "5px",
-    height: "32px",
+    height: "42px",
   },
   greenRectangle: {
     width: "200px", //Backend Integration
@@ -207,7 +204,7 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: "20px",
     borderTopLeftRadius: "5px",
     borderBottomLeftRadius: "5px",
-    height: "32px",
+    height: "42px",
   },
 }));
 
@@ -674,123 +671,127 @@ const Dashboard = () => {
 
         </Grid>
       </Container >
-      <div>
-        <Paper elevation={0} className={classes.byMonth}>
-          <Typography className={classes.mTitle} component="h2" variant="h5" color="primary">
-            Média de chamados Mensal 
-          </Typography>
-					<div className={classes.monthList}>
-						<div className={classes.month}>
+      <Paper elevation={0} className={classes.card}>
+
+        <Grid container direction="column" spacing={4}>
+          <Grid container item justifyContent="center">
+            <Typography component="h2" variant="h5" color="primary">
+              Chamados Mensal
+            </Typography>
+          </Grid>
+          <Grid container item direction="column" spacing={2}>
+            
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Jan 
+                Jan
               </Typography>
-							<div className={classes.blueRectangle}></div>
+              <div className={classes.blueRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Feb 
+                Fev
               </Typography>
-							<div className={classes.greenRectangle}></div>
+              <div className={classes.greenRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
                 Mar
               </Typography>
-							<div className={classes.blueRectangle}></div>
+              <div className={classes.blueRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Abr 
+                Abr
               </Typography>
-							<div className={classes.greenRectangle}></div>
+              <div className={classes.greenRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Mai 
+                Mai
               </Typography>
-							<div className={classes.blueRectangle}></div>
+              <div className={classes.blueRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Jun 
+                Jun
               </Typography>
-							<div className={classes.greenRectangle}></div>
+              <div className={classes.greenRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Jul 
+                Jul
               </Typography>
-							<div className={classes.blueRectangle}></div>
+              <div className={classes.blueRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Ago 
+                Ago
               </Typography>
-							<div className={classes.greenRectangle}></div>
+              <div className={classes.greenRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Set 
+                Set
               </Typography>
-							<div className={classes.blueRectangle}></div>
+              <div className={classes.blueRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Out 
+                Out
               </Typography>
-							<div className={classes.greenRectangle}></div>
+              <div className={classes.greenRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Nov 
+                Nov
               </Typography>
-							<div className={classes.blueRectangle}></div>
+              <div className={classes.blueRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-						<div className={classes.month}>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
               <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                Dez 
+                Dez
               </Typography>
-							<div className={classes.greenRectangle}></div>
+              <div className={classes.greenRectangle}></div>
               <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
                 52
               </Typography>
-						</div>
-					</div>
-        </Paper>
-      </div>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
     </div >
   );
 };
