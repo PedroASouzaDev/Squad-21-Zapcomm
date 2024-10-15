@@ -264,10 +264,8 @@ return (
                 <TableRow key={tag.id}>
                   <TableCell align="center">
                     <Chip
-                      variant="outlined"
                       style={{
                         backgroundColor: tag.color,
-                        textShadow: "1px 1px 1px #000",
                         color: "white",
                       }}
                       label={tag.name}
