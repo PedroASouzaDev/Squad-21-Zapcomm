@@ -55,6 +55,9 @@ import moment from "moment";
 import { ChartsDate } from "./ChartsDate";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.main,
+  },
   container: {
     paddingTop: theme.spacing(1),
     paddingBottom: theme.padding,
@@ -403,7 +406,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3} justifyContent="flex-end">
 		
@@ -416,6 +419,14 @@ const Dashboard = () => {
               elevation={4}
             >
               <Grid container spacing={3}>
+              <Grid item xs={2}>
+                  <CallIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#FFFFFF",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h3"
@@ -433,14 +444,6 @@ const Dashboard = () => {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item xs={2}>
-                  <CallIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
-                </Grid>
               </Grid>
             </Paper>
           </Grid>
@@ -453,6 +456,14 @@ const Dashboard = () => {
               elevation={6}
             >
               <Grid container spacing={3}>
+              <Grid item xs={4}>
+                  <HourglassEmptyIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#FFFFFF",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h3"
@@ -469,14 +480,6 @@ const Dashboard = () => {
                       {counters.supportPending}
                     </Typography>
                   </Grid>
-                </Grid>
-                <Grid item xs={4}>
-                  <HourglassEmptyIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
                 </Grid>
               </Grid>
             </Paper>
@@ -522,7 +525,7 @@ const Dashboard = () => {
                 </Grid>
               </Grid>
             </Paper>
-</Grid>*/}
+          </Grid>*/}
 
           {/* FINALIZADOS */}
           <Grid item xs={12} sm={6} md={4}>
@@ -532,6 +535,14 @@ const Dashboard = () => {
               elevation={6}
             >
               <Grid container spacing={3}>
+              <Grid item xs={4}>
+                  <CheckCircleIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#FFFFFF",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h3"
@@ -549,14 +560,6 @@ const Dashboard = () => {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <CheckCircleIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
-                </Grid>
               </Grid>
             </Paper>
           </Grid>
@@ -569,6 +572,14 @@ const Dashboard = () => {
               elevation={6}
             >
               <Grid container spacing={3}>
+              <Grid item xs={4}>
+                  <GroupAddIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#FFFFFF",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h3"
@@ -586,14 +597,6 @@ const Dashboard = () => {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <GroupAddIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
-                </Grid>
               </Grid>
             </Paper>
           </Grid>
@@ -607,6 +610,14 @@ const Dashboard = () => {
               elevation={6}
             >
               <Grid container spacing={3}>
+              <Grid item xs={4}>
+                  <AccessAlarmIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#FFFFFF",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h3"
@@ -624,14 +635,6 @@ const Dashboard = () => {
                     </Typography>
                   </Grid>
                 </Grid>
-                <Grid item xs={4}>
-                  <AccessAlarmIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
-                </Grid>
               </Grid>
             </Paper>
           </Grid>
@@ -644,6 +647,14 @@ const Dashboard = () => {
               elevation={6}
             >
               <Grid container spacing={3}>
+              <Grid item xs={4}>
+                  <TimerIcon
+                    style={{
+                      fontSize: 100,
+                      color: "#FFFFFF",
+                    }}
+                  />
+                </Grid>
                 <Grid item xs={8}>
                   <Typography
                     component="h3"
@@ -660,14 +671,6 @@ const Dashboard = () => {
                       {formatTime(counters.avgWaitTime)}
                     </Typography>
                   </Grid>
-                </Grid>
-                <Grid item xs={4}>
-                  <TimerIcon
-                    style={{
-                      fontSize: 100,
-                      color: "#FFFFFF",
-                    }}
-                  />
                 </Grid>
               </Grid>
             </Paper>
