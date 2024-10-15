@@ -1,0 +1,194 @@
+.novo-informativo {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.novo-informativo .div {
+  background-color: #ffffff;
+  height: 723px;
+  position: relative;
+  width: 566px;
+}
+
+.novo-informativo .primary-btn {
+  background-color: #0c2454;
+  border-radius: 10px;
+  height: 37px;
+  left: 298px;
+  position: absolute;
+  top: 665px;
+  width: 238px;
+}
+
+.novo-informativo .group {
+  height: 21px;
+  left: 84px;
+  position: relative;
+  top: 9px;
+  width: 72px;
+}
+
+.novo-informativo .text-wrapper {
+  color: #ffffff;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 70px;
+}
+
+.novo-informativo .secondery-btn {
+  align-items: center;
+  border: 1px solid;
+  border-color: #0c2454;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 37px;
+  justify-content: center;
+  left: 30px;
+  padding: 8px 93px;
+  position: absolute;
+  top: 665px;
+  width: 238px;
+}
+
+.novo-informativo .text-wrapper-2 {
+  color: #0c2454;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1.41px;
+  position: relative;
+  width: fit-content;
+}
+
+.novo-informativo .email-and-address {
+  height: 41px;
+  left: 30px;
+  position: absolute;
+  top: 128px;
+  width: 506px;
+}
+
+.novo-informativo .address {
+  align-items: center;
+  background-color: var(--gray);
+  display: flex;
+  gap: 10px;
+  height: 41px;
+  left: 268px;
+  padding: 14px 20px;
+  position: absolute;
+  top: 0;
+  width: 238px;
+}
+
+.novo-informativo .text-wrapper-3 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-bottom: -1.84px;
+  margin-top: -3.84px;
+  opacity: 0.5;
+  position: relative;
+  width: fit-content;
+}
+
+.novo-informativo .email {
+  align-items: center;
+  background-color: var(--gray);
+  display: flex;
+  gap: 10px;
+  height: 41px;
+  left: 0;
+  padding: 9px 20px;
+  position: absolute;
+  top: 0;
+  width: 238px;
+}
+
+.novo-informativo .text-wrapper-4 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.5;
+  position: relative;
+  width: fit-content;
+}
+
+.novo-informativo .texto {
+  align-items: flex-start;
+  background-color: var(--gray);
+  display: flex;
+  gap: 10px;
+  height: 438px;
+  left: 30px;
+  padding: 14px 21px;
+  position: absolute;
+  top: 202px;
+  width: 506px;
+}
+
+.novo-informativo .text-wrapper-5 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  opacity: 0.5;
+  position: relative;
+  width: fit-content;
+}
+
+.novo-informativo .name {
+  align-items: center;
+  background-color: var(--gray);
+  display: flex;
+  gap: 10px;
+  height: 41px;
+  left: 30px;
+  padding: 14px 20px;
+  position: absolute;
+  top: 61px;
+  width: 506px;
+}
+
+.novo-informativo .card-name {
+  height: 32px;
+  left: 30px;
+  position: absolute;
+  top: 12px;
+  width: 221px;
+}
+
+.novo-informativo .text-wrapper-6 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 219px;
+}

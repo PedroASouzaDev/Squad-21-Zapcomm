@@ -1,0 +1,608 @@
+.campanhas-contatos {
+  background-color: #dce5ed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.campanhas-contatos .div {
+  background-color: #dce5ed;
+  height: 900px;
+  position: relative;
+  width: 1440px;
+}
+
+.campanhas-contatos .frame {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 650px;
+  left: 157px;
+  position: absolute;
+  top: 194px;
+  width: 1200px;
+}
+
+.campanhas-contatos .tag {
+  height: 58.89px;
+  margin-right: -4px;
+  position: relative;
+  width: 1204px;
+}
+
+.campanhas-contatos .overlap-group {
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 59px;
+  position: relative;
+  width: 1200px;
+}
+
+.campanhas-contatos .text-wrapper {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 600px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 19px;
+}
+
+.campanhas-contatos .text-wrapper-2 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 19px;
+  width: 83px;
+}
+
+.campanhas-contatos .frame-2 {
+  align-items: center;
+  display: flex;
+  height: 16px;
+  justify-content: space-between;
+  left: 1107px;
+  position: absolute;
+  top: 22px;
+  width: 53px;
+}
+
+.campanhas-contatos .edit {
+  height: 15px;
+  position: relative;
+  width: 15px;
+}
+
+.campanhas-contatos .delete {
+  height: 16.67px;
+  margin-bottom: -0.15px;
+  margin-top: -0.15px;
+  position: relative;
+  width: 15px;
+}
+
+.campanhas-contatos .text-wrapper-3 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 19px;
+}
+
+.campanhas-contatos .text-wrapper-4 {
+  color: #0c2454;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  left: 140px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 29px;
+}
+
+.campanhas-contatos .btn {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  left: 164px;
+  position: absolute;
+  top: 85px;
+  width: 497px;
+}
+
+.campanhas-contatos .list {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  padding: 12px;
+  position: relative;
+}
+
+.campanhas-contatos .text-wrapper-5 {
+  color: #030229;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -0.5px;
+  opacity: 0.7;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas-contatos .board {
+  align-items: center;
+  background-color: #0c2454;
+  border-color: #9a9aa9;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 46px;
+  justify-content: center;
+  margin-bottom: -1px;
+  margin-top: -1px;
+  padding: 12px 3px;
+  position: relative;
+}
+
+.campanhas-contatos .text-wrapper-6 {
+  color: #ffffff;
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas-contatos .timeline {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 0px 10px 10px 0px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  padding: 11px 17px;
+  position: relative;
+}
+
+.campanhas-contatos .text-wrapper-7 {
+  color: #030229;
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.7;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas-contatos .table-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 164px;
+  padding: 0px 30px;
+  position: absolute;
+  top: 167px;
+  width: 1186px;
+}
+
+.campanhas-contatos .div-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+}
+
+.campanhas-contatos .text-wrapper-8 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  opacity: 0.7;
+  position: relative;
+  width: fit-content;
+}
+
+.campanhas-contatos .arrow-down {
+  height: 5px;
+  position: relative;
+  width: 4.41px;
+}
+
+.campanhas-contatos .email {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  position: relative;
+  width: 54px;
+}
+
+.campanhas-contatos .text-wrapper-9 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  opacity: 0.7;
+  position: relative;
+  width: 54px;
+}
+
+.campanhas-contatos .img {
+  height: 5px;
+  margin-right: -16.02px;
+  position: relative;
+  width: 4.02px;
+}
+
+.campanhas-contatos .arrow-down-2 {
+  height: 5px;
+  position: relative;
+  width: 6.09px;
+}
+
+.campanhas-contatos .button {
+  all: unset;
+  align-items: center;
+  background-color: #0c2454;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 17px;
+  height: 44px;
+  justify-content: center;
+  left: 1170px;
+  padding: 10px 20px;
+  position: absolute;
+  top: 87px;
+}
+
+.campanhas-contatos .vector {
+  height: 10px;
+  position: relative;
+  width: 10px;
+}
+
+.campanhas-contatos .text-wrapper-10 {
+  color: #ffffff;
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: 103px;
+}
+
+.campanhas-contatos .search-wrapper {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  height: 44px;
+  justify-content: flex-end;
+  left: 913px;
+  position: absolute;
+  top: 85px;
+}
+
+.campanhas-contatos .search {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #0000001a;
+  border-radius: 10px;
+  height: 40px;
+  position: relative;
+  width: 230px;
+}
+
+.campanhas-contatos .searcha-and-icon {
+  height: 16px;
+  left: 19px;
+  position: relative;
+  top: 11px;
+  width: 192px;
+}
+
+.campanhas-contatos .search-2 {
+  height: 13px;
+  left: 178px;
+  position: absolute;
+  top: 2px;
+  width: 13px;
+}
+
+.campanhas-contatos .text-wrapper-11 {
+  -webkit-text-stroke: 1px #0000001a;
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: -1px;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.7;
+  position: absolute;
+  top: -1px;
+}
+
+.campanhas-contatos .barra-letal {
+  background-color: #ffffff;
+  height: 900px;
+  left: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  width: 80px;
+}
+
+.campanhas-contatos .overlap {
+  height: 1206px;
+  left: 0;
+  position: absolute;
+  top: 78px;
+  width: 80px;
+}
+
+.campanhas-contatos .menu {
+  height: 1206px;
+  left: 19px;
+  position: absolute;
+  top: 0;
+  width: 45px;
+}
+
+.campanhas-contatos .menu-name {
+  height: 1206px;
+  position: relative;
+}
+
+.campanhas-contatos .log-out {
+  align-items: center;
+  display: inline-flex;
+  gap: 18px;
+  height: 55px;
+  left: 0;
+  position: absolute;
+  top: 1151px;
+}
+
+.campanhas-contatos .profile-photo {
+  background-color: #f7f7f8;
+  border-radius: 12px;
+  height: 43px;
+  position: relative;
+  width: 45px;
+}
+
+.campanhas-contatos .group-wrapper {
+  background-color: #f7f7f8;
+  border-radius: 12px;
+  height: 43px;
+}
+
+.campanhas-contatos .group {
+  height: 8px;
+  left: 18px;
+  position: relative;
+  top: 17px;
+  width: 9px;
+}
+
+.campanhas-contatos .camera-wrapper {
+  height: 8px;
+  opacity: 0.7;
+  position: relative;
+}
+
+.campanhas-contatos .camera {
+  height: 8px;
+  left: 5793px;
+  position: absolute;
+  top: -8113px;
+  width: 9px;
+}
+
+.campanhas-contatos .icones {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  height: 1003px;
+  justify-content: space-between;
+  left: 9px;
+  position: absolute;
+  top: 82px;
+}
+
+.campanhas-contatos .dashboard {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.campanhas-contatos .div-3 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 14px;
+  position: relative;
+}
+
+.campanhas-contatos .div-wrapper {
+  height: 24px;
+  opacity: 0.4;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas-contatos .chart {
+  background-image: url(./chart.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 20px;
+}
+
+.campanhas-contatos .img-2 {
+  height: 24px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas-contatos .document {
+  background-image: url(./document.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.campanhas-contatos .calendar {
+  background-image: url(./calendar.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.campanhas-contatos .code-bluish-gray {
+  height: 24px;
+  margin-right: -5784px;
+  margin-top: -7805.05px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas-contatos .chatbot {
+  height: 24px;
+  margin-right: -5784px;
+  margin-top: -7859.67px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas-contatos .user-bluish-gray {
+  height: 24px;
+  margin-right: -5784px;
+  margin-top: -7914.28px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas-contatos .ajuda {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.campanhas-contatos .question {
+  height: 24px;
+  margin-right: -5784px;
+  margin-top: -7968.9px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.campanhas-contatos .setting {
+  height: 20px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 19px;
+}
+
+.campanhas-contatos .setting-2 {
+  height: 20px;
+  left: 5784px;
+  position: absolute;
+  top: -8024px;
+  width: 19px;
+}
+
+.campanhas-contatos .down-bluish-gray {
+  height: 46px;
+  left: 3px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 36px;
+}
+
+.campanhas-contatos .ellipse {
+  background-color: var(--red);
+  border-radius: 2.5px;
+  height: 5px;
+  left: 55px;
+  opacity: 0.5;
+  position: absolute;
+  top: 249px;
+  width: 5px;
+}
+
+.campanhas-contatos .rectangle {
+  background: linear-gradient(180deg, rgb(52, 211, 163) 0%, rgba(52, 211, 163, 0) 100%);
+  border-radius: 0px 5px 5px 0px;
+  height: 48px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 65px;
+  width: 80px;
+}
+
+.campanhas-contatos .image {
+  height: 65px;
+  left: 10px;
+  position: absolute;
+  top: 0;
+  width: 56px;
+}
