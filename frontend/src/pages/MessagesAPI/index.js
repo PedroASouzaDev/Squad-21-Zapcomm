@@ -30,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   textRight: {
     textAlign: "right"
-  }
+  },
+  textField: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: "10px",
+  },
 }));
 
 const MessagesAPI = () => {
