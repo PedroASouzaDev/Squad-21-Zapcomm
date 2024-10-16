@@ -14,6 +14,7 @@ import usePlans from "../../hooks/usePlans";
 
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
+    backgroundColor: theme.palette.background.main,
     flex: 1,
     padding: theme.spacing(2),
     paddingBottom: 100

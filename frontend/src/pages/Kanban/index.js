@@ -89,9 +89,13 @@ const Kanban = () => {
     const lanes = [
       {
         id: "lane0",
-        title: (<div className="cardtitle">{i18n.t("Em aberto")}</div>),
+        title: i18n.t("Em Aberto"),
         label: "0",
-        style: { backgroundColor: "#FFFFFF", borderRadius: "10px" },
+        style: { 
+          backgroundColor: "#FFFFFF", 
+          borderRadius: "10px", 
+          color: "#0c2454",
+        },
         //Para resolver o problema dos cards aparecendo em todas as lanes, é necessário ajustar o backend e a função filtered Tickets.
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
@@ -119,9 +123,13 @@ const Kanban = () => {
       },
       {
         id: "lane1",
-        title: i18n.t("Em atendimento"),
+        title: i18n.t("Em Atendimento"),
         label: "0",
-        style: { backgroundColor: "#FFFFFF", borderRadius: "10px" },
+        style: { 
+          backgroundColor: "#FFFFFF", 
+          borderRadius: "10px", 
+          color: "#0c2454" 
+        },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
@@ -148,9 +156,13 @@ const Kanban = () => {
       },
       {
         id: "lane2",
-        title: i18n.t("Aguardando fornecedor"),
+        title: i18n.t("Aguardando Fornecedor"),
         label: "0",
-        style: { backgroundColor: "#FFFFFF", borderRadius: "10px" },
+        style: { 
+          backgroundColor: "#FFFFFF", 
+          borderRadius: "10px", 
+          color: "#0c2454" 
+        },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
@@ -179,7 +191,11 @@ const Kanban = () => {
         id: "lane3",
         title: i18n.t("Impedido"),
         label: "0",
-        style: { backgroundColor: "#FFFFFF", borderRadius: "10px" },
+        style: { 
+          backgroundColor: "#FFFFFF", 
+          borderRadius: "10px", 
+          color: "#0c2454" 
+        },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
@@ -208,7 +224,11 @@ const Kanban = () => {
         id: "lane4",
         title: i18n.t("Finalizados"),
         label: "0",
-        style: { backgroundColor: "#FFFFFF", borderRadius: "10px", },
+        style: { 
+          backgroundColor: "#FFFFFF", 
+          borderRadius: "10px", 
+          color: "#0c2454" 
+        },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
@@ -267,7 +287,7 @@ const Kanban = () => {
             draggable: true,
             href: "/tickets/" + ticket.uuid,          
           })),
-          style: { backgroundColor: tag.color, color: "white", borderRadius: "10px" }
+          style: { backgroundColor: tag.color, color: "white", borderRadius: "10px", color: "#0c2454" }
         };
       }),
     ];
