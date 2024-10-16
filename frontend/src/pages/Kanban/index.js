@@ -15,18 +15,14 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
   },
   button: {
-    background: "#0c2454",
+    backgroundColor: "#0c2454",
     border: "none",
     padding: "10px",
     color: "white",
     fontWeight: "bold",
     borderRadius: "5px",
+    fontFamily: "Nunito",
   },
-  cardtitles: {
-    color: "0c2454",
-    fontSize: "100px",
-  },
-  
 }));
 
 const Kanban = () => {
@@ -96,8 +92,12 @@ const Kanban = () => {
           borderRadius: "10px", 
           color: "#0c2454",
         },
-        //Para resolver o problema dos cards aparecendo em todas as lanes, é necessário ajustar o backend e a função filtered Tickets.
+        //Para resolver o problema dos cards aparecendo em todas as lanes, é necessário ajustar o backend e a função map em filteredTickets.
         cards: filteredTickets.map(ticket => ({
+          style: {
+            textAlign: "center",
+            border: "2px solid #e7eaee",
+          },
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
           description: (
@@ -131,6 +131,10 @@ const Kanban = () => {
           color: "#0c2454" 
         },
         cards: filteredTickets.map(ticket => ({
+          style: {
+            textAlign: "center",
+            border: "2px solid #e7eaee",
+          },
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
           description: (
@@ -164,6 +168,10 @@ const Kanban = () => {
           color: "#0c2454" 
         },
         cards: filteredTickets.map(ticket => ({
+          style: {
+            textAlign: "center",
+            border: "2px solid #e7eaee",
+          },
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
           description: (
@@ -197,6 +205,10 @@ const Kanban = () => {
           color: "#0c2454" 
         },
         cards: filteredTickets.map(ticket => ({
+          style: {
+            textAlign: "center",
+            border: "2px solid #e7eaee",
+          },
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
           description: (
@@ -230,6 +242,10 @@ const Kanban = () => {
           color: "#0c2454" 
         },
         cards: filteredTickets.map(ticket => ({
+          style: {
+            textAlign: "center",
+            border: "2px solid #e7eaee",
+          },
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
           description: (
