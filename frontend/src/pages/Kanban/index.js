@@ -15,12 +15,16 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
   },
   button: {
-    background: "#10a110",
+    background: "#0c2454",
     border: "none",
     padding: "10px",
     color: "white",
     fontWeight: "bold",
     borderRadius: "5px",
+  },
+  cardtitles: {
+    color: "0c2454",
+    fontSize: "100px",
   },
   
 }));
@@ -85,9 +89,10 @@ const Kanban = () => {
     const lanes = [
       {
         id: "lane0",
-        title: i18n.t("Em aberto"),
+        title: (<div className="cardtitle">{i18n.t("Em aberto")}</div>),
         label: "0",
         style: { backgroundColor: "#FFFFFF", borderRadius: "10px" },
+        //Para resolver o problema dos cards aparecendo em todas as lanes, é necessário ajustar o backend e a função filtered Tickets.
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
@@ -203,7 +208,7 @@ const Kanban = () => {
         id: "lane4",
         title: i18n.t("Finalizados"),
         label: "0",
-        style: { backgroundColor: "#FFFFFF", borderRadius: "10px", color: "" },
+        style: { backgroundColor: "#FFFFFF", borderRadius: "10px", },
         cards: filteredTickets.map(ticket => ({
           id: ticket.id.toString(),
           label: "Ticket nº " + ticket.id.toString(),
