@@ -302,7 +302,10 @@ const Kanban = () => {
       <Board 
         data={file} 
         onCardMoveAcrossLanes={handleCardMove}
-        style={{backgroundColor: 'rgba(252, 252, 252, 0.03)'}}
+        style={{
+          backgroundColor: 'rgba(252, 252, 252, 0.03)',
+          fontFamily: "nunito"
+        }}
       />
     </div>
   );
