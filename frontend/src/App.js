@@ -43,7 +43,7 @@ const App = () => {
                     width: "8px",
                 },
                 "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: mode === "light" ? "#7AD1B7" : "#333333",
+                    backgroundColor: mode === "light" ? "#ebfbf6" : "#333333",
                 },
             },
             /* Cores Antigas
