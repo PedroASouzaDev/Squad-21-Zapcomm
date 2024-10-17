@@ -14,6 +14,7 @@ import usePlans from "../../hooks/usePlans";
 
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
+    backgroundColor: theme.palette.background.main,
     flex: 1,
     padding: theme.spacing(2),
     paddingBottom: 100
@@ -29,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   textRight: {
     textAlign: "right"
-  }
+  },
+  textField: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: "10px",
+  },
 }));
 
 const MessagesAPI = () => {

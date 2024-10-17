@@ -18,6 +18,7 @@ import api from '../../services/api';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
 import './button.css';
+import { Rowing } from '@material-ui/icons';
 
 ChartJS.register(
     CategoryScale,
@@ -94,32 +95,33 @@ export const ChartsDate = () => {
 
     return (
         <>
-            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                Total ({ticketsData?.count})
-            </Typography>
+            
 
-            <Stack direction={'row'} spacing={2} alignItems={'center'} sx={{ my: 2, }} >
+            <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'space-between'} sx={{ my: 2, }} >
 
-                <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
-                    <DatePicker
-                        value={initialDate}
-                        onChange={(newValue) => { setInitialDate(newValue) }}
-                        label="Inicio"
-                        renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
+                <Typography component="h2" variant="h6" color="primary" gutterBottom>
+                    Total ({ticketsData?.count})
+                </Typography>
 
-                    />
-                </LocalizationProvider>
-
-                <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
-                    <DatePicker
-                        value={finalDate}
-                        onChange={(newValue) => { setFinalDate(newValue) }}
-                        label="Fim"
-                        renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
-                    />
-                </LocalizationProvider>
-
-                <Button className="buttonHover" onClick={handleGetTicketsInformation} variant='contained' >Filtrar</Button>
+                <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'flex-end'}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
+                        <DatePicker
+                            value={initialDate}
+                            onChange={(newValue) => { setInitialDate(newValue) }}
+                            label="Inicio"
+                            renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
+                        />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
+                        <DatePicker
+                            value={finalDate}
+                            onChange={(newValue) => { setFinalDate(newValue) }}
+                            label="Fim"
+                            renderInput={(params) => <TextField fullWidth {...params} sx={{ width: '20ch' }} />}
+                        />
+                    </LocalizationProvider>
+                    <Button className="buttonHover" onClick={handleGetTicketsInformation} variant='contained' >Filtrar</Button>
+                </Stack>
 
             </Stack>
             <Bar options={options} data={dataCharts} style={{ maxWidth: '100%', maxHeight: '280px', }} />

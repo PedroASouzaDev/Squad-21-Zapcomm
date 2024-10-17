@@ -10,6 +10,7 @@ import ColorModeContext from "./layout/themeContext";
 import { SocketContext, SocketManager } from './context/Socket/SocketContext';
 
 import Routes from "./routes";
+import { Opacity } from "@material-ui/icons";
 
 const queryClient = new QueryClient();
 
@@ -31,22 +32,18 @@ const App = () => {
 
     const theme = createTheme(
         {
-            scrollbarStyles: {
-                "&::-webkit-scrollbar": {
-                    width: '8px',
-                    height: '8px',
-                },
-                "&::-webkit-scrollbar-thumb": {
-                    boxShadow: 'inset 0 0 6px rgba(0, 0, 0, 0.3)',
-                    backgroundColor: "#0C2454",
-                },
+            typography: {
+              fontFamily: "nunito",  
+            },
+            shape: {
+                borderRadius: "10px",
             },
             scrollbarStylesSoft: {
                 "&::-webkit-scrollbar": {
                     width: "8px",
                 },
                 "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: mode === "light" ? "#F3F3F3" : "#333333",
+                    backgroundColor: mode === "light" ? "#ebfbf6" : "#333333",
                 },
             },
             /* Cores Antigas
@@ -85,10 +82,11 @@ const App = () => {
                 type: mode,
                 background: { main: mode === "light" ? "#DCE5ED" : "#FFFFF"},
                 primary: { main: mode === "light" ? "#0C2454" : "#FFFFFF" },
+                secondary: { main: mode === "light" ? "#33d0a1" : "#FFFFFF" },
                 textPrimary: mode === "light" ? "#0C2454" : "#FFFFFF",
                 borderPrimary: mode === "light" ? "#0C2454" : "#FFFFFF",
                 dark: { main: mode === "light" ? "#333333" : "#F3F3F3" },
-                light: { main: mode === "light" ? "#F3F3F3" : "#333333" },
+                light: { main: mode === "light" ? "#FFF" : "#333333" },
                 tabHeaderBackground: mode === "light" ? "#EEE" : "#666",
                 optionsBackground: mode === "light" ? "#fafafa" : "#333",
 				options: mode === "light" ? "#fafafa" : "#666",

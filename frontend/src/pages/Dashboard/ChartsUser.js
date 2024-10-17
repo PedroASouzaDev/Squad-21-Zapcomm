@@ -107,11 +107,7 @@ export const ChatsUser = () => {
 
     return (
         <>
-            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                Total de Conversas por Usuários
-            </Typography>
-
-            <Stack direction={'row'} spacing={2} alignItems={'center'} sx={{ my: 2, }} >
+            <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'right'} sx={{ my: 2, }} >
 
                 <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
                     <DatePicker
