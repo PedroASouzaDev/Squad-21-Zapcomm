@@ -433,7 +433,7 @@ const Dashboard = () => {
     <div className={classes.root}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Typography
-            variant="h3"
+            variant="h4"
             color="primary"
           >
             Dashboard
