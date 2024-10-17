@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Grow from "@material-ui/core/Grow";
+import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -65,15 +65,21 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(4),
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(4),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(8),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(8),
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft
   },
   subroot: {
     display: "flex",
+    gap: theme.spacing(4),
+  },
+  filtro: {
+    display: "flex",
+    gap: theme.spacing(5),
+    justifyContent: "flex-end",
   },
   fixedHeightPaper: {
     padding: theme.spacing(2),
@@ -82,9 +88,6 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
     overflowY: "auto",
     ...theme.scrollbarStyles,
-  },
-  alignRight: {
-    textAlign: "right",
   },
   fullWidth: {
     width: "100%",
@@ -173,6 +176,16 @@ const useStyles = makeStyles((theme) => ({
   },
 
   //Grafico lateral
+  graficoLateral: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+    justifyContent: "space-evenly",
+    width: "40%",
+    maxWidth: "450px",
+    padding: theme.spacing(2.5),
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
+  },
   byMonth: {
     backgroundColor: "white",
     width: "fit-content",
@@ -198,22 +211,22 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
   },
   blueRectangle: {
-    width: "200px", //Backend Integration
+    width: "60%", //Backend Integration
     backgroundColor: "#0C2454",
     borderBottomRightRadius: "20px",
     borderTopRightRadius: "20px",
     borderTopLeftRadius: "5px",
     borderBottomLeftRadius: "5px",
-    height: "42px",
+    height: "32px",
   },
   greenRectangle: {
-    width: "200px", //Backend Integration
+    width: "75%", //Backend Integration
     backgroundColor: "#34D3A3",
     borderBottomRightRadius: "20px",
     borderTopRightRadius: "20px",
     borderTopLeftRadius: "5px",
     borderBottomLeftRadius: "5px",
-    height: "42px",
+    height: "32px",
   },
 }));
 
@@ -223,6 +236,7 @@ const Dashboard = () => {
   const [attendants, setAttendants] = useState([]);
   const [period, setPeriod] = useState(0);
   const [filterType, setFilterType] = useState(1);
+  const [graphType, setGraphType] = useState(2);
   const [dateFrom, setDateFrom] = useState(moment("1", "D").format("YYYY-MM-DD"));
   const [dateTo, setDateTo] = useState(moment().format("YYYY-MM-DD"));
   const [loading, setLoading] = useState(false);
@@ -339,11 +353,11 @@ const Dashboard = () => {
     return count;
   };
   
-    function renderFilters() {
+  function renderFilters() {
     if (filterType === 1) {
       return (
         <>
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item>
             <TextField
               label="Data Inicial"
               type="date"
@@ -355,7 +369,7 @@ const Dashboard = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid>
             <TextField
               label="Data Final"
               type="date"
@@ -372,7 +386,7 @@ const Dashboard = () => {
     } else {
       return (
         <Grid item xs={12} sm={6} md={4}>
-          <FormControl className={classes.selectContainer}>
+          <FormControl>
             <InputLabel id="period-selector-label">Período</InputLabel>
             <Select
               labelId="period-selector-label"
@@ -380,7 +394,7 @@ const Dashboard = () => {
               value={period}
               onChange={(e) => handleChangePeriod(e.target.value)}
             >
-              <MenuItem value={0}>Nenhum selecionado</MenuItem>
+              <MenuItem value={0}>Nenhum</MenuItem>
               <MenuItem value={3}>Últimos 3 dias</MenuItem>
               <MenuItem value={7}>Últimos 7 dias</MenuItem>
               <MenuItem value={15}>Últimos 15 dias</MenuItem>
@@ -388,10 +402,30 @@ const Dashboard = () => {
               <MenuItem value={60}>Últimos 60 dias</MenuItem>
               <MenuItem value={90}>Últimos 90 dias</MenuItem>
             </Select>
-            <FormHelperText>Selecione o período desejado</FormHelperText>
           </FormControl>
         </Grid>
       );
+    }
+  }
+
+  function renderGraph(){
+    if(graphType === 1) {
+      return (
+        <ChatsUser />
+      );
+    }else{
+      return (
+        <ChartsDate />
+      );
+    }
+  }
+
+  async function handleChangeGraphType(value) {
+    setGraphType(value);
+    if (value === 1) {
+      graphType = 1;
+    } else {
+      graphType = 2;
     }
   }
 
@@ -404,23 +438,41 @@ const Dashboard = () => {
           >
             Dashboard
           </Typography>
-          
-          {/* BOTAO FILTRAR */}
-          <Grid className={classes.alignRight}>
-            <ButtonWithSpinner
-              loading={loading}
-              onClick={() => fetchData()}
-              variant="contained"
-              color="primary"
-            >
-              Filtrar
-            </ButtonWithSpinner>
-          </Grid>
+
+          <div className={classes.filtro}>
+            {/* FILTROS */}
+            <FormControl>
+              <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
+              <Select
+                labelId="period-selector-label"
+                value={filterType}
+                onChange={(e) => handleChangeFilterType(e.target.value)}
+              >
+                <MenuItem value={1}>Filtro por Data</MenuItem>
+                <MenuItem value={2}>Filtro por Período</MenuItem>
+              </Select>
+            </FormControl>
+            
+            {renderFilters()}
+            
+            {/* BOTAO FILTRAR */}
+            <Box display={"flex"} alignContent={"center"}>
+              <ButtonWithSpinner
+                loading={loading}
+                onClick={() => fetchData()}
+                variant="contained"
+                color="primary"
+              >
+                Filtrar
+              </ButtonWithSpinner>
+            </Box>
+          </div>
+
         </Grid>
       <div className={classes.subroot}>
-        <Container>
+        <Container disableGutters="true">
           <Grid container spacing={3}>
-            <Grid container item spacing={6}>
+            <Grid container item spacing={3}>
 
               {/* PENDENTE */}
               <Grid item  xs={12} sm={6} md={4}>
@@ -532,7 +584,7 @@ const Dashboard = () => {
                 </Paper>
               </Grid>
             </Grid>
-            <Grid container item spacing={6}>
+            <Grid container item spacing={3}>
 
               {/* EM ANDAMENTO */}
               <Grid item xs={12} sm={6} md={4}>
@@ -642,171 +694,142 @@ const Dashboard = () => {
                 </Paper>
               </Grid>
             </Grid>
-        
-            {/* FILTROS */}
-            <Grid item xs={12} sm={6} md={4}>
-              <FormControl className={classes.selectContainer}>
-                <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
-                <Select
-                  labelId="period-selector-label"
-                  value={filterType}
-                  onChange={(e) => handleChangeFilterType(e.target.value)}
-                >
-                  <MenuItem value={1}>Filtro por Data</MenuItem>
-                  <MenuItem value={2}>Filtro por Período</MenuItem>
-                </Select>
-                <FormHelperText>Selecione o período desejado</FormHelperText>
-              </FormControl>
-            </Grid>
-            
-            {renderFilters()}
-            
-            {/* BOTAO FILTRAR */}
-            <Grid item xs={12} className={classes.alignRight}>
-              <ButtonWithSpinner
-                loading={loading}
-                onClick={() => fetchData()}
-                variant="contained"
-                color="primary"
-              >
-                Filtrar
-              </ButtonWithSpinner>
-            </Grid>
 
-            {/* TOTAL DE ATENDIMENTOS POR USUARIO */}
+            {/* Gráfico */}
             <Grid item xs={12}>
               <Paper elevation={0} className={classes.fixedHeightPaper2}>
-                <ChatsUser />
-              </Paper>
-            </Grid>
-            
-            {/* TOTAL DE ATENDIMENTOS */}
-            <Grid item xs={12}>
-              <Paper elevation={0} className={classes.fixedHeightPaper2}>
-                <ChartsDate />
+                <Select
+                  value={graphType}
+                  onChange={(e) => handleChangeGraphType(e.target.value)}
+                >
+                  <MenuItem value={1}>Atendimentos</MenuItem>
+                  <MenuItem value={2}>Atendimentos por Usuário</MenuItem>
+                </Select>
+                {renderGraph()} 
               </Paper>
             </Grid>
           </Grid>
         </Container >
         
         {/* GRAFICO LATERAL */}
-        <Paper elevation={0} className={classes.card} style={{width: "40%"}}>
-          <Grid container direction="column" spacing={4}>
-            <Grid container item justifyContent="center">
-              <Typography component="h2" variant="h5" color="primary">
-                Chamados Mensal
+        <Paper elevation={0} className={classes.graficoLateral}>
+          <Typography
+            variant="h5"
+            color="primary"
+            style={{
+              textAlign: "center",
+            }}
+          >
+            Chamados Mensal
+          </Typography>
+          <Grid container direction="column" spacing={2}>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Jan
+              </Typography>
+              <div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                42
               </Typography>
             </Grid>
-            <Grid container item direction="column" spacing={2}>
-        
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Jan
-                </Typography>
-                <div className={classes.blueRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Fev
-                </Typography>
-                <div className={classes.greenRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Mar
-                </Typography>
-                <div className={classes.blueRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Abr
-                </Typography>
-                <div className={classes.greenRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Mai
-                </Typography>
-                <div className={classes.blueRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Jun
-                </Typography>
-                <div className={classes.greenRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Jul
-                </Typography>
-                <div className={classes.blueRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Ago
-                </Typography>
-                <div className={classes.greenRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Set
-                </Typography>
-                <div className={classes.blueRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Out
-                </Typography>
-                <div className={classes.greenRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Nov
-                </Typography>
-                <div className={classes.blueRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
-              <Grid container item justifyContent="flex-start" alignItems="center">
-                <Typography className={classes.monthName} component="h3" variant="h6" color="primary">
-                  Dez
-                </Typography>
-                <div className={classes.greenRectangle}></div>
-                <Typography className={classes.monthNumber} component="h3" variant="h6" color="primary">
-                  52
-                </Typography>
-              </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Fev
+              </Typography>
+              <div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                52
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Mar
+              </Typography>
+              <div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                42
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Abr
+              </Typography>
+              <div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                52
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Mai
+              </Typography>
+              <div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                42
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Jun
+              </Typography>
+              <div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                52
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Jul
+              </Typography>
+              <div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                42
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Ago
+              </Typography>
+              <div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                52
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Set
+              </Typography>
+              <div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                42
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Out
+              </Typography>
+              <div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                52
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Nov
+              </Typography>
+              <div className={classes.blueRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                42
+              </Typography>
+            </Grid>
+            <Grid container item justifyContent="flex-start" alignItems="center">
+              <Typography className={classes.monthName} variant="p" color="primary">
+                Dez
+              </Typography>
+              <div className={classes.greenRectangle}></div>
+              <Typography className={classes.monthNumber} variant="p" color="primary">
+                52
+              </Typography>
             </Grid>
           </Grid>
         </Paper>
