@@ -66,15 +66,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     gap: theme.spacing(4),
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(8),
+    paddingBottom: theme.spacing(6),
     paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(8),
+    paddingRight: theme.spacing(6),
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft
   },
   subroot: {
     display: "flex",
-    gap: theme.spacing(4),
+    gap: theme.spacing(6),
   },
   filtro: {
     display: "flex",
@@ -471,8 +471,8 @@ const Dashboard = () => {
         </Grid>
       <div className={classes.subroot}>
         <Container disableGutters="true">
-          <Grid container spacing={3}>
-            <Grid container item spacing={3}>
+          <Grid container spacing={6}>
+            <Grid container item spacing={6}>
 
               {/* PENDENTE */}
               <Grid item  xs={12} sm={6} md={4}>
@@ -481,7 +481,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={4}>
+                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
                    <Grid item>
                       <Paper className={classes.pendenteIcon}>
                         <PriorityHighRoundedIcon
@@ -500,8 +500,7 @@ const Dashboard = () => {
                           {counters.supportPending}
                         </Typography>
                         <Typography
-                        component="h3"
-                        variant="h6"
+                          variant="body1"
                         >
                          Pendente
                         </Typography>
@@ -518,7 +517,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={4}>
+                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
                     <Grid item>
                       <Paper className={classes.novosIcon}>
                         <AddBoxRoundedIcon
@@ -537,7 +536,7 @@ const Dashboard = () => {
                           {GetContacts(true)}
                         </Typography>
                         <Typography
-                          variant="h6"
+                          variant="body1"
                         >
                           Novos
                         </Typography>
@@ -554,7 +553,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={4}>
+                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
                     <Grid item>
                         <Paper className={classes.esperaIcon}>
                           <TimerRoundedIcon
@@ -573,8 +572,7 @@ const Dashboard = () => {
                           {formatTime(counters.avgWaitTime)}
                         </Typography>
                         <Typography
-                          component="h3"
-                          variant="h6"
+                          variant="body1"
                         >
                           T.M. de Espera
                         </Typography>
@@ -584,7 +582,7 @@ const Dashboard = () => {
                 </Paper>
               </Grid>
             </Grid>
-            <Grid container item spacing={3}>
+            <Grid container item spacing={6}>
 
               {/* EM ANDAMENTO */}
               <Grid item xs={12} sm={6} md={4}>
@@ -593,7 +591,7 @@ const Dashboard = () => {
                   //elevation={4} - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={4}>
+                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
                     <Grid item>
                       <Paper className={classes.andamentoIcon}>
                         <UpdateRoundedIcon
@@ -612,7 +610,7 @@ const Dashboard = () => {
                           {counters.supportHappening}
                         </Typography>
                         <Typography
-                          variant="h6"
+                          variant="body1"
                         >
                           Andamento
                         </Typography>
@@ -629,7 +627,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={4}>
+                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
                    <Grid item>
                       <Paper className={classes.finalizadoIcon}>
                         <CheckRoundedIcon
@@ -648,7 +646,7 @@ const Dashboard = () => {
                           {counters.supportFinished}
                         </Typography>
                         <Typography
-                          variant="h6"
+                          variant="body1"
                         >
                           Finalizados
                         </Typography>
@@ -665,7 +663,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={4}>
+                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
                     <Grid item>
                       <Paper className={classes.atendimentoIcon}>
                         <AccessAlarmIcon
@@ -684,7 +682,7 @@ const Dashboard = () => {
                           {formatTime(counters.avgSupportTime)}
                         </Typography>
                         <Typography
-                          variant="h6"
+                          variant="body1"
                         >
                           T.M. de Atendimento
                         </Typography>
