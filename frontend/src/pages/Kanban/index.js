@@ -349,7 +349,7 @@ const Kanban = () => {
     <div className={classes.root}>
         <Grid>
           <Typography
-            variant="h3"
+            variant="h4"
             color="primary"
           >
             Kanban
