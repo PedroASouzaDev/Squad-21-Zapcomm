@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useReducer, useContext, useCallback } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import api from "../../services/api";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import Board from 'react-trello';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
@@ -10,18 +13,27 @@ import { useHistory } from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
+    flexDirection: "column",
     backgroundColor: theme.palette.background.main,
-    alignItems: "center",
-    padding: theme.spacing(1),
+    gap: theme.spacing(3),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(8),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(8),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
   },
   button: {
-    backgroundColor: "#0c2454",
-    border: "none",
-    padding: "10px",
+    background: theme.palette.primary.main,
+    padding: theme.spacing(1),
     color: "white",
     fontWeight: "bold",
     borderRadius: "5px",
     fontFamily: "Nunito",
+  },
+  cardtitles: {
+    color: "0c2454",
+    fontSize: "100px",
   },
 }));
 
@@ -335,14 +347,24 @@ const Kanban = () => {
 
   return (
     <div className={classes.root}>
-      <Board 
-        data={file} 
-        onCardMoveAcrossLanes={handleCardMove}
-        style={{
-          backgroundColor: 'rgba(252, 252, 252, 0.03)',
-          fontFamily: "nunito"
-        }}
-      />
+        <Grid>
+          <Typography
+            variant="h3"
+            color="primary"
+          >
+            Kanban
+          </Typography>
+        </Grid>
+
+        <Board
+          data={file}
+          onCardMoveAcrossLanes={handleCardMove}
+          style={{
+            backgroundColor: 'rgba(252, 252, 252, 0)',
+            padding: "0",
+            fontFamily: "nunito",
+          }}
+        />
     </div>
   );
 };
