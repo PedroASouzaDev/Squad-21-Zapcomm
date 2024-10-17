@@ -83,6 +83,12 @@ const reducer = (state, action) => {
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+  },
   mainPaper: {
     flex: 1,
     padding: theme.spacing(1),
@@ -231,150 +237,149 @@ const Contacts = () => {
   };
 
   return (
-    <MainContainer className={classes.mainContainer}>
-      <NewTicketModal
-        modalOpen={newTicketModalOpen}
-        initialContact={contactTicket}
-        onClose={(ticket) => {
-          handleCloseOrOpenTicket(ticket);
-        }}
-      />
-      <ContactModal
-        open={contactModalOpen}
-        onClose={handleCloseContactModal}
-        aria-labelledby="form-dialog-title"
-        contactId={selectedContactId}
-      ></ContactModal>
-      <ConfirmationModal
-        title={
-          deletingContact
-            ? `${i18n.t("contacts.confirmationModal.deleteTitle")} ${
-                deletingContact.name
-              }?`
-            : `${i18n.t("contacts.confirmationModal.importTitlte")}`
-        }
-        open={confirmOpen}
-        onClose={setConfirmOpen}
-        onConfirm={(e) =>
-          deletingContact
-            ? handleDeleteContact(deletingContact.id)
-            : handleimportContact()
-        }
-      >
-        {deletingContact
-          ? `${i18n.t("contacts.confirmationModal.deleteMessage")}`
-          : `${i18n.t("contacts.confirmationModal.importMessage")}`}
-      </ConfirmationModal>
-      <MainHeader>
-        <Title>{i18n.t("contacts.title")}</Title>
-        <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => setConfirmOpen(true)}
-          >
-            {i18n.t("contacts.buttons.import")}
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenContactModal}
-          >
-            {i18n.t("contacts.buttons.add")}
-          </Button>
-
-         <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'contatos.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
-          <Button	variant="contained" color="primary"> 
-          EXPORTAR CONTATOS 
-          </Button>
-          </CSVLink>		  
-
-        </MainHeaderButtonsWrapper>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox" />
-              <TableCell>{i18n.t("contacts.table.name")}</TableCell>
-              <TableCell align="center">
-                {i18n.t("contacts.table.whatsapp")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("contacts.table.email")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("contacts.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {contacts.map((contact) => (
-                <TableRow key={contact.id}>
-                  <TableCell style={{ paddingRight: 0 }}>
-                    {<Avatar src={contact.profilePicUrl} />}
-                  </TableCell>
-                  <TableCell>{contact.name}</TableCell>
-                  <TableCell align="center">{contact.number}</TableCell>
-                  <TableCell align="center">{contact.email}</TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => {
-                        setContactTicket(contact);
-                        setNewTicketModalOpen(true);
-                      }}
-                    >
-                      <WhatsAppIcon />
-                    </IconButton>
-                    <IconButton
-                      size="small"
-                      onClick={() => hadleEditContact(contact.id)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <Can
-                      role={user.profile}
-                      perform="contacts-page:deleteContact"
-                      yes={() => (
-                        <IconButton
-                          size="small"
-                          onClick={(e) => {
-                            setConfirmOpen(true);
-                            setDeletingContact(contact);
-                          }}
-                        >
-                          <DeleteOutlineIcon />
-                        </IconButton>
-                      )}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))}
-              {loading && <TableRowSkeleton avatar columns={3} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+    <div className={classes.root}>
+      <MainContainer className={classes.mainContainer}>
+        <NewTicketModal
+          modalOpen={newTicketModalOpen}
+          initialContact={contactTicket}
+          onClose={(ticket) => {
+            handleCloseOrOpenTicket(ticket);
+          }}
+        />
+        <ContactModal
+          open={contactModalOpen}
+          onClose={handleCloseContactModal}
+          aria-labelledby="form-dialog-title"
+          contactId={selectedContactId}
+        ></ContactModal>
+        <ConfirmationModal
+          title={
+            deletingContact
+              ? `${i18n.t("contacts.confirmationModal.deleteTitle")} ${
+                  deletingContact.name
+                }?`
+              : `${i18n.t("contacts.confirmationModal.importTitlte")}`
+          }
+          open={confirmOpen}
+          onClose={setConfirmOpen}
+          onConfirm={(e) =>
+            deletingContact
+              ? handleDeleteContact(deletingContact.id)
+              : handleimportContact()
+          }
+        >
+          {deletingContact
+            ? `${i18n.t("contacts.confirmationModal.deleteMessage")}`
+            : `${i18n.t("contacts.confirmationModal.importMessage")}`}
+        </ConfirmationModal>
+        <MainHeader>
+          <Title>{i18n.t("contacts.title")}</Title>
+          <MainHeaderButtonsWrapper>
+            <TextField
+              placeholder={i18n.t("contacts.searchPlaceholder")}
+              type="search"
+              value={searchParam}
+              onChange={handleSearch}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon style={{ color: "gray" }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={(e) => setConfirmOpen(true)}
+            >
+              {i18n.t("contacts.buttons.import")}
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenContactModal}
+            >
+              {i18n.t("contacts.buttons.add")}
+            </Button>
+           <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'contatos.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
+            <Button	variant="contained" color="primary">
+              EXPORTAR CONTATOS
+            </Button>
+            </CSVLink>
+          </MainHeaderButtonsWrapper>
+        </MainHeader>
+        <Paper
+          className={classes.mainPaper}
+          onScroll={handleScroll}
+        >
+          <Table size="small" className={classes.customTable}>
+            <TableHead>
+              <TableRow>
+                <TableCell padding="checkbox" />
+                <TableCell>{i18n.t("contacts.table.name")}</TableCell>
+                <TableCell align="center">
+                  {i18n.t("contacts.table.whatsapp")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("contacts.table.email")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("contacts.table.actions")}
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <>
+                {contacts.map((contact) => (
+                  <TableRow key={contact.id} className={classes.row}>
+                    <TableCell style={{ paddingRight: 0 }}>
+                      {<Avatar src={contact.profilePicUrl} />}
+                    </TableCell>
+                    <TableCell>{contact.name}</TableCell>
+                    <TableCell align="center">{contact.number}</TableCell>
+                    <TableCell align="center">{contact.email}</TableCell>
+                    <TableCell align="center">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setContactTicket(contact);
+                          setNewTicketModalOpen(true);
+                        }}
+                      >
+                        <WhatsAppIcon />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        onClick={() => hadleEditContact(contact.id)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <Can
+                        role={user.profile}
+                        perform="contacts-page:deleteContact"
+                        yes={() => (
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              setConfirmOpen(true);
+                              setDeletingContact(contact);
+                            }}
+                          >
+                            <DeleteOutlineIcon />
+                          </IconButton>
+                        )}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {loading && <TableRowSkeleton avatar columns={3} />}
+              </>
+            </TableBody>
+          </Table>
+        </Paper>
+      </MainContainer>
+    </div>
   );
 };
 
