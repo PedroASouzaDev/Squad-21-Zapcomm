@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
+import MainHeader from "../../components/MainHeader";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -347,14 +348,14 @@ const Kanban = () => {
 
   return (
     <div className={classes.root}>
-        <Grid>
+        <MainHeader>
           <Typography
             variant="h4"
             color="primary"
           >
             Kanban
           </Typography>
-        </Grid>
+        </MainHeader>
 
         <Board
           data={file}

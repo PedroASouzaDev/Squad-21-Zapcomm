@@ -57,6 +57,8 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import { ChartsDate } from "./ChartsDate";
 import { collapseClasses } from "@mui/material";
+import MainHeader from "../../components/MainHeader";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
   filtro: {
     display: "flex",
     gap: theme.spacing(5),
-    justifyContent: "flex-end",
   },
   fixedHeightPaper: {
     padding: theme.spacing(2),
@@ -431,7 +432,7 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>
-        <Grid container alignItems="center" justifyContent="space-between">
+        <MainHeader>
           <Typography
             variant="h4"
             color="primary"
@@ -439,36 +440,38 @@ const Dashboard = () => {
             Dashboard
           </Typography>
 
-          <div className={classes.filtro}>
+          <MainHeaderButtonsWrapper>
             {/* FILTROS */}
-            <FormControl>
-              <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
-              <Select
-                labelId="period-selector-label"
-                value={filterType}
-                onChange={(e) => handleChangeFilterType(e.target.value)}
-              >
-                <MenuItem value={1}>Filtro por Data</MenuItem>
-                <MenuItem value={2}>Filtro por Período</MenuItem>
-              </Select>
-            </FormControl>
-            
-            {renderFilters()}
-            
-            {/* BOTAO FILTRAR */}
-            <Box display={"flex"} alignContent={"center"}>
-              <ButtonWithSpinner
-                loading={loading}
-                onClick={() => fetchData()}
-                variant="contained"
-                color="primary"
-              >
-                Filtrar
-              </ButtonWithSpinner>
-            </Box>
-          </div>
+            <div className={classes.filtro}>
+              <FormControl>
+                <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
+                <Select
+                  labelId="period-selector-label"
+                  value={filterType}
+                  onChange={(e) => handleChangeFilterType(e.target.value)}
+                >
+                  <MenuItem value={1}>Filtro por Data</MenuItem>
+                  <MenuItem value={2}>Filtro por Período</MenuItem>
+                </Select>
+              </FormControl>
+              
+              {renderFilters()}
+              
+              {/* BOTAO FILTRAR */}
+              <Box display={"flex"} alignContent={"center"}>
+                <ButtonWithSpinner
+                  loading={loading}
+                  onClick={() => fetchData()}
+                  variant="contained"
+                  color="primary"
+                >
+                  Filtrar
+                </ButtonWithSpinner>
+              </Box>
+            </div>
+          </MainHeaderButtonsWrapper>
 
-        </Grid>
+        </MainHeader>
       <div className={classes.subroot}>
         <Container disableGutters="true">
           <Grid container spacing={6}>
