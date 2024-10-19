@@ -352,7 +352,7 @@ const MainListItems = (props) => {
 
       <ListItemLink
         to="/contacts"
-        primary={i18n.t("mainDrawer.listItems.contacts")}
+        primary="Contatos"
         icon={<ContactPhoneOutlinedIcon />}
       />
 

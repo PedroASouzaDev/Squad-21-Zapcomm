@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer, useContext } from "react";
 
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-import { Tooltip } from "@material-ui/core";
+import { Tooltip, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -88,12 +88,23 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100vh",
     backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  subroot: {
+    display: "flex",
+    flexGrow: 1,
   },
   mainPaper: {
     flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
   },
 }));
 
@@ -238,147 +249,163 @@ const Contacts = () => {
 
   return (
     <div className={classes.root}>
-      <MainContainer className={classes.mainContainer}>
-        <NewTicketModal
-          modalOpen={newTicketModalOpen}
-          initialContact={contactTicket}
-          onClose={(ticket) => {
-            handleCloseOrOpenTicket(ticket);
-          }}
-        />
-        <ContactModal
-          open={contactModalOpen}
-          onClose={handleCloseContactModal}
-          aria-labelledby="form-dialog-title"
-          contactId={selectedContactId}
-        ></ContactModal>
-        <ConfirmationModal
-          title={
-            deletingContact
-              ? `${i18n.t("contacts.confirmationModal.deleteTitle")} ${
-                  deletingContact.name
-                }?`
-              : `${i18n.t("contacts.confirmationModal.importTitlte")}`
-          }
-          open={confirmOpen}
-          onClose={setConfirmOpen}
-          onConfirm={(e) =>
-            deletingContact
-              ? handleDeleteContact(deletingContact.id)
-              : handleimportContact()
-          }
-        >
-          {deletingContact
-            ? `${i18n.t("contacts.confirmationModal.deleteMessage")}`
-            : `${i18n.t("contacts.confirmationModal.importMessage")}`}
-        </ConfirmationModal>
-        <MainHeader>
-          <Title>{i18n.t("contacts.title")}</Title>
-          <MainHeaderButtonsWrapper>
-            <TextField
-              placeholder={i18n.t("contacts.searchPlaceholder")}
-              type="search"
-              value={searchParam}
-              onChange={handleSearch}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button
+
+          {/* HEADER */}
+          <MainHeader
+          
+          >
+            <Typography
+              variant="h4"
+              color="primary"
+            >
+              Contatos
+            </Typography>
+            <MainHeaderButtonsWrapper>
+              <TextField
+                color="primary"
+                variant="outlined"
+                margin="dense"
+                value={searchParam}
+                onChange={handleSearch}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon style={{ color: "gray" }} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleOpenContactModal}
+              >
+                Adicionar
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={(e) => setConfirmOpen(true)}
+              >
+                Importar
+              </Button>
+              <Button
               variant="contained"
               color="primary"
-              onClick={(e) => setConfirmOpen(true)}
-            >
-              {i18n.t("contacts.buttons.import")}
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleOpenContactModal}
-            >
-              {i18n.t("contacts.buttons.add")}
-            </Button>
-           <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'contatos.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
-            <Button	variant="contained" color="primary">
-              EXPORTAR CONTATOS
-            </Button>
-            </CSVLink>
-          </MainHeaderButtonsWrapper>
-        </MainHeader>
-        <Paper
-          className={classes.mainPaper}
-          onScroll={handleScroll}
-        >
-          <Table size="small" className={classes.customTable}>
-            <TableHead>
-              <TableRow>
-                <TableCell padding="checkbox" />
-                <TableCell>{i18n.t("contacts.table.name")}</TableCell>
-                <TableCell align="center">
-                  {i18n.t("contacts.table.whatsapp")}
-                </TableCell>
-                <TableCell align="center">
-                  {i18n.t("contacts.table.email")}
-                </TableCell>
-                <TableCell align="center">
-                  {i18n.t("contacts.table.actions")}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <>
-                {contacts.map((contact) => (
-                  <TableRow key={contact.id} className={classes.row}>
-                    <TableCell style={{ paddingRight: 0 }}>
-                      {<Avatar src={contact.profilePicUrl} />}
-                    </TableCell>
-                    <TableCell>{contact.name}</TableCell>
-                    <TableCell align="center">{contact.number}</TableCell>
-                    <TableCell align="center">{contact.email}</TableCell>
-                    <TableCell align="center">
-                      <IconButton
-                        size="small"
-                        onClick={() => {
-                          setContactTicket(contact);
-                          setNewTicketModalOpen(true);
-                        }}
-                      >
-                        <WhatsAppIcon />
-                      </IconButton>
-                      <IconButton
-                        size="small"
-                        onClick={() => hadleEditContact(contact.id)}
-                      >
-                        <EditIcon />
-                      </IconButton>
-                      <Can
-                        role={user.profile}
-                        perform="contacts-page:deleteContact"
-                        yes={() => (
-                          <IconButton
-                            size="small"
-                            onClick={(e) => {
-                              setConfirmOpen(true);
-                              setDeletingContact(contact);
-                            }}
-                          >
-                            <DeleteOutlineIcon />
-                          </IconButton>
-                        )}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {loading && <TableRowSkeleton avatar columns={3} />}
-              </>
-            </TableBody>
-          </Table>
-        </Paper>
-      </MainContainer>
+              >
+                Exportar
+              </Button>
+            </MainHeaderButtonsWrapper>
+          </MainHeader>
+
+      <div className={classes.subroot}>
+        <MainContainer className={classes.mainContainer}>
+          <NewTicketModal
+            modalOpen={newTicketModalOpen}
+            initialContact={contactTicket}
+            onClose={(ticket) => {
+              handleCloseOrOpenTicket(ticket);
+            }}
+          />
+          <ContactModal
+            open={contactModalOpen}
+            onClose={handleCloseContactModal}
+            aria-labelledby="form-dialog-title"
+            contactId={selectedContactId}
+          ></ContactModal>
+          <ConfirmationModal
+            title={
+              deletingContact
+                ? `${i18n.t("contacts.confirmationModal.deleteTitle")} ${
+                    deletingContact.name
+                  }?`
+                : `${i18n.t("contacts.confirmationModal.importTitlte")}`
+            }
+            open={confirmOpen}
+            onClose={setConfirmOpen}
+            onConfirm={(e) =>
+              deletingContact
+                ? handleDeleteContact(deletingContact.id)
+                : handleimportContact()
+            }
+          >
+            {deletingContact
+              ? `${i18n.t("contacts.confirmationModal.deleteMessage")}`
+              : `${i18n.t("contacts.confirmationModal.importMessage")}`}
+          </ConfirmationModal>
+        
+          {/* MAIN CONTAINER */}
+          <Paper
+            className={classes.mainPaper}
+            onScroll={handleScroll}
+          >
+            <Table size="small" className={classes.customTable}>
+              <TableHead>
+                <TableRow>
+                  <TableCell padding="checkbox" />
+                  <TableCell>{i18n.t("contacts.table.name")}</TableCell>
+                  <TableCell align="center">
+                    {i18n.t("contacts.table.whatsapp")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {i18n.t("contacts.table.email")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {i18n.t("contacts.table.actions")}
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <>
+                  {contacts.map((contact) => (
+                    <TableRow key={contact.id} className={classes.row}>
+                      <TableCell style={{ paddingRight: 0 }}>
+                        {<Avatar src={contact.profilePicUrl} />}
+                      </TableCell>
+                      <TableCell>{contact.name}</TableCell>
+                      <TableCell align="center">{contact.number}</TableCell>
+                      <TableCell align="center">{contact.email}</TableCell>
+                      <TableCell align="center">
+                        <IconButton
+                          size="small"
+                          onClick={() => {
+                            setContactTicket(contact);
+                            setNewTicketModalOpen(true);
+                          }}
+                        >
+                          <WhatsAppIcon />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => hadleEditContact(contact.id)}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <Can
+                          role={user.profile}
+                          perform="contacts-page:deleteContact"
+                          yes={() => (
+                            <IconButton
+                              size="small"
+                              onClick={(e) => {
+                                setConfirmOpen(true);
+                                setDeletingContact(contact);
+                              }}
+                            >
+                              <DeleteOutlineIcon />
+                            </IconButton>
+                          )}
+                        />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {loading && <TableRowSkeleton avatar columns={3} />}
+                </>
+              </TableBody>
+            </Table>
+          </Paper>
+        </MainContainer>
+      </div>
     </div>
   );
 };
