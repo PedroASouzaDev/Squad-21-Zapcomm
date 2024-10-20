@@ -112,8 +112,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.scrollbarStylesSoft,
   },
   table: {
-    borderCollapse: "separate",
-    borderSpacing: "0 1em",
+    borderCollapse: "separate", 
+    borderSpacing: "0 1em", // Gap Width
   },
   avatar: {
     backgroundColor: theme.palette.light.main,
@@ -285,6 +285,7 @@ const Contacts = () => {
             color="primary"
             variant="outlined"
             margin="dense"
+            placeholder={i18n.t("contacts.searchPlaceholder")}
             value={searchParam}
             onChange={handleSearch}
             InputProps={{
