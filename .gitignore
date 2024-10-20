@@ -4,4 +4,5 @@
 
 # Ignore backend
 /backend/.env
+/backend/node_modules
 
