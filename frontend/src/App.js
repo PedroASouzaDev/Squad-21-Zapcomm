@@ -32,6 +32,10 @@ const App = () => {
 
     const theme = createTheme(
         {
+            textField: {
+                backgroundColor: "#FFFFFF",
+                borderRadius: "10px",
+            },
             typography: {
               fontFamily: "nunito",  
             },
