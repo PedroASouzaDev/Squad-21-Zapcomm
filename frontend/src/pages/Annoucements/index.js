@@ -21,6 +21,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 
 import api from "../../services/api";
 import { i18n } from "../../translate/i18n";
@@ -88,6 +89,54 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.padding,
     overflowY: "scroll",
     ...theme.scrollbarStyles,
+  },
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  subroot: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+    flexGrow: 1,
+  },
+  mainPaper: {
+    backgroundColor: "inherit",
+    flex: 1,
+    padding: theme.spacing(1),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft,
+  },
+  table: {
+    borderCollapse: "separate",
+    borderSpacing: "0 1em",
+  },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
   },
 }));
 
@@ -227,7 +276,7 @@ const Announcements = () => {
   };
 
   return (
-    <MainContainer >
+    <div className={classes.root}>
       <ConfirmationModal
         title={
           deletingAnnouncement &&
@@ -251,107 +300,103 @@ const Announcements = () => {
         announcementId={selectedAnnouncement && selectedAnnouncement.id}
       />
       <MainHeader>
-        <Grid style={{ width: "99.6%" }} container>
-          <Grid xs={12} sm={8} item>
-            <Title>{i18n.t("announcements.title")} ({announcements.length})</Title>
-          </Grid>
-          <Grid xs={12} sm={4} item>
-            <Grid spacing={2} container>
-              <Grid xs={6} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("announcements.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid xs={6} sm={6} item>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  onClick={handleOpenAnnouncementModal}
-                  color="primary"
-                >
-                  {i18n.t("announcements.buttons.add")}
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+        <Title>{i18n.t("announcements.title")} ({announcements.length})</Title>
+        <MainHeaderButtonsWrapper>
+          <TextField
+            className={classes.textField}
+            placeholder={i18n.t("announcements.searchPlaceholder")}
+            type="search"
+            variant="outlined"
+            margin="dense"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon style={{ color: "gray" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            margin="dense"
+            variant="contained"
+            onClick={handleOpenAnnouncementModal}
+            color="primary"
+          >
+            {i18n.t("announcements.buttons.add")}
+          </Button>
+        </MainHeaderButtonsWrapper>
       </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">
-                {i18n.t("announcements.table.title")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("announcements.table.priority")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("announcements.table.mediaName")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("announcements.table.status")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("announcements.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {announcements.map((announcement) => (
-                <TableRow key={announcement.id}>
-                  <TableCell align="center">{announcement.title}</TableCell>
-                  <TableCell align="center">
-                    {translatePriority(announcement.priority)}
-                  </TableCell>
-                  <TableCell align="center">
-                    {announcement.mediaName ?? i18n.t("quickMessages.noAttachment")}
-                  </TableCell>
-                  <TableCell align="center">
-                    {announcement.status ? i18n.t("announcements.active") : i18n.t("announcements.inactive")}
-                  </TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditAnnouncement(announcement)}
-                    >
-                      <EditIcon />
-                    </IconButton>
 
-                    <IconButton
-                      size="small"
-                      onClick={(e) => {
-                        setConfirmModalOpen(true);
-                        setDeletingAnnouncement(announcement);
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={5} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer >
+      <div className={classes.subroot}>
+        <Paper
+          className={classes.mainPaper}
+          onScroll={handleScroll}
+          elevation={0}
+        >
+          <Table size="small" className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">
+                  {i18n.t("announcements.table.title")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("announcements.table.priority")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("announcements.table.mediaName")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("announcements.table.status")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("announcements.table.actions")}
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <>
+                {announcements.map((announcement) => (
+                  <TableRow key={announcement.id}>
+                    <TableCell align="center" className={classes.avatar}>
+                      {announcement.title}
+                    </TableCell>
+                    <TableCell align="center" className={classes.rowCell}>
+                      {translatePriority(announcement.priority)}
+                    </TableCell>
+                    <TableCell align="center" className={classes.rowCell}>
+                      {announcement.mediaName ?? i18n.t("quickMessages.noAttachment")}
+                    </TableCell>
+                    <TableCell align="center" className={classes.rowCell}>
+                      {announcement.status ? i18n.t("announcements.active") : i18n.t("announcements.inactive")}
+                    </TableCell>
+                    <TableCell align="center" className={classes.rowActions}>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleEditAnnouncement(announcement)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        onClick={(e) => {
+                          setConfirmModalOpen(true);
+                          setDeletingAnnouncement(announcement);
+                        }}
+                      >
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {loading && <TableRowSkeleton columns={5} />}
+              </>
+            </TableBody>
+          </Table>
+        </Paper>
+      </div>
+    </div>
   )
 };
 
