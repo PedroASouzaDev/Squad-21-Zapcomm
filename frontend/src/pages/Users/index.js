@@ -81,6 +81,54 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStyles,
   },
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  subroot: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+    flexGrow: 1,
+  },
+  mainPaper: {
+    backgroundColor: "inherit",
+    flex: 1,
+    padding: theme.spacing(1),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft,
+  },
+  table: {
+    borderCollapse: "separate",
+    borderSpacing: "0 1em",
+  },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
+  },
 }));
 
 const Users = () => {
@@ -186,108 +234,113 @@ const Users = () => {
   };
 
   return (
-    <MainContainer>
-      <ConfirmationModal
-        title={
-          deletingUser &&
-          `${i18n.t("users.confirmationModal.deleteTitle")} ${
-            deletingUser.name
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={setConfirmModalOpen}
-        onConfirm={() => handleDeleteUser(deletingUser.id)}
-      >
-        {i18n.t("users.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <UserModal
-        open={userModalOpen}
-        onClose={handleCloseUserModal}
-        aria-labelledby="form-dialog-title"
-        userId={selectedUser && selectedUser.id}
-      />
-      <MainHeader>
-        <Title>{i18n.t("users.title")}</Title>
-        <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("contacts.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon style={{ color: "gray" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenUserModal}
+      <div className={classes.root}>
+        <ConfirmationModal
+          title={
+            deletingUser &&
+            `${i18n.t("users.confirmationModal.deleteTitle")} ${
+              deletingUser.name
+            }?`
+          }
+          open={confirmModalOpen}
+          onClose={setConfirmModalOpen}
+          onConfirm={() => handleDeleteUser(deletingUser.id)}
+        >
+          {i18n.t("users.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <UserModal
+          open={userModalOpen}
+          onClose={handleCloseUserModal}
+          aria-labelledby="form-dialog-title"
+          userId={selectedUser && selectedUser.id}
+        />
+        <MainHeader>
+          <Title>{i18n.t("users.title")}</Title>
+          <MainHeaderButtonsWrapper>
+            <TextField
+              className={classes.textField}
+              placeholder={i18n.t("contacts.searchPlaceholder")}
+              type="search"
+              margin="dense"
+              variant="outlined"
+              value={searchParam}
+              onChange={handleSearch}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon style={{ color: "gray" }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenUserModal}
+            >
+              {i18n.t("users.buttons.add")}
+            </Button>
+          </MainHeaderButtonsWrapper>
+        </MainHeader>
+        
+        <div className={classes.subroot}>
+          <Paper
+            className={classes.mainPaper}
+            onScroll={handleScroll}
+            elevation={0}
           >
-            {i18n.t("users.buttons.add")}
-          </Button>
-        </MainHeaderButtonsWrapper>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-			<TableCell align="center">
-                {i18n.t("users.table.id")}
-              </TableCell>
-              <TableCell align="center">{i18n.t("users.table.name")}</TableCell>
-              <TableCell align="center">
-                {i18n.t("users.table.email")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("users.table.profile")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("users.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {users.map((user) => (
-                <TableRow key={user.id}>
-				  <TableCell align="center">{user.id}</TableCell>
-                  <TableCell align="center">{user.name}</TableCell>
-                  <TableCell align="center">{user.email}</TableCell>
-                  <TableCell align="center">{user.profile}</TableCell>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                <TableCell align="center">
+                    {i18n.t("users.table.id")}
+                  </TableCell>
+                  <TableCell align="center">{i18n.t("users.table.name")}</TableCell>
                   <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditUser(user)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={(e) => {
-                        setConfirmModalOpen(true);
-                        setDeletingUser(user);
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </IconButton>
+                    {i18n.t("users.table.email")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {i18n.t("users.table.profile")}
+                  </TableCell>
+                  <TableCell align="center">
+                    {i18n.t("users.table.actions")}
                   </TableCell>
                 </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={4} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+              </TableHead>
+              <TableBody>
+                <>
+                  {users.map((user) => (
+                    <TableRow key={user.id}>
+                    <TableCell align="center" className={classes.avatar}>{user.id}</TableCell>
+                      <TableCell align="center" className={classes.rowCell}>{user.name}</TableCell>
+                      <TableCell align="center" className={classes.rowCell}>{user.email}</TableCell>
+                      <TableCell align="center" className={classes.rowCell}>{user.profile}</TableCell>
+                      <TableCell align="center" className={classes.rowActions}>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEditUser(user)}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            setConfirmModalOpen(true);
+                            setDeletingUser(user);
+                          }}
+                        >
+                          <DeleteOutlineIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {loading && <TableRowSkeleton columns={4} />}
+                </>
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
+      </div>
   );
 };
 
