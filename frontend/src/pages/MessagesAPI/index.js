@@ -42,8 +42,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right"
   },
   textField: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: "10px",
+    ...theme.textField,
   },
   paper: {
     backgroundColor: theme.palette.light.main,

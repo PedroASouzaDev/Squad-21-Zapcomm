@@ -128,6 +128,10 @@ const useStyles = makeStyles((theme) => ({
   },
   rowCell: {
     backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
   },
 }));
 
@@ -282,6 +286,7 @@ const Contacts = () => {
         </Typography>
         <MainHeaderButtonsWrapper>
           <TextField
+            className={classes.textField}
             color="primary"
             variant="outlined"
             margin="dense"
