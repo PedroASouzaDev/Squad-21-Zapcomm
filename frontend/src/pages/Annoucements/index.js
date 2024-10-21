@@ -269,28 +269,6 @@ const Announcements = () => {
 
   return (
     <div className={classes.root}>
-      <ConfirmationModal
-        title={
-          deletingAnnouncement &&
-          `${i18n.t("announcements.confirmationModal.deleteTitle")} ${deletingAnnouncement.title
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={setConfirmModalOpen}
-        onConfirm={() => handleDeleteAnnouncement(deletingAnnouncement)}
-      >
-        {i18n.t("announcements.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <AnnouncementModal
-        resetPagination={() => {
-          setPageNumber(1);
-          fetchAnnouncements();
-        }}
-        open={announcementModalOpen}
-        onClose={handleCloseAnnouncementModal}
-        aria-labelledby="form-dialog-title"
-        announcementId={selectedAnnouncement && selectedAnnouncement.id}
-      />
       <MainHeader>
         <Title>{i18n.t("announcements.title")} ({announcements.length})</Title>
         <MainHeaderButtonsWrapper>
@@ -388,6 +366,28 @@ const Announcements = () => {
           </Table>
         </Paper>
       </div>
+      <ConfirmationModal
+        title={
+          deletingAnnouncement &&
+          `${i18n.t("announcements.confirmationModal.deleteTitle")} ${deletingAnnouncement.title
+          }?`
+        }
+        open={confirmModalOpen}
+        onClose={setConfirmModalOpen}
+        onConfirm={() => handleDeleteAnnouncement(deletingAnnouncement)}
+      >
+        {i18n.t("announcements.confirmationModal.deleteMessage")}
+      </ConfirmationModal>
+      <AnnouncementModal
+        resetPagination={() => {
+          setPageNumber(1);
+          fetchAnnouncements();
+        }}
+        open={announcementModalOpen}
+        onClose={handleCloseAnnouncementModal}
+        aria-labelledby="form-dialog-title"
+        announcementId={selectedAnnouncement && selectedAnnouncement.id}
+      />
     </div>
   )
 };

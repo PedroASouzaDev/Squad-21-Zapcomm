@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { i18n } from "../../translate/i18n";
 import { useHistory } from 'react-router-dom';
 import MainHeader from "../../components/MainHeader";
+import Title from "../../components/Title";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -349,12 +350,7 @@ const Kanban = () => {
   return (
     <div className={classes.root}>
         <MainHeader>
-          <Typography
-            variant="h4"
-            color="primary"
-          >
-            Kanban
-          </Typography>
+          <Title>Kanban</Title>
         </MainHeader>
 
         <Board

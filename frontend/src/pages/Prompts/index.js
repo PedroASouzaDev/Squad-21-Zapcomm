@@ -22,7 +22,7 @@ import Title from "../../components/Title";
 import { i18n } from "../../translate/i18n";
 import toastError from "../../errors/toastError";
 import api from "../../services/api";
-import { ClassSharp, DeleteOutline, Edit } from "@material-ui/icons";
+import { DeleteForeverRounded, EditRounded } from "@material-ui/icons";
 import PromptModal from "../../components/PromptModal";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -217,12 +217,7 @@ const Prompts = () => {
   return (
       <div className={classes.root}>
         <MainHeader>
-          <Typography
-            variant="h4"
-            color="primary"
-          >
-            {i18n.t("prompts.title")}
-          </Typography>
+          <Title>{i18n.t("prompts.title")}</Title>
           <MainHeaderButtonsWrapper>
             <Button
               variant="contained"
@@ -266,7 +261,7 @@ const Prompts = () => {
                         size="small"
                         onClick={() => handleEditPrompt(prompt)}
                       >
-                        <Edit />
+                        <EditRounded />
                       </IconButton>
                       <IconButton
                         size="small"
@@ -275,7 +270,7 @@ const Prompts = () => {
                           setConfirmModalOpen(true);
                         }}
                       >
-                        <DeleteOutline />
+                        <DeleteForeverRounded />
                       </IconButton>
                     </TableCell>
                   </TableRow>

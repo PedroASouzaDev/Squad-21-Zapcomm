@@ -16,7 +16,7 @@ import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import List from "@material-ui/core/List";
+import Title from "../../components/Title";
 
 import IconButton from "@material-ui/core/IconButton";
 import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
@@ -278,12 +278,7 @@ const Contacts = () => {
     <div className={classes.root}>
       {/* HEADER */}
       <MainHeader>
-        <Typography
-          variant="h4"
-          color="primary"
-        >
-          Contatos
-        </Typography>
+        <Title>Contatos</Title>
         <MainHeaderButtonsWrapper>
           <TextField
             className={classes.textField}

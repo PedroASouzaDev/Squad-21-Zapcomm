@@ -261,24 +261,6 @@ const QueueIntegration = () => {
 
   return (
       <div className={classes.root}>
-        <ConfirmationModal
-          title={
-            deletingUser &&
-            `${i18n.t("queueIntegration.confirmationModal.deleteTitle")} ${deletingUser.name
-            }?`
-          }
-          open={confirmModalOpen}
-          onClose={setConfirmModalOpen}
-          onConfirm={() => handleDeleteIntegration(deletingUser.id)}
-        >
-          {i18n.t("queueIntegration.confirmationModal.deleteMessage")}
-        </ConfirmationModal>
-        <IntegrationModal
-          open={userModalOpen}
-          onClose={handleCloseIntegrationModal}
-          aria-labelledby="form-dialog-title"
-          integrationId={selectedIntegration && selectedIntegration.id}
-        />
         <MainHeader>
           <Title>{i18n.t("queueIntegration.title")} ({queueIntegration.length})</Title>
           <MainHeaderButtonsWrapper>
@@ -364,6 +346,24 @@ const QueueIntegration = () => {
             </Table>
           </Paper>
         </div>
+        <ConfirmationModal
+          title={
+            deletingUser &&
+            `${i18n.t("queueIntegration.confirmationModal.deleteTitle")} ${deletingUser.name
+            }?`
+          }
+          open={confirmModalOpen}
+          onClose={setConfirmModalOpen}
+          onConfirm={() => handleDeleteIntegration(deletingUser.id)}
+        >
+          {i18n.t("queueIntegration.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <IntegrationModal
+          open={userModalOpen}
+          onClose={handleCloseIntegrationModal}
+          aria-labelledby="form-dialog-title"
+          integrationId={selectedIntegration && selectedIntegration.id}
+        />
       </div>
   );
 };

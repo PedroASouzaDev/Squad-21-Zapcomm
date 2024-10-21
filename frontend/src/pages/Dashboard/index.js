@@ -59,6 +59,7 @@ import { ChartsDate } from "./ChartsDate";
 import { collapseClasses } from "@mui/material";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
+import Title from "../../components/Title";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -412,12 +413,7 @@ const Dashboard = () => {
   return (
     <div className={classes.root}>
       <MainHeader>
-        <Typography
-          variant="h4"
-          color="primary"
-        >
-          Dashboard
-        </Typography>
+        <Title>Dashboard</Title>
         <MainHeaderButtonsWrapper>
           {/* FILTROS */}
           <div className={classes.filtro}>
