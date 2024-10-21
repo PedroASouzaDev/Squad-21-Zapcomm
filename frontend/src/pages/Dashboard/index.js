@@ -86,9 +86,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
-    height: 240,
-    overflowY: "auto",
-    ...theme.scrollbarStyles,
+    gap: theme.spacing(4),
   },
   fullWidth: {
     width: "100%",
@@ -96,13 +94,6 @@ const useStyles = makeStyles((theme) => ({
   selectContainer: {
     width: "100%",
     textAlign: "left",
-  },
-  fixedHeightPaper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
-    height: 240,
   },
 
   // Cards
@@ -167,13 +158,6 @@ const useStyles = makeStyles((theme) => ({
     clipPath: "circle()",
     padding: theme.spacing(3),
     backgroundColor: "#efefff",
-  },
-
-  fixedHeightPaper2: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
   },
 
   //Grafico lateral
@@ -423,11 +407,7 @@ const Dashboard = () => {
 
   async function handleChangeGraphType(value) {
     setGraphType(value);
-    if (value === 1) {
-      graphType = 1;
-    } else {
-      graphType = 2;
-    }
+    graphType = value;
   }
 
   return (
@@ -458,7 +438,6 @@ const Dashboard = () => {
               {renderFilters()}
               
               {/* BOTAO FILTRAR */}
-              <Box display={"flex"} alignContent={"center"}>
                 <ButtonWithSpinner
                   loading={loading}
                   onClick={() => fetchData()}
@@ -467,14 +446,13 @@ const Dashboard = () => {
                 >
                   Filtrar
                 </ButtonWithSpinner>
-              </Box>
             </div>
           </MainHeaderButtonsWrapper>
 
         </MainHeader>
       <div className={classes.subroot}>
         <Container disableGutters="true">
-          <Grid container spacing={6}>
+          <Grid container spacing={3}>
             <Grid container item spacing={6}>
 
               {/* PENDENTE */}
@@ -698,7 +676,7 @@ const Dashboard = () => {
 
             {/* Gráfico */}
             <Grid item xs={12}>
-              <Paper elevation={0} className={classes.fixedHeightPaper2}>
+              <Paper elevation={0} className={classes.fixedHeightPaper}>
                 <Select
                   value={graphType}
                   onChange={(e) => handleChangeGraphType(e.target.value)}
