@@ -22,7 +22,7 @@ import Title from "../../components/Title";
 import { i18n } from "../../translate/i18n";
 import toastError from "../../errors/toastError";
 import api from "../../services/api";
-import { DeleteOutline, Edit } from "@material-ui/icons";
+import { ClassSharp, DeleteOutline, Edit } from "@material-ui/icons";
 import PromptModal from "../../components/PromptModal";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -32,17 +32,44 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { SocketContext } from "../../context/Socket/SocketContext";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
   mainPaper: {
+    backgroundColor: "inherit",
     flex: 1,
     padding: theme.spacing(1),
-    overflowY: "scroll",
-    ...theme.scrollbarStyles,
   },
-  customTableCell: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+  table: {
+    borderCollapse: "separate", 
+    borderSpacing: "0 1em", // Gap Width
   },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+
   // Adicione um estilo para a box vermelha
   redBox: {
     backgroundColor: "#ffcccc", // Definindo a cor de fundo vermelha
@@ -188,89 +215,94 @@ const Prompts = () => {
   };
 
   return (
-    <MainContainer>
-   
-
-      <ConfirmationModal
-        title={
-          selectedPrompt &&
-          `${i18n.t("prompts.confirmationModal.deleteTitle")} ${selectedPrompt.name
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={handleCloseConfirmationModal}
-        onConfirm={() => handleDeletePrompt(selectedPrompt.id)}
-      >
-        {i18n.t("prompts.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <PromptModal
-        open={promptModalOpen}
-        onClose={handleClosePromptModal}
-        promptId={selectedPrompt?.id}
-      />
-      <MainHeader>
-        <Title>{i18n.t("prompts.title")}</Title>
-        <MainHeaderButtonsWrapper>
-          <Button
-            variant="contained"
+      <div className={classes.root}>
+        <MainHeader>
+          <Typography
+            variant="h4"
             color="primary"
-            onClick={handleOpenPromptModal}
           >
-            {i18n.t("prompts.buttons.add")}
-          </Button>
-        </MainHeaderButtonsWrapper>
-      </MainHeader>
-      <Paper className={classes.mainPaper} variant="outlined">
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">
-                {i18n.t("prompts.table.name")}
-              </TableCell>
-              <TableCell align="left">
-                {i18n.t("prompts.table.queue")}
-              </TableCell>
-              <TableCell align="left">
-                {i18n.t("prompts.table.max_tokens")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("prompts.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {prompts.map((prompt) => (
-                <TableRow key={prompt.id}>
-                  <TableCell align="left">{prompt.name}</TableCell>
-                  <TableCell align="left">{prompt.queue.name}</TableCell>
-                  <TableCell align="left">{prompt.maxTokens}</TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditPrompt(prompt)}
-                    >
-                      <Edit />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={() => {
-                        setSelectedPrompt(prompt);
-                        setConfirmModalOpen(true);
-                      }}
-                    >
-                      <DeleteOutline />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={4} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+            {i18n.t("prompts.title")}
+          </Typography>
+          <MainHeaderButtonsWrapper>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenPromptModal}
+            >
+              {i18n.t("prompts.buttons.add")}
+            </Button>
+          </MainHeaderButtonsWrapper>
+        </MainHeader>
+        <Paper 
+          className={classes.mainPaper} 
+          elevation={0}
+        >
+          <Table size="small" className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell align="left">
+                  {i18n.t("prompts.table.name")}
+                </TableCell>
+                <TableCell align="left">
+                  {i18n.t("prompts.table.queue")}
+                </TableCell>
+                <TableCell align="left">
+                  {i18n.t("prompts.table.max_tokens")}
+                </TableCell>
+                <TableCell align="center">
+                  {i18n.t("prompts.table.actions")}
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <>
+                {prompts.map((prompt) => (
+                  <TableRow key={prompt.id}>
+                    <TableCell align="left" className={classes.avatar}>{prompt.name}</TableCell>
+                    <TableCell align="left" className={classes.rowCell}>{prompt.queue.name}</TableCell>
+                    <TableCell align="left" className={classes.rowCell}>{prompt.maxTokens}</TableCell>
+                    <TableCell align="center" className={classes.rowActions}>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleEditPrompt(prompt)}
+                      >
+                        <Edit />
+                      </IconButton>
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setSelectedPrompt(prompt);
+                          setConfirmModalOpen(true);
+                        }}
+                      >
+                        <DeleteOutline />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {loading && <TableRowSkeleton columns={4} />}
+              </>
+            </TableBody>
+          </Table>
+        </Paper>
+        <ConfirmationModal
+          title={
+            selectedPrompt &&
+            `${i18n.t("prompts.confirmationModal.deleteTitle")} ${selectedPrompt.name
+            }?`
+          }
+          open={confirmModalOpen}
+          onClose={handleCloseConfirmationModal}
+          onConfirm={() => handleDeletePrompt(selectedPrompt.id)}
+        >
+          {i18n.t("prompts.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <PromptModal
+          open={promptModalOpen}
+          onClose={handleClosePromptModal}
+          promptId={selectedPrompt?.id}
+        />
+      </div>
   );
 };
 
