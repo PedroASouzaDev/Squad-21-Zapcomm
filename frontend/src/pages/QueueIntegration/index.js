@@ -90,14 +90,6 @@ const reducer = (state, action) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  mainPaper: {
-    flex: 1,
-    backgroundColor: "inherit",
-    padding: theme.spacing(2),
-    margin: theme.spacing(1),
-    overflowY: "scroll",
-    ...theme.scrollbarStyles,
-  },
   root: {
     display: "flex",
     flexDirection: "column",
@@ -115,7 +107,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(3),
-    flexGrow: 1,
+  },
+  mainPaper: {
+    flex: 1,
+    backgroundColor: "inherit",
+    padding: theme.spacing(2),
+    margin: theme.spacing(1),
   },
   table: {
     borderCollapse: "separate",
@@ -318,7 +315,7 @@ const QueueIntegration = () => {
             onScroll={handleScroll}
             elevation={0}
           >
-            <Table size="small">
+            <Table size="small" className={classes.table}>
               <TableHead>
                 <TableRow>
                   <TableCell padding="checkbox"></TableCell>
