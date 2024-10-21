@@ -15,8 +15,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
@@ -29,7 +29,6 @@ import TableRowSkeleton from "../../components/TableRowSkeleton";
 import AnnouncementModal from "../../components/AnnouncementModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import toastError from "../../errors/toastError";
-import { Grid } from "@material-ui/core";
 import { isArray } from "lodash";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
@@ -151,7 +150,7 @@ const Announcements = () => {
 
   const socketManager = useContext(SocketContext);
 
-  // trava para nao acessar pagina que não pode  
+  // Barreira de Permissão 
   useEffect(() => {
     async function fetchData() {
       if (!user.super) {
@@ -273,7 +272,7 @@ const Announcements = () => {
       <ConfirmationModal
         title={
           deletingAnnouncement &&
-          `${i18n.t("announcements.confirmationModal.deleteTitle")} ${deletingAnnouncement.name
+          `${i18n.t("announcements.confirmationModal.deleteTitle")} ${deletingAnnouncement.title
           }?`
         }
         open={confirmModalOpen}
@@ -369,7 +368,7 @@ const Announcements = () => {
                         size="small"
                         onClick={() => handleEditAnnouncement(announcement)}
                       >
-                        <EditIcon />
+                        <EditRoundedIcon />
                       </IconButton>
                       <IconButton
                         size="small"
@@ -378,7 +377,7 @@ const Announcements = () => {
                           setDeletingAnnouncement(announcement);
                         }}
                       >
-                        <DeleteOutlineIcon />
+                        <DeleteForeverRoundedIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>

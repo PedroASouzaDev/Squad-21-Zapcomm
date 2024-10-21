@@ -24,13 +24,12 @@ import {
 } from "@material-ui/core";
 
 import {
+  DeleteForeverRounded,
   DeleteOutline,
-  Edit
+  Search,
+  EditRounded
 } from "@material-ui/icons";
 
-import SearchIcon from "@material-ui/icons/Search";
-
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
@@ -294,7 +293,7 @@ const QueueIntegration = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
+                    <Search style={{ color: "gray" }} />
                   </InputAdornment>
                 ),
               }}
@@ -345,7 +344,7 @@ const QueueIntegration = () => {
                           size="small"
                           onClick={() => handleEditIntegration(integration)}
                         >
-                          <Edit/>
+                          <EditRounded/>
                         </IconButton>
                         <IconButton
                           size="small"
@@ -354,7 +353,7 @@ const QueueIntegration = () => {
                             setDeletingUser(integration);
                           }}
                         >
-                          <DeleteOutline/>
+                          <DeleteForeverRounded/>
                         </IconButton>
                       </TableCell>
                     </TableRow>
