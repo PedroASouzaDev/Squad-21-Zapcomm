@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: theme.spacing(5),
   },
-  fixedHeightPaper: {
+  graphPaper: {
     padding: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
@@ -407,49 +407,45 @@ const Dashboard = () => {
 
   async function handleChangeGraphType(value) {
     setGraphType(value);
-    graphType = value;
   }
 
   return (
     <div className={classes.root}>
-        <MainHeader>
-          <Typography
-            variant="h4"
-            color="primary"
-          >
-            Dashboard
-          </Typography>
-
-          <MainHeaderButtonsWrapper>
-            {/* FILTROS */}
-            <div className={classes.filtro}>
-              <FormControl>
-                <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
-                <Select
-                  labelId="period-selector-label"
-                  value={filterType}
-                  onChange={(e) => handleChangeFilterType(e.target.value)}
-                >
-                  <MenuItem value={1}>Filtro por Data</MenuItem>
-                  <MenuItem value={2}>Filtro por Período</MenuItem>
-                </Select>
-              </FormControl>
-              
-              {renderFilters()}
-              
-              {/* BOTAO FILTRAR */}
-                <ButtonWithSpinner
-                  loading={loading}
-                  onClick={() => fetchData()}
-                  variant="contained"
-                  color="primary"
-                >
-                  Filtrar
-                </ButtonWithSpinner>
-            </div>
-          </MainHeaderButtonsWrapper>
-
-        </MainHeader>
+      <MainHeader>
+        <Typography
+          variant="h4"
+          color="primary"
+        >
+          Dashboard
+        </Typography>
+        <MainHeaderButtonsWrapper>
+          {/* FILTROS */}
+          <div className={classes.filtro}>
+            <FormControl>
+              <InputLabel id="period-selector-label">Tipo de Filtro</InputLabel>
+              <Select
+                labelId="period-selector-label"
+                value={filterType}
+                onChange={(e) => handleChangeFilterType(e.target.value)}
+              >
+                <MenuItem value={1}>Filtro por Data</MenuItem>
+                <MenuItem value={2}>Filtro por Período</MenuItem>
+              </Select>
+            </FormControl>
+            {renderFilters()}
+            
+            {/* BOTAO FILTRAR */}
+              <ButtonWithSpinner
+                loading={loading}
+                onClick={() => fetchData()}
+                variant="contained"
+                color="primary"
+              >
+                Filtrar
+              </ButtonWithSpinner>
+          </div>
+        </MainHeaderButtonsWrapper>
+      </MainHeader>
       <div className={classes.subroot}>
         <Container disableGutters="true">
           <Grid container spacing={3}>
@@ -462,7 +458,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
+                  <Grid container alignItems="center" spacing={8}>
                    <Grid item>
                       <Paper className={classes.pendenteIcon}>
                         <PriorityHighRoundedIcon
@@ -498,7 +494,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
+                  <Grid container alignItems="center" spacing={8}>
                     <Grid item>
                       <Paper className={classes.novosIcon}>
                         <AddBoxRoundedIcon
@@ -534,7 +530,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
+                  <Grid container alignItems="center" spacing={8}>
                     <Grid item>
                         <Paper className={classes.esperaIcon}>
                           <TimerRoundedIcon
@@ -572,7 +568,7 @@ const Dashboard = () => {
                   //elevation={4} - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
+                  <Grid container alignItems="center" spacing={8}>
                     <Grid item>
                       <Paper className={classes.andamentoIcon}>
                         <UpdateRoundedIcon
@@ -608,7 +604,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
+                  <Grid container alignItems="center" spacing={8}>
                    <Grid item>
                       <Paper className={classes.finalizadoIcon}>
                         <CheckRoundedIcon
@@ -644,7 +640,7 @@ const Dashboard = () => {
                   //elevation={6}  - "Box Shadow"
                   elevation={0}
                 >
-                  <Grid container alignItems="center" justifyContent="flex-start" spacing={8}>
+                  <Grid container alignItems="center" spacing={8}>
                     <Grid item>
                       <Paper className={classes.atendimentoIcon}>
                         <AccessAlarmIcon
@@ -676,7 +672,7 @@ const Dashboard = () => {
 
             {/* Gráfico */}
             <Grid item xs={12}>
-              <Paper elevation={0} className={classes.fixedHeightPaper}>
+              <Paper elevation={0} className={classes.graphPaper}>
                 <Select
                   value={graphType}
                   onChange={(e) => handleChangeGraphType(e.target.value)}
