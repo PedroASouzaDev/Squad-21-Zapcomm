@@ -83,13 +83,6 @@ const reducer = (state, action) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  mainPaper: {
-    flex: 1,
-    // padding: theme.spacing(1),
-    padding: theme.padding,
-    overflowY: "scroll",
-    ...theme.scrollbarStyles,
-  },
   root: {
     display: "flex",
     flexDirection: "column",
