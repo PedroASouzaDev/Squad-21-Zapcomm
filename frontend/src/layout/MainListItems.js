@@ -42,6 +42,7 @@ import { AllInclusive, AttachFile, BlurCircular, DeviceHubOutlined, Schedule } f
 import usePlans from "../hooks/usePlans";
 import Typography from "@material-ui/core/Typography";
 import useVersion from "../hooks/useVersion";
+import Box from "@material-ui/core/Box";
 
 // Account Button
 import {
@@ -51,6 +52,7 @@ import {
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import UserModal from "../components/UserModal";
+import { DigitalClock } from "@mui/x-date-pickers";
 
 const useStyles = makeStyles((theme) => ({
   ListSubheader: {
@@ -537,44 +539,50 @@ const MainListItems = (props) => {
           </>
         )}
       />
+      <Divider />
+      <ListItem>
+        <Box display={"flex"} alignItems={"center"} sx={{ gap: "1.5em", }}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+            edge="start"
+          >
+            <AccountCircle />
+          </IconButton>
+            {user.name}
+        </Box>
+      </ListItem>
+
+      {/* ACCOUNT MODAL */}
       <UserModal
         open={userModalOpen}
         onClose={() => setUserModalOpen(false)}
         userId={user?.id}
       />
-      <div>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={handleMenu}
-          variant="contained"
-        >
-          <AccountCircle />
-        </IconButton>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorEl}
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-          open={menuOpen}
-          onClose={handleCloseMenu}
-        >
-          <MenuItem onClick={handleOpenUserModal}>
-            {i18n.t("mainDrawer.appBar.user.profile")}
-          </MenuItem>
-          <MenuItem onClick={handleClickLogout}>
-            {i18n.t("mainDrawer.appBar.user.logout")}
-          </MenuItem>
-        </Menu>
-      </div>
+      <Menu
+        id="menu-appbar"
+        anchorEl={anchorEl}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        open={menuOpen}
+        onClose={handleCloseMenu}
+      >
+        <MenuItem onClick={handleOpenUserModal}>
+          {i18n.t("mainDrawer.appBar.user.profile")}
+        </MenuItem>
+        <MenuItem onClick={handleClickLogout}>
+          {i18n.t("mainDrawer.appBar.user.logout")}
+        </MenuItem>
+      </Menu>
     </div>
   );
 };
