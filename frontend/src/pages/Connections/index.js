@@ -18,16 +18,15 @@ import {
 	CircularProgress,
 } from "@material-ui/core";
 import {
-	Edit,
 	CheckCircle,
 	SignalCellularConnectedNoInternet2Bar,
 	SignalCellularConnectedNoInternet0Bar,
 	SignalCellular4Bar,
 	CropFree,
-	DeleteOutline,
+	EditRounded,
+	DeleteRounded,
 } from "@material-ui/icons";
 
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
@@ -333,7 +332,7 @@ const Connections = () => {
 	return (
 		<div className={classes.root}>
 			<MainHeader>
-				<Title>Conexções</Title>
+				<Title>Conexões</Title>
 				<MainHeaderButtonsWrapper>
 					<Can
 						role={user.profile}
@@ -427,7 +426,7 @@ const Connections = () => {
 																size="small"
 																onClick={() => handleEditWhatsApp(whatsApp)}
 															>
-																<Edit />
+																<EditRounded />
 															</IconButton>
 															<IconButton
 																size="small"
@@ -435,7 +434,7 @@ const Connections = () => {
 																	handleOpenConfirmationModal("delete", whatsApp.id);
 																}}
 															>
-																<DeleteOutline />
+																<DeleteRounded />
 															</IconButton>
 														</TableCell>
 													)}
