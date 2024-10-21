@@ -15,7 +15,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 
 import MainContainer from "../../components/MainContainer";
@@ -116,7 +116,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
-    paddingRight: "0",
   },
   rowActions: {
     backgroundColor: theme.palette.light.main,
@@ -355,7 +354,7 @@ const Announcements = () => {
                           setDeletingAnnouncement(announcement);
                         }}
                       >
-                        <DeleteForeverRoundedIcon />
+                        <DeleteRoundedIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>

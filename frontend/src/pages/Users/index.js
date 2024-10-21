@@ -14,10 +14,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditIcon from "@material-ui/icons/Edit";
+import { DeleteRounded, EditRounded } from "@material-ui/icons";
 
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
@@ -115,7 +113,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
-    paddingRight: "0",
   },
   rowActions: {
     backgroundColor: theme.palette.light.main,
@@ -320,7 +317,7 @@ const Users = () => {
                           size="small"
                           onClick={() => handleEditUser(user)}
                         >
-                          <EditIcon />
+                          <EditRounded />
                         </IconButton>
                         <IconButton
                           size="small"
@@ -329,7 +326,7 @@ const Users = () => {
                             setDeletingUser(user);
                           }}
                         >
-                          <DeleteOutlineIcon />
+                          <DeleteRounded />
                         </IconButton>
                       </TableCell>
                     </TableRow>

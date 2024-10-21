@@ -19,7 +19,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Title from "../../components/Title";
 
 import IconButton from "@material-ui/core/IconButton";
-import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import api from "../../services/api";
 import TableRowSkeleton from "../../components/TableRowSkeleton";
@@ -420,7 +420,7 @@ const Contacts = () => {
                               setDeletingContact(contact);
                             }}
                           >
-                            <DeleteForeverRoundedIcon />
+                            <DeleteRoundedIcon />
                           </IconButton>
                         )}
                       />

@@ -20,12 +20,10 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Tooltip
 } from "@material-ui/core";
 
 import {
-  DeleteForeverRounded,
-  DeleteOutline,
+  DeleteRounded,
   Search,
   EditRounded
 } from "@material-ui/icons";
@@ -335,7 +333,7 @@ const QueueIntegration = () => {
                             setDeletingUser(integration);
                           }}
                         >
-                          <DeleteForeverRounded/>
+                          <DeleteRounded/>
                         </IconButton>
                       </TableCell>
                     </TableRow>

@@ -9,12 +9,10 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Typography // Importar Typography do Material-UI
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import TableRowSkeleton from "../../components/TableRowSkeleton";
@@ -22,7 +20,7 @@ import Title from "../../components/Title";
 import { i18n } from "../../translate/i18n";
 import toastError from "../../errors/toastError";
 import api from "../../services/api";
-import { DeleteForeverRounded, EditRounded } from "@material-ui/icons";
+import { DeleteRounded, EditRounded } from "@material-ui/icons";
 import PromptModal from "../../components/PromptModal";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -58,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
-    paddingRight: "0",
   },
   rowActions: {
     backgroundColor: theme.palette.light.main,
@@ -270,7 +267,7 @@ const Prompts = () => {
                           setConfirmModalOpen(true);
                         }}
                       >
-                        <DeleteForeverRounded />
+                        <DeleteRounded />
                       </IconButton>
                     </TableCell>
                   </TableRow>

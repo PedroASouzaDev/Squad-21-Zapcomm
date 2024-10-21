@@ -78,7 +78,6 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: theme.palette.light.main,
 		borderTopLeftRadius: "10px",
 		borderBottomLeftRadius: "10px",
-		paddingRight: "0",
 	},
 	rowActions: {
 		backgroundColor: theme.palette.light.main,

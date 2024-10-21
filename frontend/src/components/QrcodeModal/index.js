@@ -52,7 +52,7 @@ const QrcodeModal = ({ open, onClose, whatsAppId }) => {
       <DialogContent>
         <Paper elevation={0} style={{ display: "flex", alignItems: "center" }}>
           <div style={{ marginRight: "20px" }}>
-            <Typography variant="h2" component="h2" color="textPrimary" gutterBottom style={{ fontFamily: "Montserrat", fontWeight: "bold", fontSize:"20px",}}>
+            <Typography variant="h2" component="h2" color="textPrimary" gutterBottom style={{ fontFamily: "Nunito", fontWeight: "bold", fontSize:"20px",}}>
               Utilize o seu WhatsApp:
             </Typography>
             <Typography variant="body1" color="textPrimary" gutterBottom>
