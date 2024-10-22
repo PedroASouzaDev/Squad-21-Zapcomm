@@ -152,7 +152,7 @@ const Login = () => {
 				</Button>
 				{ <Grid container>
 					<Grid item>
-						Não tem conta ainda?
+						Não tem conta ainda?_
 						<Link
 							href="#"
 							variant="body2"

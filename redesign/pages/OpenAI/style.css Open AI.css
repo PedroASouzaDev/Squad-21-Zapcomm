@@ -1,0 +1,474 @@
+.open-ai {
+  background-color: #dce5ed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.open-ai .div {
+  background-color: #dce5ed;
+  height: 900px;
+  position: relative;
+  width: 1440px;
+}
+
+.open-ai .text-wrapper {
+  color: #0c2454;
+  font-family: "Nunito-SemiBold", Helvetica;
+  font-size: 24px;
+  font-weight: 600;
+  left: 140px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 29px;
+}
+
+.open-ai .frame-2 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 650px;
+  left: 158px;
+  position: absolute;
+  top: 155px;
+  width: 1200px;
+}
+
+.open-ai .tag {
+  align-self: stretch;
+  background-color: #ffffff;
+  border-radius: 10px;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+.open-ai .frame-407 {
+  left: 1107px !important;
+  position: absolute !important;
+  top: 22px !important;
+}
+
+.open-ai .frame-instance {
+  margin-bottom: -0.15px !important;
+  margin-top: -0.15px !important;
+}
+
+.open-ai .rectangle {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  height: 30px;
+  left: 335px;
+  opacity: 0.7;
+  position: absolute;
+  top: 14px;
+  width: 101px;
+}
+
+.open-ai .rectangle-2 {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  height: 30px;
+  left: 711px;
+  opacity: 0.7;
+  position: absolute;
+  top: 15px;
+  width: 101px;
+}
+
+.open-ai .name {
+  height: 19px;
+  left: 31px;
+  position: absolute;
+  top: 19px;
+  width: 61px;
+}
+
+.open-ai .text-wrapper-2 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+}
+
+.open-ai .table-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 166px;
+  padding: 0px 30px;
+  position: absolute;
+  top: 130px;
+  width: 1186px;
+}
+
+.open-ai .div-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 12px;
+  position: relative;
+}
+
+.open-ai .text-wrapper-3 {
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  opacity: 0.7;
+  position: relative;
+  width: fit-content;
+}
+
+.open-ai .arrow-down {
+  height: 5px;
+  position: relative;
+  width: 4.41px;
+}
+
+.open-ai .img {
+  height: 5px;
+  position: relative;
+  width: 6.09px;
+}
+
+.open-ai .button {
+  all: unset;
+  align-items: center;
+  background-color: #0c2454;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 10px;
+  height: 44px;
+  justify-content: center;
+  left: 1165px;
+  padding: 10px 20px;
+  position: absolute;
+  top: 32px;
+}
+
+.open-ai .vector {
+  height: 10px;
+  position: relative;
+  width: 9.87px;
+}
+
+.open-ai .text-wrapper-4 {
+  color: #ffffff;
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: 133px;
+}
+
+.open-ai .search-wrapper {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  height: 44px;
+  justify-content: flex-end;
+  left: 911px;
+  position: absolute;
+  top: 32px;
+}
+
+.open-ai .search {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #0000001a;
+  border-radius: 10px;
+  height: 40px;
+  position: relative;
+  width: 230px;
+}
+
+.open-ai .searcha-and-icon {
+  height: 16px;
+  left: 19px;
+  position: relative;
+  top: 11px;
+  width: 192px;
+}
+
+.open-ai .search-2 {
+  height: 13px;
+  left: 178px;
+  position: absolute;
+  top: 2px;
+  width: 13px;
+}
+
+.open-ai .text-wrapper-5 {
+  -webkit-text-stroke: 1px #0000001a;
+  color: var(--text);
+  font-family: "Nunito-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: -1px;
+  letter-spacing: 0;
+  line-height: normal;
+  opacity: 0.7;
+  position: absolute;
+  top: -1px;
+}
+
+.open-ai .barra-letal {
+  background-color: #ffffff;
+  height: 900px;
+  left: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  width: 80px;
+}
+
+.open-ai .overlap {
+  height: 1206px;
+  left: 0;
+  position: absolute;
+  top: 78px;
+  width: 80px;
+}
+
+.open-ai .menu {
+  height: 1206px;
+  left: 19px;
+  position: absolute;
+  top: 0;
+  width: 45px;
+}
+
+.open-ai .menu-name {
+  height: 1206px;
+  position: relative;
+}
+
+.open-ai .log-out {
+  align-items: center;
+  display: inline-flex;
+  gap: 18px;
+  height: 55px;
+  left: 0;
+  position: absolute;
+  top: 1151px;
+}
+
+.open-ai .profile-photo {
+  background-color: #f7f7f8;
+  border-radius: 12px;
+  height: 43px;
+  position: relative;
+  width: 45px;
+}
+
+.open-ai .overlap-group {
+  background-color: #f7f7f8;
+  border-radius: 12px;
+  height: 43px;
+}
+
+.open-ai .group {
+  height: 8px;
+  left: 18px;
+  position: relative;
+  top: 17px;
+  width: 9px;
+}
+
+.open-ai .camera-wrapper {
+  height: 8px;
+  opacity: 0.7;
+  position: relative;
+}
+
+.open-ai .camera {
+  height: 8px;
+  left: 5802px;
+  position: absolute;
+  top: -9175px;
+  width: 9px;
+}
+
+.open-ai .icones {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  height: 1003px;
+  justify-content: space-between;
+  left: 9px;
+  position: absolute;
+  top: 82px;
+}
+
+.open-ai .dashboard {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.open-ai .div-3 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 14px;
+  position: relative;
+}
+
+.open-ai .div-wrapper {
+  height: 24px;
+  opacity: 0.4;
+  position: relative;
+  width: 24px;
+}
+
+.open-ai .chart {
+  background-image: url(./chart.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 20px;
+}
+
+.open-ai .img-2 {
+  height: 24px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.open-ai .document {
+  background-image: url(./document.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.open-ai .calendar {
+  background-image: url(./calendar.svg);
+  background-size: 100% 100%;
+  height: 20px;
+  left: 3px;
+  position: relative;
+  top: 2px;
+  width: 18px;
+}
+
+.open-ai .code-bluish-gray {
+  height: 24px;
+  margin-right: -5793px;
+  margin-top: -8867.05px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.open-ai .chatbot {
+  height: 24px;
+  margin-right: -5793px;
+  margin-top: -8921.67px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.open-ai .user-bluish-gray {
+  height: 24px;
+  margin-right: -5793px;
+  margin-top: -8976.28px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.open-ai .ajuda {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.open-ai .question {
+  height: 24px;
+  margin-right: -5793px;
+  margin-top: -9030.9px;
+  object-fit: cover;
+  position: relative;
+  width: 24px;
+}
+
+.open-ai .setting {
+  height: 20px;
+  left: 2px;
+  position: relative;
+  top: 2px;
+  width: 19px;
+}
+
+.open-ai .setting-2 {
+  height: 20px;
+  left: 5793px;
+  position: absolute;
+  top: -9086px;
+  width: 19px;
+}
+
+.open-ai .down-bluish-gray {
+  height: 46px;
+  left: 3px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 36px;
+}
+
+.open-ai .ellipse {
+  background-color: var(--red);
+  border-radius: 2.5px;
+  height: 5px;
+  left: 55px;
+  opacity: 0.5;
+  position: absolute;
+  top: 249px;
+  width: 5px;
+}
+
+.open-ai .rectangle-3 {
+  background: linear-gradient(180deg, rgb(52, 211, 163) 0%, rgba(52, 211, 163, 0) 100%);
+  border-radius: 0px 5px 5px 0px;
+  height: 48px;
+  left: 0;
+  opacity: 0.2;
+  position: absolute;
+  top: 65px;
+  width: 80px;
+}
+
+.open-ai .image {
+  height: 65px;
+  left: 10px;
+  position: absolute;
+  top: 0;
+  width: 56px;
+}
