@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
   flexSpacing: {
     display: "flex",
-    gap: theme.spacing(5),
+    gap: theme.spacing(3),
     flex: 1,
   },
 
