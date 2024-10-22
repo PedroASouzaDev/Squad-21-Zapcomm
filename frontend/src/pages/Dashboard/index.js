@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import Paper from "@material-ui/core/Paper";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -9,47 +8,26 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Typography from "@material-ui/core/Typography";
-import { Button } from "@material-ui/core";
 
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import UpdateRoundedIcon from '@material-ui/icons/UpdateRounded';
-import GroupIcon from "@material-ui/icons/Group";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import PersonIcon from "@material-ui/icons/Person";
-import CallIcon from "@material-ui/icons/Call";
-import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
-import HourglassEmptyRoundedIcon from "@material-ui/icons/HourglassEmptyRounded";
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import PriorityHighRoundedIcon from '@material-ui/icons/PriorityHighRounded';
-import ForumIcon from "@material-ui/icons/Forum";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import ClearIcon from "@material-ui/icons/Clear";
-import SendIcon from '@material-ui/icons/Send';
-import MessageIcon from '@material-ui/icons/Message';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
 import TimerRoundedIcon from '@material-ui/icons/TimerRounded';
 
 import { makeStyles } from "@material-ui/core/styles";
-import { grey, blue } from "@material-ui/core/colors";
 import { toast } from "react-toastify";
 
-import Chart from "./Chart";
 import ButtonWithSpinner from "../../components/ButtonWithSpinner";
 
-import CardCounter from "../../components/Dashboard/CardCounter";
-import TableAttendantsStatus from "../../components/Dashboard/TableAttendantsStatus";
 import { isArray } from "lodash";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 
 import useDashboard from "../../hooks/useDashboard";
-import useTickets from "../../hooks/useTickets";
-import useUsers from "../../hooks/useUsers";
 import useContacts from "../../hooks/useContacts";
-import useMessages from "../../hooks/useMessages";
 import { ChatsUser } from "./ChartsUser"
 
 import Filters from "./Filters";
@@ -77,7 +55,9 @@ const useStyles = makeStyles((theme) => ({
   },
   subroot: {
     display: "flex",
-    gap: theme.spacing(6),
+    gap: theme.spacing(5),
+    flexWrap: "wrap",
+    justifyContent: "space-between"
   },
   filtro: {
     display: "flex",
@@ -96,9 +76,20 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     textAlign: "left",
   },
+  flexRowSpacing: {
+    display: "flex",
+    gap: theme.spacing(5),
+  },
+  flexSpacing: {
+    display: "flex",
+    gap: theme.spacing(5),
+    flex: 1,
+  },
 
   // Cards
   card: {
+    minWidth: "320px",
+    maxWidth: "350px",
     padding: theme.spacing(2.5),
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
@@ -164,11 +155,11 @@ const useStyles = makeStyles((theme) => ({
   //Grafico lateral
   graficoLateral: {
     display: "flex",
+    flex: 1,
     flexDirection: "column",
     gap: theme.spacing(3),
     justifyContent: "space-evenly",
-    width: "40%",
-    maxWidth: "450px",
+    minWidth: "450px",
     padding: theme.spacing(2.5),
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
   },
@@ -442,246 +433,241 @@ const Dashboard = () => {
           </div>
         </MainHeaderButtonsWrapper>
       </MainHeader>
+
       <div className={classes.subroot}>
-        <Container disableGutters="true">
-          <Grid container spacing={3}>
-            <Grid container item spacing={6}>
-
-              {/* PENDENTE */}
-              <Grid item  xs={12} sm={6} md={4}>
-                <Paper
-                  className={classes.card}
-                  //elevation={6}  - "Box Shadow"
-                  elevation={0}
-                >
-                  <Grid container alignItems="center" spacing={8}>
-                   <Grid item>
-                      <Paper className={classes.pendenteIcon}>
-                        <PriorityHighRoundedIcon
-                          style={{
-                            fontSize: 36,
-                            color: "#5B93FF",
-                          }}
-                        />
-                      </Paper>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction="column" item spacing={3}>
-                        <Typography
-                          variant="h5"
-                        >
-                          {counters.supportPending}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                        >
-                         Pendente
-                        </Typography>
-                      </Grid>
+        <Box display={"flex"} flexDirection={"column"} className={classes.flexSpacing}>
+          <Box display={"flex"} justifyContent={"space-between"} className={classes.flexRowSpacing}>
+            {/* PENDENTE */}
+            <Grid item>
+              <Paper
+                className={classes.card}
+                //elevation={6}  - "Box Shadow"
+                elevation={0}
+              >
+                <Grid container alignItems="center" spacing={8}>
+                  <Grid item>
+                    <Paper className={classes.pendenteIcon}>
+                      <PriorityHighRoundedIcon
+                        style={{
+                          fontSize: 36,
+                          color: "#5B93FF",
+                        }}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="column" item spacing={3}>
+                      <Typography
+                        variant="h5"
+                      >
+                        {counters.supportPending}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                      >
+                        Pendente
+                      </Typography>
                     </Grid>
                   </Grid>
-                </Paper>
-              </Grid>
-
-              {/* NOVOS CHAMADOS */}
-              <Grid item xs={12} sm={6} md={4}>
-                <Paper
-                  className={classes.card}
-                  //elevation={6}  - "Box Shadow"
-                  elevation={0}
-                >
-                  <Grid container alignItems="center" spacing={8}>
-                    <Grid item>
-                      <Paper className={classes.novosIcon}>
-                        <AddBoxRoundedIcon
-                          style={{
-                            fontSize: 36,
-                            color: "#605BFF",
-                          }}
-                        />
-                      </Paper>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction="column" item spacing={3}>
-                        <Typography
-                          variant="h5"
-                        >
-                          {GetContacts(true)}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                        >
-                          Novos
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-
-              {/* T.M. DE ESPERA */}
-              <Grid item xs={12} sm={6} md={4}>
-                <Paper
-                  className={classes.card}
-                  //elevation={6}  - "Box Shadow"
-                  elevation={0}
-                >
-                  <Grid container alignItems="center" spacing={8}>
-                    <Grid item>
-                        <Paper className={classes.esperaIcon}>
-                          <TimerRoundedIcon
-                            style={{
-                              fontSize: 36,
-                              color: "#0C2454",
-                            }}
-                          />
-                        </Paper>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction="column" item spacing={3}>
-                        <Typography
-                          variant="h5"
-                        >
-                          {formatTime(counters.avgWaitTime)}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                        >
-                          T.M. de Espera
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-            </Grid>
-            <Grid container item spacing={6}>
-
-              {/* EM ANDAMENTO */}
-              <Grid item xs={12} sm={6} md={4}>
-                <Paper
-                  className={classes.card}
-                  //elevation={4} - "Box Shadow"
-                  elevation={0}
-                >
-                  <Grid container alignItems="center" spacing={8}>
-                    <Grid item>
-                      <Paper className={classes.andamentoIcon}>
-                        <UpdateRoundedIcon
-                          style={{
-                            fontSize: 36,
-                            color: "#d9b353",
-                          }}
-                        />
-                      </Paper>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction="column" item spacing={3}>
-                        <Typography
-                          variant="h5"
-                        >
-                          {counters.supportHappening}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                        >
-                          Andamento
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-
-              {/* FINALIZADOS */}
-              <Grid item xs={12} sm={5} md={4}>
-                <Paper
-                  className={classes.card}
-                  //elevation={6}  - "Box Shadow"
-                  elevation={0}
-                >
-                  <Grid container alignItems="center" spacing={8}>
-                   <Grid item>
-                      <Paper className={classes.finalizadoIcon}>
-                        <CheckRoundedIcon
-                          style={{
-                            fontSize: 36,
-                            color: "#33d0a1",
-                          }}
-                        />
-                      </Paper>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction="column" item spacing={3}>
-                        <Typography
-                          variant="h5"
-                        >
-                          {counters.supportFinished}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                        >
-                          Finalizados
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-
-              {/* T.M. DE ATENDIMENTO */}
-              <Grid item xs={12} sm={6} md={4}>
-                <Paper
-                  className={classes.card}
-                  //elevation={6}  - "Box Shadow"
-                  elevation={0}
-                >
-                  <Grid container alignItems="center" spacing={8}>
-                    <Grid item>
-                      <Paper className={classes.atendimentoIcon}>
-                        <AccessAlarmIcon
-                          style={{
-                            fontSize: 36,
-                            color: "#33d0a1",
-                          }}
-                        />
-                      </Paper>
-                    </Grid>
-                    <Grid item>
-                      <Grid container direction="column" item spacing={3}>
-                        <Typography
-                          variant="h5"
-                        >
-                          {formatTime(counters.avgSupportTime)}
-                        </Typography>
-                        <Typography
-                          variant="body1"
-                        >
-                          T.M. de Atendimento
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-            </Grid>
-
-            {/* Gráfico */}
-            <Grid item xs={12}>
-              <Paper elevation={0} className={classes.graphPaper}>
-                <Select
-                  value={graphType}
-                  onChange={(e) => handleChangeGraphType(e.target.value)}
-                >
-                  <MenuItem value={1}>Atendimentos</MenuItem>
-                  <MenuItem value={2}>Atendimentos por Usuário</MenuItem>
-                </Select>
-                {renderGraph()} 
+                </Grid>
               </Paper>
             </Grid>
+            {/* NOVOS CHAMADOS */}
+            <Grid item>
+              <Paper
+                className={classes.card}
+                //elevation={6}  - "Box Shadow"
+                elevation={0}
+              >
+                <Grid container alignItems="center" spacing={8}>
+                  <Grid item>
+                    <Paper className={classes.novosIcon}>
+                      <AddBoxRoundedIcon
+                        style={{
+                          fontSize: 36,
+                          color: "#605BFF",
+                        }}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="column" item spacing={3}>
+                      <Typography
+                        variant="h5"
+                      >
+                        {GetContacts(true)}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                      >
+                        Novos
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
+            {/* T.M. DE ESPERA */}
+            <Grid item>
+              <Paper
+                className={classes.card}
+                //elevation={6}  - "Box Shadow"
+                elevation={0}
+              >
+                <Grid container alignItems="center" spacing={8}>
+                  <Grid item>
+                      <Paper className={classes.esperaIcon}>
+                        <TimerRoundedIcon
+                          style={{
+                            fontSize: 36,
+                            color: "#0C2454",
+                          }}
+                        />
+                      </Paper>
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="column" item spacing={3}>
+                      <Typography
+                        variant="h5"
+                      >
+                        {formatTime(counters.avgWaitTime)}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                      >
+                        T.M. de Espera
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
+          </Box>
+          {/* Segunda Row */}
+          <Box display={"flex"} justifyContent={"space-between"}>
+            {/* EM ANDAMENTO */}
+            <Grid item>
+              <Paper
+                className={classes.card}
+                //elevation={4} - "Box Shadow"
+                elevation={0}
+              >
+                <Grid container alignItems="center" spacing={8}>
+                  <Grid item>
+                    <Paper className={classes.andamentoIcon}>
+                      <UpdateRoundedIcon
+                        style={{
+                          fontSize: 36,
+                          color: "#d9b353",
+                        }}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="column" item spacing={3}>
+                      <Typography
+                        variant="h5"
+                      >
+                        {counters.supportHappening}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                      >
+                        Andamento
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
+            {/* FINALIZADOS */}
+            <Grid item>
+              <Paper
+                className={classes.card}
+                //elevation={6}  - "Box Shadow"
+                elevation={0}
+              >
+                <Grid container alignItems="center" spacing={8}>
+                  <Grid item>
+                    <Paper className={classes.finalizadoIcon}>
+                      <CheckRoundedIcon
+                        style={{
+                          fontSize: 36,
+                          color: "#33d0a1",
+                        }}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="column" item spacing={3}>
+                      <Typography
+                        variant="h5"
+                      >
+                        {counters.supportFinished}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                      >
+                        Finalizados
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
+            {/* T.M. DE ATENDIMENTO */}
+            <Grid item>
+              <Paper
+                className={classes.card}
+                //elevation={6}  - "Box Shadow"
+                elevation={0}
+              >
+                <Grid container alignItems="center" spacing={8}>
+                  <Grid item>
+                    <Paper className={classes.atendimentoIcon}>
+                      <AccessAlarmIcon
+                        style={{
+                          fontSize: 36,
+                          color: "#33d0a1",
+                        }}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item>
+                    <Grid container direction="column" item spacing={3}>
+                      <Typography
+                        variant="h5"
+                      >
+                        {formatTime(counters.avgSupportTime)}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                      >
+                        T.M. de Atendimento
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
+          </Box>
+          {/* Gráfico */}
+          <Grid item>
+            <Paper elevation={0} className={classes.graphPaper}>
+              <Select
+                margin="dense"
+                variant="outlined"
+                value={graphType}
+                onChange={(e) => handleChangeGraphType(e.target.value)}
+              >
+                <MenuItem value={1}>Atendimentos</MenuItem>
+                <MenuItem value={2}>Atendimentos por Usuário</MenuItem>
+              </Select>
+              {renderGraph()}
+            </Paper>
           </Grid>
-        </Container >
-        
+        </Box>
+      
         {/* GRAFICO LATERAL */}
         <Paper elevation={0} className={classes.graficoLateral}>
           <Typography
