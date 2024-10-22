@@ -20,17 +20,14 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Tooltip
 } from "@material-ui/core";
 
 import {
-  DeleteOutline,
-  Edit
+  DeleteRounded,
+  Search,
+  EditRounded
 } from "@material-ui/icons";
 
-import SearchIcon from "@material-ui/icons/Search";
-
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
@@ -90,17 +87,53 @@ const reducer = (state, action) => {
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  subroot: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+  },
   mainPaper: {
     flex: 1,
+    backgroundColor: "inherit",
     padding: theme.spacing(2),
     margin: theme.spacing(1),
-    overflowY: "scroll",
-    ...theme.scrollbarStyles,
+  },
+  table: {
+    borderCollapse: "separate",
+    borderSpacing: "0 1em",
   },
   avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
     width: "140px",
     height: "40px",
-    borderRadius: 4
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
   },
 }));
 
@@ -225,106 +258,111 @@ const QueueIntegration = () => {
   };
 
   return (
-    <MainContainer>
-      <ConfirmationModal
-        title={
-          deletingUser &&
-          `${i18n.t("queueIntegration.confirmationModal.deleteTitle")} ${deletingUser.name
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={setConfirmModalOpen}
-        onConfirm={() => handleDeleteIntegration(deletingUser.id)}
-      >
-        {i18n.t("queueIntegration.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <IntegrationModal
-        open={userModalOpen}
-        onClose={handleCloseIntegrationModal}
-        aria-labelledby="form-dialog-title"
-        integrationId={selectedIntegration && selectedIntegration.id}
-      />
-      <MainHeader>
-        <Title>{i18n.t("queueIntegration.title")} ({queueIntegration.length})</Title>
-        <MainHeaderButtonsWrapper>
-          <TextField
-            placeholder={i18n.t("queueIntegration.searchPlaceholder")}
-            type="search"
-            value={searchParam}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon color="secondary" />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleOpenUserModal}
+      <div className={classes.root}>
+        <MainHeader>
+          <Title>{i18n.t("queueIntegration.title")} ({queueIntegration.length})</Title>
+          <MainHeaderButtonsWrapper>
+            <TextField
+              className={classes.textField}
+              placeholder={i18n.t("queueIntegration.searchPlaceholder")}
+              type="search"
+              variant="outlined"
+              margin="dense"
+              value={searchParam}
+              onChange={handleSearch}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search style={{ color: "gray" }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleOpenUserModal}
+            >
+              {i18n.t("queueIntegration.buttons.add")}
+            </Button>
+          </MainHeaderButtonsWrapper>
+        </MainHeader>
+        
+        <div className={classes.subroot}>
+          <Paper
+            className={classes.mainPaper}
+            onScroll={handleScroll}
+            elevation={0}
           >
-            {i18n.t("queueIntegration.buttons.add")}
-          </Button>
-        </MainHeaderButtonsWrapper>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox"></TableCell>
-              <TableCell align="center">{i18n.t("queueIntegration.table.id")}</TableCell>
-              <TableCell align="center">{i18n.t("queueIntegration.table.name")}</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {queueIntegration.map((integration) => (
-                <TableRow key={integration.id}>
-                  <TableCell >
-                    {integration.type === "dialogflow" && (<Avatar 
-                      src={dialogflow} className={classes.avatar} />)}
-                    {integration.type === "n8n" && (<Avatar
-                      src={n8n} className={classes.avatar} />)}
-                    {integration.type === "webhook" && (<Avatar
-                      src={webhooks} className={classes.avatar} />)}
-                    {integration.type === "typebot" && (<Avatar
-                      src={typebot} className={classes.avatar} />)}
-                  </TableCell>
-
-                  <TableCell align="center">{integration.id}</TableCell>
-                  <TableCell align="center">{integration.name}</TableCell>
-                  <TableCell align="center">
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditIntegration(integration)}
-                    >
-                      <Edit color="secondary" />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={(e) => {
-                        setConfirmModalOpen(true);
-                        setDeletingUser(integration);
-                      }}
-                    >
-                      <DeleteOutline color="secondary" />
-                    </IconButton>
-                  </TableCell>
+            <Table size="small" className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell padding="checkbox"></TableCell>
+                  <TableCell align="center">{i18n.t("queueIntegration.table.id")}</TableCell>
+                  <TableCell align="center">{i18n.t("queueIntegration.table.name")}</TableCell>
+                  <TableCell align="center">{i18n.t("queueIntegration.table.actions")}</TableCell>
                 </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={7} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+              </TableHead>
+              <TableBody>
+                <>
+                  {queueIntegration.map((integration) => (
+                    <TableRow key={integration.id}>
+                      <TableCell className={classes.avatar}>
+                        {integration.type === "dialogflow" && (<Avatar
+                          src={dialogflow} className={classes.avatar} />)}
+                        {integration.type === "n8n" && (<Avatar
+                          src={n8n} className={classes.avatar} />)}
+                        {integration.type === "webhook" && (<Avatar
+                          src={webhooks} className={classes.avatar} />)}
+                        {integration.type === "typebot" && (<Avatar
+                          src={typebot} className={classes.avatar} />)}
+                      </TableCell>
+                      <TableCell align="center" className={classes.rowCell}>{integration.id}</TableCell>
+                      <TableCell align="center" className={classes.rowCell}>{integration.name}</TableCell>
+                      <TableCell align="center" className={classes.rowActions}>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEditIntegration(integration)}
+                        >
+                          <EditRounded/>
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            setConfirmModalOpen(true);
+                            setDeletingUser(integration);
+                          }}
+                        >
+                          <DeleteRounded/>
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {loading && <TableRowSkeleton columns={7} />}
+                </>
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
+        <ConfirmationModal
+          title={
+            deletingUser &&
+            `${i18n.t("queueIntegration.confirmationModal.deleteTitle")} ${deletingUser.name
+            }?`
+          }
+          open={confirmModalOpen}
+          onClose={setConfirmModalOpen}
+          onConfirm={() => handleDeleteIntegration(deletingUser.id)}
+        >
+          {i18n.t("queueIntegration.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <IntegrationModal
+          open={userModalOpen}
+          onClose={handleCloseIntegrationModal}
+          aria-labelledby="form-dialog-title"
+          integrationId={selectedIntegration && selectedIntegration.id}
+        />
+      </div>
   );
 };
 

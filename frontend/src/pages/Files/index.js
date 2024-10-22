@@ -20,8 +20,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditIcon from "@material-ui/icons/Edit";
+import { DeleteRounded, EditRounded } from "@material-ui/icons";
 
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
@@ -87,6 +86,54 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         overflowY: "scroll",
         ...theme.scrollbarStyles,
+    },
+    root: {
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        backgroundColor: theme.palette.background.main,
+        gap: theme.spacing(4),
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(6),
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(6),
+        overflowY: "scroll",
+        ...theme.scrollbarStylesSoft
+        },
+    subroot: {
+        display: "flex",
+        flexDirection: "column",
+        gap: theme.spacing(3),
+        flexGrow: 1,
+    },
+    mainPaper: {
+        backgroundColor: "inherit",
+        flex: 1,
+        padding: theme.spacing(1),
+        overflowY: "scroll",
+        ...theme.scrollbarStylesSoft,
+    },
+    table: {
+        borderCollapse: "separate",
+        borderSpacing: "0 1em",
+    },
+    avatar: {
+        backgroundColor: theme.palette.light.main,
+        borderTopLeftRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        height: "4em",
+    },
+    rowActions: {
+        backgroundColor: theme.palette.light.main,
+        borderTopRightRadius: "10px",
+        borderBottomRightRadius: "10px",
+    },
+    rowCell: {
+        backgroundColor: theme.palette.light.main,
+        height: "4em",
+    },
+    textField: {
+    ...theme.textField,
     },
 }));
 
@@ -198,92 +245,98 @@ const FileLists = () => {
         }
     };
 
-    return (
-        <MainContainer>
-            <ConfirmationModal
-                title={deletingFileList && `${i18n.t("files.confirmationModal.deleteTitle")}`}
-                open={confirmModalOpen}
-                onClose={setConfirmModalOpen}
-                onConfirm={() => handleDeleteFileList(deletingFileList.id)}
-            >
-                {i18n.t("files.confirmationModal.deleteMessage")}
-            </ConfirmationModal>
-            <FileModal
-                open={fileListModalOpen}
-                onClose={handleCloseFileListModal}
-                reload={fetchFileLists}
-                aria-labelledby="form-dialog-title"
-                fileListId={selectedFileList && selectedFileList.id}
-            />
-            <MainHeader>
-                <Title>{i18n.t("files.title")} ({files.length})</Title>
-                <MainHeaderButtonsWrapper>
-                    <TextField
-                        placeholder={i18n.t("contacts.searchPlaceholder")}
-                        type="search"
-                        value={searchParam}
-                        onChange={handleSearch}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <SearchIcon style={{ color: "gray" }} />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleOpenFileListModal}
+    return (     
+            <div className={classes.root}>
+                <ConfirmationModal
+                    title={deletingFileList && `${i18n.t("files.confirmationModal.deleteTitle")}`}
+                    open={confirmModalOpen}
+                    onClose={setConfirmModalOpen}
+                    onConfirm={() => handleDeleteFileList(deletingFileList.id)}
+                >
+                    {i18n.t("files.confirmationModal.deleteMessage")}
+                </ConfirmationModal>
+                <FileModal
+                    open={fileListModalOpen}
+                    onClose={handleCloseFileListModal}
+                    reload={fetchFileLists}
+                    aria-labelledby="form-dialog-title"
+                    fileListId={selectedFileList && selectedFileList.id}
+                />
+                <MainHeader>
+                    <Title>{i18n.t("files.title")} ({files.length})</Title>
+                    <MainHeaderButtonsWrapper>
+                        <TextField
+                            placeholder={i18n.t("contacts.searchPlaceholder")}
+                            type="search"
+                            className={classes.textField}
+                            variant="outlined"
+                            margin="dense"
+                            value={searchParam}
+                            onChange={handleSearch}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon style={{ color: "gray" }} />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleOpenFileListModal}
+                        >
+                            {i18n.t("files.buttons.add")}
+                        </Button>
+                    </MainHeaderButtonsWrapper>
+                </MainHeader>
+                               
+                <div className={classes.subroot}>
+                    <Paper
+                        className={classes.mainPaper}
+                        onScroll={handleScroll}
+                        elevation={0}
                     >
-                        {i18n.t("files.buttons.add")}
-                    </Button>
-                </MainHeaderButtonsWrapper>
-            </MainHeader>
-            <Paper
-                className={classes.mainPaper}
-                variant="outlined"
-                onScroll={handleScroll}
-            >
-                <Table size="small">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">{i18n.t("files.table.name")}</TableCell>
-                            <TableCell align="center">
-                                {i18n.t("files.table.actions")}
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <>
-                            {files.map((fileList) => (
-                                <TableRow key={fileList.id}>
+                        <Table size="small" className={classes.table}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="center">{i18n.t("files.table.name")}</TableCell>
                                     <TableCell align="center">
-                                        {fileList.name}
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <IconButton size="small" onClick={() => handleEditFileList(fileList)}>
-                                            <EditIcon />
-                                        </IconButton>
-
-                                        <IconButton
-                                            size="small"
-                                            onClick={(e) => {
-                                                setConfirmModalOpen(true);
-                                                setDeletingFileList(fileList);
-                                            }}
-                                        >
-                                            <DeleteOutlineIcon />
-                                        </IconButton>
+                                        {i18n.t("files.table.actions")}
                                     </TableCell>
                                 </TableRow>
-                            ))}
-                            {loading && <TableRowSkeleton columns={4} />}
-                        </>
-                    </TableBody>
-                </Table>
-            </Paper>
-        </MainContainer>
+                            </TableHead>
+                            <TableBody>
+                                <>
+                                    {files.map((fileList) => (
+                                        <TableRow key={fileList.id}>
+                                            <TableCell align="center" className={classes.avatar}>
+                                                {fileList.name}
+                                            </TableCell>
+                                            <TableCell align="center" className={classes.rowActions}>
+                                                <IconButton size="small" onClick={() => handleEditFileList(fileList)}>
+                                                    <EditRounded />
+                                                </IconButton>
+                                                <IconButton
+                                                    size="small"
+                                                    onClick={(e) => {
+                                                        setConfirmModalOpen(true);
+                                                        setDeletingFileList(fileList);
+                                                    }}
+                                                >
+                                                    <DeleteRounded />
+                                                </IconButton>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                    {loading && <TableRowSkeleton columns={4} />}
+                                </>
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </div>
+            </div>
+
     );
 };
 

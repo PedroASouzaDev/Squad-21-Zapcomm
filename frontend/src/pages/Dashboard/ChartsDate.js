@@ -18,7 +18,7 @@ import api from '../../services/api';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
 import './button.css';
-import { Rowing } from '@material-ui/icons';
+import Box from '@mui/material/Box';
 
 ChartJS.register(
     CategoryScale,
@@ -94,15 +94,11 @@ export const ChartsDate = () => {
     }
 
     return (
-        <>
-            
-
+        <Box>
             <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'space-between'} sx={{ my: 2, }} >
-
                 <Typography component="h2" variant="h6" color="primary" gutterBottom>
                     Total ({ticketsData?.count})
                 </Typography>
-
                 <Stack direction={'row'} spacing={2} alignItems={'center'} justifyContent={'flex-end'}>
                     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={brLocale}>
                         <DatePicker
@@ -122,9 +118,8 @@ export const ChartsDate = () => {
                     </LocalizationProvider>
                     <Button className="buttonHover" onClick={handleGetTicketsInformation} variant='contained' >Filtrar</Button>
                 </Stack>
-
             </Stack>
             <Bar options={options} data={dataCharts} style={{ maxWidth: '100%', maxHeight: '280px', }} />
-        </>
+        </Box>
     );
 }

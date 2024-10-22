@@ -131,8 +131,8 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
 			<Dialog open={open} onClose={handleClose} maxWidth="lg" scroll="paper">
 				<DialogTitle id="form-dialog-title">
 					{contactId
-						? `${i18n.t("contactModal.title.edit")}`
-						: `${i18n.t("contactModal.title.add")}`}
+						? `${"Editar Contato"}`
+						: `${"Adicionar Contato"}`}
 				</DialogTitle>
 				<Formik
 					initialValues={contact}
@@ -156,6 +156,7 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
 									label={i18n.t("contactModal.form.name")}
 									name="name"
 									autoFocus
+									required
 									error={touched.name && Boolean(errors.name)}
 									helperText={touched.name && errors.name}
 									variant="outlined"
@@ -166,6 +167,7 @@ const ContactModal = ({ open, onClose, contactId, initialValues, onSave }) => {
 									as={TextField}
 									label={i18n.t("contactModal.form.number")}
 									name="number"
+									required
 									error={touched.number && Boolean(errors.number)}
 									helperText={touched.number && errors.number}
 									placeholder="5541998608485"

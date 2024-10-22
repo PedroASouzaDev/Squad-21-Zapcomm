@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer, useContext } from "react";
 
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-import { Tooltip } from "@material-ui/core";
+import { ListItem, Tooltip, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -16,10 +16,11 @@ import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Title from "../../components/Title";
 
 import IconButton from "@material-ui/core/IconButton";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditIcon from "@material-ui/icons/Edit";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import api from "../../services/api";
 import TableRowSkeleton from "../../components/TableRowSkeleton";
 import ContactModal from "../../components/ContactModal";
@@ -27,7 +28,8 @@ import ConfirmationModal from "../../components/ConfirmationModal/";
 
 import { i18n } from "../../translate/i18n";
 import MainHeader from "../../components/MainHeader";
-import Title from "../../components/Title";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import MainContainer from "../../components/MainContainer";
 import toastError from "../../errors/toastError";
@@ -88,12 +90,48 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     height: "100vh",
     backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  subroot: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+    flexGrow: 1,
   },
   mainPaper: {
+    backgroundColor: "inherit",
     flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
+  },
+  table: {
+    borderCollapse: "separate", 
+    borderSpacing: "0 1em", // Gap Width
+  },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
   },
 }));
 
@@ -238,7 +276,50 @@ const Contacts = () => {
 
   return (
     <div className={classes.root}>
-      <MainContainer className={classes.mainContainer}>
+      {/* HEADER */}
+      <MainHeader>
+        <Title>Contatos</Title>
+        <MainHeaderButtonsWrapper>
+          <TextField
+            className={classes.textField}
+            color="primary"
+            variant="outlined"
+            margin="dense"
+            placeholder={i18n.t("contacts.searchPlaceholder")}
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon style={{ color: "gray" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleOpenContactModal}
+          >
+            Adicionar
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => setConfirmOpen(true)}
+          >
+            Importar
+          </Button>
+          <Button
+          variant="contained"
+          color="primary"
+          >
+            Exportar
+          </Button>
+        </MainHeaderButtonsWrapper>
+      </MainHeader>
+
+      <div className={classes.subroot}>
         <NewTicketModal
           modalOpen={newTicketModalOpen}
           initialContact={contactTicket}
@@ -272,48 +353,14 @@ const Contacts = () => {
             ? `${i18n.t("contacts.confirmationModal.deleteMessage")}`
             : `${i18n.t("contacts.confirmationModal.importMessage")}`}
         </ConfirmationModal>
-        <MainHeader>
-          <Title>{i18n.t("contacts.title")}</Title>
-          <MainHeaderButtonsWrapper>
-            <TextField
-              placeholder={i18n.t("contacts.searchPlaceholder")}
-              type="search"
-              value={searchParam}
-              onChange={handleSearch}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon style={{ color: "gray" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={(e) => setConfirmOpen(true)}
-            >
-              {i18n.t("contacts.buttons.import")}
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleOpenContactModal}
-            >
-              {i18n.t("contacts.buttons.add")}
-            </Button>
-           <CSVLink style={{ textDecoration:'none'}} separator=";" filename={'contatos.csv'} data={contacts.map((contact) => ({ name: contact.name, number: contact.number, email: contact.email }))}>
-            <Button	variant="contained" color="primary">
-              EXPORTAR CONTATOS
-            </Button>
-            </CSVLink>
-          </MainHeaderButtonsWrapper>
-        </MainHeader>
+      
+        {/* MAIN CONTAINER */}
         <Paper
           className={classes.mainPaper}
+          elevation={0}
           onScroll={handleScroll}
         >
-          <Table size="small" className={classes.customTable}>
+          <Table size="small" className={classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell padding="checkbox" />
@@ -324,22 +371,27 @@ const Contacts = () => {
                 <TableCell align="center">
                   {i18n.t("contacts.table.email")}
                 </TableCell>
-                <TableCell align="center">
-                  {i18n.t("contacts.table.actions")}
+                <TableCell align="right">
+                  <Grid container justifyContent="flex-end">
+                    <Box textAlign={"center"} width={"90px"}>
+                      {i18n.t("contacts.table.actions")}
+                    </Box>
+                  </Grid>
                 </TableCell>
+                <TableCell padding="checkbox" />
               </TableRow>
             </TableHead>
             <TableBody>
               <>
                 {contacts.map((contact) => (
                   <TableRow key={contact.id} className={classes.row}>
-                    <TableCell style={{ paddingRight: 0 }}>
+                    <TableCell className={classes.avatar}>
                       {<Avatar src={contact.profilePicUrl} />}
                     </TableCell>
-                    <TableCell>{contact.name}</TableCell>
-                    <TableCell align="center">{contact.number}</TableCell>
-                    <TableCell align="center">{contact.email}</TableCell>
-                    <TableCell align="center">
+                    <TableCell className={classes.rowCell}>{contact.name}</TableCell>
+                    <TableCell className={classes.rowCell} align="center">{contact.number}</TableCell>
+                    <TableCell className={classes.rowCell} align="center">{contact.email}</TableCell>
+                    <TableCell className={classes.rowActions} align="right">
                       <IconButton
                         size="small"
                         onClick={() => {
@@ -353,7 +405,9 @@ const Contacts = () => {
                         size="small"
                         onClick={() => hadleEditContact(contact.id)}
                       >
-                        <EditIcon />
+                        <EditRoundedIcon
+                          color="#c3c3c3"
+                        />
                       </IconButton>
                       <Can
                         role={user.profile}
@@ -366,11 +420,12 @@ const Contacts = () => {
                               setDeletingContact(contact);
                             }}
                           >
-                            <DeleteOutlineIcon />
+                            <DeleteRoundedIcon />
                           </IconButton>
                         )}
                       />
                     </TableCell>
+                    <TableCell padding="checkbox" />
                   </TableRow>
                 ))}
                 {loading && <TableRowSkeleton avatar columns={3} />}
@@ -378,7 +433,7 @@ const Contacts = () => {
             </TableBody>
           </Table>
         </Paper>
-      </MainContainer>
+      </div>
     </div>
   );
 };

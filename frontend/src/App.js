@@ -32,6 +32,10 @@ const App = () => {
 
     const theme = createTheme(
         {
+            textField: {
+                backgroundColor: "#FFFFFF",
+                borderRadius: "10px",
+            },
             typography: {
               fontFamily: "nunito",  
             },
@@ -104,8 +108,7 @@ const App = () => {
 				boxchatlist: mode === "light" ? "#ededed" : "#333",
                 total: mode === "light" ? "#fff" : "#222",
                 messageIcons: mode === "light" ? "grey" : "#F3F3F3",
-                inputBackground: mode === "light" ? "#F7F7F8" : "#333",
-                barraSuperior: mode === "light" ? "#0C2454" : "#666",
+                inputBackground: mode === "light" ? "#FFFFFF" : "#333",
 				boxticket: mode === "light" ? "#EEE" : "#666",
 				campaigntab: mode === "light" ? "#ededed" : "#666",
 				mediainput: mode === "light" ? "#ededed" : "#1c1c1c",
