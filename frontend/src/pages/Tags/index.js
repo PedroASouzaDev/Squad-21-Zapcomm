@@ -30,7 +30,7 @@ import React, {
   import TagModal from "../../components/TagModal";
   import ConfirmationModal from "../../components/ConfirmationModal";
   import toastError from "../../errors/toastError";
-  import { Chip } from "@material-ui/core";
+  import { Chip, Collapse } from "@material-ui/core";
   import { Tooltip } from "@material-ui/core";
   import { SocketContext } from "../../context/Socket/SocketContext";
   import { AuthContext } from "../../context/Auth/AuthContext";
@@ -80,8 +80,13 @@ import React, {
   };
   
   const useStyles = makeStyles((theme) => ({
+    Table: {
+      borderCollapse:"separate",
+      borderSpacing:"0 10px",
+      border: '1px solid #ddd',
+      paddingBottom: '8px',
+    },
     mainPaper: {
-      flex: 1,
       padding: theme.spacing(1),
       overflowY: "scroll",
       ...theme.scrollbarStyles,
@@ -253,7 +258,6 @@ import React, {
           <Table size="fit-content">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Nome</TableCell>
                 <TableCell align="center">Tag</TableCell>
                 <TableCell align="center">Registros</TableCell>
                 <TableCell align="center">Status</TableCell>
@@ -264,13 +268,6 @@ import React, {
               <>
                 {tags.map((tag) => (
                   <TableRow key={tag.id} className={classes.tableRow}>
-                    <TableCell align="center">
-                    <Chip
-                        label={'Tag'}
-                        size="small"
-                        color="#030229"
-                      />
-                    </TableCell>
                     <TableCell align="center">
                     <Chip
                         style={{
