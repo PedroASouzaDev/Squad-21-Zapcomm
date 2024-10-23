@@ -82,20 +82,32 @@ import React, {
   const useStyles = makeStyles((theme) => ({
     Table: {
       borderCollapse:"separate",
-      borderSpacing:"0 10px",
-      border: '1px solid #ddd',
-      paddingBottom: '8px',
+      borderSpacing:"0 15px",
     },
     mainPaper: {
       padding: theme.spacing(1),
       overflowY: "scroll",
-      ...theme.scrollbarStyles,
+      ...theme.scrollbarStyles,      
+      backgroundColor:"inherit",
+      border:"none",
     },
     tableRow: {
       backgroundColor: 'white',
+      borderRadius: theme.shape.borderRadius,
+      overflow: "hidden",
     },
     button: {
         textTransform: 'none',
+    },
+    Cell_left: {
+      borderTopLeftRadius: theme.shape.borderRadius,
+      borderBottomLeftRadius: theme.shape.borderRadius,
+      overflow: "hidden",
+    },
+    Cell_right: {
+      borderTopRightRadius: theme.shape.borderRadius,
+      borderBottomRightRadius: theme.shape.borderRadius,
+      overflow: "hidden",
     },
   }));
   
@@ -255,7 +267,7 @@ import React, {
           variant="outlined"
           onScroll={handleScroll}
         >
-          <Table size="fit-content">
+          <Table size="fit-content" className={classes.Table}>
             <TableHead>
               <TableRow>
                 <TableCell align="center">Tag</TableCell>
@@ -268,7 +280,7 @@ import React, {
               <>
                 {tags.map((tag) => (
                   <TableRow key={tag.id} className={classes.tableRow}>
-                    <TableCell align="center">
+                    <TableCell className={classes.Cell_left} align="center">
                     <Chip
                         style={{
                           backgroundColor: tag.color,
@@ -289,7 +301,7 @@ import React, {
                             size="small"
                         />
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell className={classes.Cell_right} align="center">
                       <IconButton size="small" onClick={() => handleEditTag(tag)}>
                         <EditIcon />
                       </IconButton>
