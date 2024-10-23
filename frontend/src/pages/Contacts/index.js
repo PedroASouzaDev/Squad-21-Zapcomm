@@ -378,7 +378,6 @@ const Contacts = () => {
                     </Box>
                   </Grid>
                 </TableCell>
-                <TableCell padding="checkbox" />
               </TableRow>
             </TableHead>
             <TableBody>
@@ -425,7 +424,6 @@ const Contacts = () => {
                         )}
                       />
                     </TableCell>
-                    <TableCell padding="checkbox" />
                   </TableRow>
                 ))}
                 {loading && <TableRowSkeleton avatar columns={3} />}
