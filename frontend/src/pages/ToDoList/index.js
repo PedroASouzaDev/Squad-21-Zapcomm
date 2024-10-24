@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -27,20 +27,21 @@ const useStyles = makeStyles((theme) => ({
   inputContainer: {
     display: 'flex',
     width: '100%',
-  },
-  input: {
-    flexGrow: 1,
-    marginRight: theme.spacing(2),
+    gap: theme.spacing(2),
+    alignItems: "center",
   },
   listContainer: {
     width: '100%',
     marginTop: theme.spacing(2),
   },
-  list: {
+  listItem: {
     backgroundColor: theme.palette.light.main,
-    marginBottom: theme.spacing(1),
-    ...theme.shape
-  }
+    marginTop: theme.spacing(2),
+    ...theme.shape,
+  },
+  textField: {
+    ...theme.textField,
+  },
 }));
 
 const ToDoList = () => {
@@ -50,6 +51,8 @@ const ToDoList = () => {
   const [tasks, setTasks] = useState([]);
   const [editIndex, setEditIndex] = useState(-1);
 
+  const input = useRef(null);
+  
   useEffect(() => {
     const savedTasks = localStorage.getItem('tasks');
     if (savedTasks) {
@@ -89,6 +92,7 @@ const ToDoList = () => {
   const handleEditTask = (index) => {
     setTask(tasks[index].text);
     setEditIndex(index);
+    input.current.focus();
   };
 
   const handleDeleteTask = (index) => {
@@ -103,20 +107,30 @@ const ToDoList = () => {
       <div>
         <div className={classes.inputContainer}>
           <TextField
-            className={classes.input}
-            label="Nova tarefa"
+            className={classes.textField}
+            inputRef={input}
+            fullWidth
+            label={editIndex >= 0 ? 'Editar Tarefa' : 'Nova Tarefa'}
+
             value={task}
             onChange={handleTaskChange}
             variant="outlined"
           />
-          <Button variant="contained" color="primary" onClick={handleAddTask}>
+          <Button
+            variant="contained"
+            size='medium'
+            color="primary"
+            onClick={handleAddTask}
+          >
             {editIndex >= 0 ? 'Salvar' : 'Adicionar'}
           </Button>
         </div>
         <div className={classes.listContainer}>
-          <List>
+          <List
+            dense
+          >
             {tasks.map((task, index) => (
-              <ListItem key={index} className={classes.list}>
+              <ListItem key={index} className={classes.listItem}>
                 <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => handleEditTask(index)}>
