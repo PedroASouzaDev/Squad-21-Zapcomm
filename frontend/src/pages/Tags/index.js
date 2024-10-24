@@ -5,240 +5,238 @@ import React, {
     useCallback,
     useContext,
   } from "react";
-  import { toast } from "react-toastify";
-  import { makeStyles } from "@material-ui/core/styles";
-  import Paper from "@material-ui/core/Paper";
-  import Button from "@material-ui/core/Button";
-  import Table from "@material-ui/core/Table";
-  import TableBody from "@material-ui/core/TableBody";
-  import TableCell from "@material-ui/core/TableCell";
-  import TableHead from "@material-ui/core/TableHead";
-  import TableRow from "@material-ui/core/TableRow";
-  import IconButton from "@material-ui/core/IconButton";
-  import SearchIcon from "@material-ui/icons/Search";
-  import TextField from "@material-ui/core/TextField";
-  import InputAdornment from "@material-ui/core/InputAdornment";
-  import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-  import EditIcon from "@material-ui/icons/Edit";
-  import MainContainer from "../../components/MainContainer";
-  import MainHeader from "../../components/MainHeader";
-  import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
-  import Title from "../../components/Title";
-  import api from "../../services/api";
-  import { i18n } from "../../translate/i18n";
-  import TableRowSkeleton from "../../components/TableRowSkeleton";
-  import TagModal from "../../components/TagModal";
-  import ConfirmationModal from "../../components/ConfirmationModal";
-  import toastError from "../../errors/toastError";
-  import { Chip, Collapse } from "@material-ui/core";
-  import { Tooltip } from "@material-ui/core";
-  import { SocketContext } from "../../context/Socket/SocketContext";
-  import { AuthContext } from "../../context/Auth/AuthContext";
+import { toast } from "react-toastify";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import MainHeader from "../../components/MainHeader";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
+import Title from "../../components/Title";
+import api from "../../services/api";
+import { i18n } from "../../translate/i18n";
+import TableRowSkeleton from "../../components/TableRowSkeleton";
+import TagModal from "../../components/TagModal";
+import ConfirmationModal from "../../components/ConfirmationModal";
+import toastError from "../../errors/toastError";
+import { Chip, Collapse } from "@material-ui/core";
+import { SocketContext } from "../../context/Socket/SocketContext";
+import { AuthContext } from "../../context/Auth/AuthContext";
+import { DeleteRounded, EditRounded } from "@material-ui/icons";
   
-  const reducer = (state, action) => {
-    if (action.type === "LOAD_TAGS") {
-      const tags = action.payload;
-      const newTags = [];
-  
-      tags.forEach((tag) => {
-        const tagIndex = state.findIndex((s) => s.id === tag.id);
-        if (tagIndex !== -1) {
-          state[tagIndex] = tag;
-        } else {
-          newTags.push(tag);
-        }
-      });
-  
-      return [...state, ...newTags];
-    }
-  
-    if (action.type === "UPDATE_TAGS") {
-      const tag = action.payload;
+const reducer = (state, action) => {
+  if (action.type === "LOAD_TAGS") {
+    const tags = action.payload;
+    const newTags = [];
+
+    tags.forEach((tag) => {
       const tagIndex = state.findIndex((s) => s.id === tag.id);
-  
       if (tagIndex !== -1) {
         state[tagIndex] = tag;
-        return [...state];
       } else {
-        return [tag, ...state];
+        newTags.push(tag);
       }
-    }
-  
-    if (action.type === "DELETE_TAG") {
-      const tagId = action.payload;
-  
-      const tagIndex = state.findIndex((s) => s.id === tagId);
-      if (tagIndex !== -1) {
-        state.splice(tagIndex, 1);
-      }
+    });
+
+    return [...state, ...newTags];
+  }
+
+  if (action.type === "UPDATE_TAGS") {
+    const tag = action.payload;
+    const tagIndex = state.findIndex((s) => s.id === tag.id);
+
+    if (tagIndex !== -1) {
+      state[tagIndex] = tag;
       return [...state];
+    } else {
+      return [tag, ...state];
     }
+  }
+
+  if (action.type === "DELETE_TAG") {
+    const tagId = action.payload;
+
+    const tagIndex = state.findIndex((s) => s.id === tagId);
+    if (tagIndex !== -1) {
+      state.splice(tagIndex, 1);
+    }
+    return [...state];
+  }
+
+  if (action.type === "RESET") {
+    return [];
+  }
+};
   
-    if (action.type === "RESET") {
-      return [];
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  Table: {
+    borderCollapse:"separate",
+    borderSpacing:"0 1em",
+  },
+  mainPaper: {
+    padding: theme.spacing(1),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft,      
+    backgroundColor:"inherit",
+    border:"none",
+  },
+  tableRow: {
+    backgroundColor: 'white',
+    borderRadius: theme.shape.borderRadius,
+    overflow: "hidden",
+  },
+  Cell_left: {
+    borderTopLeftRadius: theme.shape.borderRadius,
+    borderBottomLeftRadius: theme.shape.borderRadius,
+    overflow: "hidden",
+  },
+  Cell_right: {
+    borderTopRightRadius: theme.shape.borderRadius,
+    borderBottomRightRadius: theme.shape.borderRadius,
+    overflow: "hidden",
+  },
+  textField: {
+    ...theme.textField,
+  },
+}));
+  
+  const Tags = () => {
+  const classes = useStyles();
+  const { user } = useContext(AuthContext);
+
+  const [loading, setLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [deletingTag, setDeletingTag] = useState(null);
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+  const [searchParam, setSearchParam] = useState("");
+  const [tags, dispatch] = useReducer(reducer, []);
+  const [tagModalOpen, setTagModalOpen] = useState(false);
+
+  const fetchTags = useCallback(async () => {
+    try {
+      const { data } = await api.get("/tags/", {
+        params: { searchParam, pageNumber },
+      });
+      dispatch({ type: "LOAD_TAGS", payload: data.tags });
+      setHasMore(data.hasMore);
+      setLoading(false);
+    } catch (err) {
+      toastError(err);
+    }
+  }, [searchParam, pageNumber]);
+
+  const socketManager = useContext(SocketContext);
+
+  useEffect(() => {
+    dispatch({ type: "RESET" });
+    setPageNumber(1);
+  }, [searchParam]);
+
+  useEffect(() => {
+    setLoading(true);
+    const delayDebounceFn = setTimeout(() => {
+      fetchTags();
+    }, 500);
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchParam, pageNumber, fetchTags]);
+
+  useEffect(() => {
+    const socket = socketManager.getSocket(user.companyId);
+
+    socket.on("user", (data) => {
+      if (data.action === "update" || data.action === "create") {
+        dispatch({ type: "UPDATE_TAGS", payload: data.tags });
+      }
+
+      if (data.action === "delete") {
+        dispatch({ type: "DELETE_USER", payload: +data.tagId });
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [socketManager, user]);
+
+  const handleOpenTagModal = () => {
+    setSelectedTag(null);
+    setTagModalOpen(true);
+  };
+
+  const handleCloseTagModal = () => {
+    setSelectedTag(null);
+    setTagModalOpen(false);
+  };
+
+  const handleSearch = (event) => {
+    setSearchParam(event.target.value.toLowerCase());
+  };
+
+  const handleEditTag = (tag) => {
+    setSelectedTag(tag);
+    setTagModalOpen(true);
+  };
+
+  const handleDeleteTag = async (tagId) => {
+    try {
+      await api.delete(`/tags/${tagId}`);
+      toast.success(i18n.t("tags.toasts.deleted"));
+    } catch (err) {
+      toastError(err);
+    }
+    setDeletingTag(null);
+    setSearchParam("");
+    setPageNumber(1);
+
+    dispatch({ type: "RESET" });
+    setPageNumber(1);
+    await fetchTags();
+  };
+
+  const loadMore = () => {
+    setPageNumber((prevState) => prevState + 1);
+  };
+
+  const handleScroll = (e) => {
+    if (!hasMore || loading) return;
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    if (scrollHeight - (scrollTop + 100) < clientHeight) {
+      loadMore();
     }
   };
-  
-  const useStyles = makeStyles((theme) => ({
-    Table: {
-      borderCollapse:"separate",
-      borderSpacing:"0 15px",
-    },
-    mainPaper: {
-      padding: theme.spacing(1),
-      overflowY: "scroll",
-      ...theme.scrollbarStyles,      
-      backgroundColor:"inherit",
-      border:"none",
-    },
-    tableRow: {
-      backgroundColor: 'white',
-      borderRadius: theme.shape.borderRadius,
-      overflow: "hidden",
-    },
-    button: {
-        textTransform: 'none',
-    },
-    Cell_left: {
-      borderTopLeftRadius: theme.shape.borderRadius,
-      borderBottomLeftRadius: theme.shape.borderRadius,
-      overflow: "hidden",
-    },
-    Cell_right: {
-      borderTopRightRadius: theme.shape.borderRadius,
-      borderBottomRightRadius: theme.shape.borderRadius,
-      overflow: "hidden",
-    },
-  }));
-  
-    const Tags = () => {
-    const classes = useStyles();
-    const { user } = useContext(AuthContext);
-  
-    const [loading, setLoading] = useState(false);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [hasMore, setHasMore] = useState(false);
-    const [selectedTag, setSelectedTag] = useState(null);
-    const [deletingTag, setDeletingTag] = useState(null);
-    const [confirmModalOpen, setConfirmModalOpen] = useState(false);
-    const [searchParam, setSearchParam] = useState("");
-    const [tags, dispatch] = useReducer(reducer, []);
-    const [tagModalOpen, setTagModalOpen] = useState(false);
-  
-    const fetchTags = useCallback(async () => {
-      try {
-        const { data } = await api.get("/tags/", {
-          params: { searchParam, pageNumber },
-        });
-        dispatch({ type: "LOAD_TAGS", payload: data.tags });
-        setHasMore(data.hasMore);
-        setLoading(false);
-      } catch (err) {
-        toastError(err);
-      }
-    }, [searchParam, pageNumber]);
-  
-    const socketManager = useContext(SocketContext);
-  
-    useEffect(() => {
-      dispatch({ type: "RESET" });
-      setPageNumber(1);
-    }, [searchParam]);
-  
-    useEffect(() => {
-      setLoading(true);
-      const delayDebounceFn = setTimeout(() => {
-        fetchTags();
-      }, 500);
-      return () => clearTimeout(delayDebounceFn);
-    }, [searchParam, pageNumber, fetchTags]);
-  
-    useEffect(() => {
-      const socket = socketManager.getSocket(user.companyId);
-  
-      socket.on("user", (data) => {
-        if (data.action === "update" || data.action === "create") {
-          dispatch({ type: "UPDATE_TAGS", payload: data.tags });
-        }
-  
-        if (data.action === "delete") {
-          dispatch({ type: "DELETE_USER", payload: +data.tagId });
-        }
-      });
-  
-      return () => {
-        socket.disconnect();
-      };
-    }, [socketManager, user]);
-  
-    const handleOpenTagModal = () => {
-      setSelectedTag(null);
-      setTagModalOpen(true);
-    };
-  
-    const handleCloseTagModal = () => {
-      setSelectedTag(null);
-      setTagModalOpen(false);
-    };
-  
-    const handleSearch = (event) => {
-      setSearchParam(event.target.value.toLowerCase());
-    };
-  
-    const handleEditTag = (tag) => {
-      setSelectedTag(tag);
-      setTagModalOpen(true);
-    };
-  
-    const handleDeleteTag = async (tagId) => {
-      try {
-        await api.delete(`/tags/${tagId}`);
-        toast.success(i18n.t("tags.toasts.deleted"));
-      } catch (err) {
-        toastError(err);
-      }
-      setDeletingTag(null);
-      setSearchParam("");
-      setPageNumber(1);
-  
-      dispatch({ type: "RESET" });
-      setPageNumber(1);
-      await fetchTags();
-    };
-  
-    const loadMore = () => {
-      setPageNumber((prevState) => prevState + 1);
-    };
-  
-    const handleScroll = (e) => {
-      if (!hasMore || loading) return;
-      const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
-      if (scrollHeight - (scrollTop + 100) < clientHeight) {
-        loadMore();
-      }
-    };
-  
-    return (
-      <MainContainer>
-        <ConfirmationModal
-          title={deletingTag && `${i18n.t("tags.confirmationModal.deleteTitle")}`}
-          open={confirmModalOpen}
-          onClose={setConfirmModalOpen}
-          onConfirm={() => handleDeleteTag(deletingTag.id)}
-        >
-          {i18n.t("tags.confirmationModal.deleteMessage")}
-        </ConfirmationModal>
-        <TagModal
-          open={tagModalOpen}
-          onClose={handleCloseTagModal}
-          reload={fetchTags}
-          aria-labelledby="form-dialog-title"
-          tagId={selectedTag && selectedTag.id}
-        />
+
+  return (
+      <div className={classes.root}>
         <MainHeader>
           <Title>{i18n.t("tags.title")}</Title>
           <MainHeaderButtonsWrapper>
             <TextField
+              className={classes.textField}
+              margin="dense"
+              variant="outlined"
               placeholder="Pesquisar"
               type="search"
               value={searchParam}
@@ -247,14 +245,12 @@ import React, {
                 startAdornment: (
                   <InputAdornment position="start">
                     <SearchIcon style={{ color: "grey"}} />
-
                   </InputAdornment>
                 ),
               }}
             />
             <Button
               variant="contained"
-              className={classes.button}
               color="primary"
               onClick={handleOpenTagModal}
             >
@@ -303,7 +299,7 @@ import React, {
                     </TableCell>
                     <TableCell className={classes.Cell_right} align="center">
                       <IconButton size="small" onClick={() => handleEditTag(tag)}>
-                        <EditIcon />
+                        <EditRounded />
                       </IconButton>
                       <IconButton
                         size="small"
@@ -312,9 +308,9 @@ import React, {
                           setDeletingTag(tag);
                         }}
                       >
-                        <DeleteOutlineIcon />
+                        <DeleteRounded />
                       </IconButton>
-                      
+        
                     </TableCell>
                   </TableRow>
                 ))}
@@ -323,8 +319,23 @@ import React, {
             </TableBody>
           </Table>
         </Paper>
-      </MainContainer>
-    );
+        <ConfirmationModal
+          title={deletingTag && `${i18n.t("tags.confirmationModal.deleteTitle")}`}
+          open={confirmModalOpen}
+          onClose={setConfirmModalOpen}
+          onConfirm={() => handleDeleteTag(deletingTag.id)}
+        >
+          {i18n.t("tags.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <TagModal
+          open={tagModalOpen}
+          onClose={handleCloseTagModal}
+          reload={fetchTags}
+          aria-labelledby="form-dialog-title"
+          tagId={selectedTag && selectedTag.id}
+        />
+      </div>
+  );
 };
 
 export default Tags;
