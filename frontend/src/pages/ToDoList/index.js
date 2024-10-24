@@ -109,9 +109,9 @@ const ToDoList = () => {
           <TextField
             className={classes.textField}
             inputRef={input}
-            margin='dense'
             fullWidth
-            label="Nova tarefa"
+            label={editIndex >= 0 ? 'Editar Tarefa' : 'Nova Tarefa'}
+
             value={task}
             onChange={handleTaskChange}
             variant="outlined"
