@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     ...theme.shape,
   },
+  textField: {
+    ...theme.textField,
+  },
 }));
 
 const ToDoList = () => {
@@ -104,6 +107,7 @@ const ToDoList = () => {
       <div>
         <div className={classes.inputContainer}>
           <TextField
+            className={classes.textField}
             inputRef={input}
             margin='dense'
             fullWidth
