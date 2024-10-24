@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer, useContext, useCallback } from 
 import { toast } from "react-toastify";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,11 +14,13 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditIcon from "@material-ui/icons/Edit";
+import {
+  DeleteRounded,
+  EditRounded,
+} from "@material-ui/icons";
 
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
 
 import api from "../../services/api";
@@ -87,11 +88,40 @@ const reducer = (state, action) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  mainPaper: {
-    flex: 1,
-    padding: theme.spacing(1),
+  root: {
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft
+  },
+  table: {
+    borderCollapse: "separate", 
+    borderSpacing: "0 1em", // Gap Width
+  },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
   },
 }));
 
@@ -184,7 +214,7 @@ const Quickemessages = () => {
   const handleDeleteQuickemessage = async (quickemessageId) => {
     try {
       await api.delete(`/quick-messages/${quickemessageId}`);
-      toast.success(i18n.t("quickemessages.toasts.deleted"));
+      toast.success("Atalho Deletado com Sucesso!");
     } catch (err) {
       toastError(err);
     }
@@ -209,35 +239,14 @@ const Quickemessages = () => {
   };
 
   return (
-    <MainContainer>
-      <ConfirmationModal
-        title={deletingQuickemessage && `${i18n.t("quickMessages.confirmationModal.deleteTitle")} ${deletingQuickemessage.shortcode}?`}
-        open={confirmModalOpen}
-        onClose={setConfirmModalOpen}
-        onConfirm={() => handleDeleteQuickemessage(deletingQuickemessage.id)}
-      >
-        {i18n.t("quickMessages.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <QuickMessageDialog
-        resetPagination={() => {
-          setPageNumber(1);
-          fetchQuickemessages();
-        }}
-        open={quickemessageModalOpen}
-        onClose={handleCloseQuickMessageDialog}
-        aria-labelledby="form-dialog-title"
-        quickemessageId={selectedQuickemessage && selectedQuickemessage.id}
-      />
-      <MainHeader>
-        <Grid style={{ width: "99.6%" }} container>
-          <Grid xs={12} sm={8} item>
-            <Title>{i18n.t("quickMessages.title")}</Title>
-          </Grid>
-          <Grid xs={12} sm={4} item>
-            <Grid spacing={2} container>
-              <Grid xs={6} sm={6} item>
+      <div className={classes.root}>
+        <MainHeader>
+          <Title>{i18n.t("quickMessages.title")}</Title>
+              <MainHeaderButtonsWrapper>
                 <TextField
-                  fullWidth
+                  className={classes.textField}
+                  variant="outlined"
+                  margin="dense"
                   placeholder={i18n.t("quickMessages.searchPlaceholder")}
                   type="search"
                   value={searchParam}
@@ -250,36 +259,24 @@ const Quickemessages = () => {
                     ),
                   }}
                 />
-              </Grid>
-              <Grid xs={6} sm={6} item>
                 <Button
-                  fullWidth
                   variant="contained"
                   onClick={handleOpenQuickMessageDialog}
                   color="primary"
                 >
                   {i18n.t("quickMessages.buttons.add")}
                 </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
+              </MainHeaderButtonsWrapper>
+        </MainHeader>
+        <Table size="small" className={classes.table}>
           <TableHead>
             <TableRow>
               <TableCell align="center">
                 {i18n.t("quickMessages.table.shortcode")}
               </TableCell>
-
               <TableCell align="center">
                 {i18n.t("quickMessages.table.mediaName")}
-              </TableCell>        
+              </TableCell>
               <TableCell align="center">
                 {i18n.t("quickMessages.table.actions")}
               </TableCell>
@@ -289,20 +286,17 @@ const Quickemessages = () => {
             <>
               {quickemessages.map((quickemessage) => (
                 <TableRow key={quickemessage.id}>
-                  <TableCell align="center">{quickemessage.shortcode}</TableCell>
-
-                  <TableCell align="center">
+                  <TableCell align="center" className={classes.avatar}>{quickemessage.shortcode}</TableCell>
+                  <TableCell align="center" className={classes.rowCell}>
                     {quickemessage.mediaName ?? i18n.t("quickMessages.noAttachment")}
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell align="center" className={classes.rowActions}>
                     <IconButton
                       size="small"
                       onClick={() => handleEditQuickemessage(quickemessage)}
                     >
-                      <EditIcon />
+                      <EditRounded />
                     </IconButton>
-
-
                     <IconButton
                       size="small"
                       onClick={(e) => {
@@ -310,7 +304,7 @@ const Quickemessages = () => {
                         setDeletingQuickemessage(quickemessage);
                       }}
                     >
-                      <DeleteOutlineIcon />
+                      <DeleteRounded/>
                     </IconButton>
                   </TableCell>
                 </TableRow>
@@ -319,8 +313,25 @@ const Quickemessages = () => {
             </>
           </TableBody>
         </Table>
-      </Paper>
-    </MainContainer>
+        <ConfirmationModal
+          title={deletingQuickemessage && `${i18n.t("quickMessages.confirmationModal.deleteTitle")} ${deletingQuickemessage.shortcode}?`}
+          open={confirmModalOpen}
+          onClose={setConfirmModalOpen}
+          onConfirm={() => handleDeleteQuickemessage(deletingQuickemessage.id)}
+        >
+          {i18n.t("quickMessages.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <QuickMessageDialog
+          resetPagination={() => {
+            setPageNumber(1);
+            fetchQuickemessages();
+          }}
+          open={quickemessageModalOpen}
+          onClose={handleCloseQuickMessageDialog}
+          aria-labelledby="form-dialog-title"
+          quickemessageId={selectedQuickemessage && selectedQuickemessage.id}
+        />
+      </div>
   );
 };
 
