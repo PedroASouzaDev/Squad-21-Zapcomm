@@ -82,10 +82,51 @@ const reducer = (state, action) => {
 
 const useStyles = makeStyles((theme) => ({
   mainPaper: {
+    backgroundColor: "inherit",
     flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
+  },
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
+  subroot: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+    flexGrow: 1,
+  },
+  table: {
+    borderCollapse: "separate",
+    borderSpacing: "0 1em",
+  },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
+    ...theme.textField,
   },
 }));
 
@@ -197,129 +238,133 @@ const ContactLists = () => {
   };
 
   return (
-    <MainContainer>
-      <ConfirmationModal
-        title={
-          deletingContactList &&
-          `${i18n.t("contactLists.confirmationModal.deleteTitle")} ${
-            deletingContactList.name
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={setConfirmModalOpen}
-        onConfirm={() => handleDeleteContactList(deletingContactList.id)}
-      >
-        {i18n.t("contactLists.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <ContactListDialog
-        open={contactListModalOpen}
-        onClose={handleCloseContactListModal}
-        aria-labelledby="form-dialog-title"
-        contactListId={selectedContactList && selectedContactList.id}
-      />
-      <MainHeader>
-        <Grid style={{ width: "99.6%" }} container>
-          <Grid xs={12} sm={8} item>
-            <Title>{i18n.t("contactLists.title")}</Title>
-          </Grid>
-          <Grid xs={12} sm={4} item>
-            <Grid spacing={2} container>
-              <Grid xs={7} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("contacts.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid xs={5} sm={6} item>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={handleOpenContactListModal}
-                >
-                  {i18n.t("contactLists.buttons.add")}
-                </Button>
+      <div className={classes.root}>
+        <ConfirmationModal
+          title={
+            deletingContactList &&
+            `${i18n.t("contactLists.confirmationModal.deleteTitle")} ${
+              deletingContactList.name
+            }?`
+          }
+          open={confirmModalOpen}
+          onClose={setConfirmModalOpen}
+          onConfirm={() => handleDeleteContactList(deletingContactList.id)}
+        >
+          {i18n.t("contactLists.confirmationModal.deleteMessage")}
+        </ConfirmationModal>
+        <ContactListDialog
+          open={contactListModalOpen}
+          onClose={handleCloseContactListModal}
+          aria-labelledby="form-dialog-title"
+          contactListId={selectedContactList && selectedContactList.id}
+        />
+        <MainHeader>
+          <Grid style={{ width: "99.6%" }} container>
+            <Grid xs={12} sm={8} item>
+              <Title>{i18n.t("contactLists.title")}</Title>
+            </Grid>
+            <Grid xs={12} sm={4} item>
+              <Grid spacing={2} container>
+                <Grid xs={7} sm={6} item>
+                  <TextField
+                    fullWidth
+                    className={classes.textField}
+                    placeholder={i18n.t("contacts.searchPlaceholder")}
+                    type="search"
+                    variant="outlined"
+                    margin="dense"
+                    value={searchParam}
+                    onChange={handleSearch}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SearchIcon style={{ color: "gray" }} />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                <Grid xs={5} sm={6} item>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    margin="dense"
+                    color="primary"
+                    onClick={handleOpenContactListModal}
+                  >
+                    {i18n.t("contactLists.buttons.add")}
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">
-                {i18n.t("contactLists.table.name")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("contactLists.table.contacts")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("contactLists.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {contactLists.map((contactList) => (
-                <TableRow key={contactList.id}>
-                  <TableCell align="center">{contactList.name}</TableCell>
-                  <TableCell align="center">
-                    {contactList.contactsCount || 0}
+        </MainHeader>
+        
+        <div className={classes.subroot}>
+          <Paper
+            className={classes.mainPaper}
+            onScroll={handleScroll}
+            elevation={0}
+          >
+            <Table size="small" className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center" className={classes.avatar}>
+                    {i18n.t("contactLists.table.name")}
                   </TableCell>
-                  <TableCell align="center">
-                    <a href={planilhaExemplo} download="planilha.xlsx">
-                      <IconButton size="small" title="Baixar Planilha Exemplo">
-                        <DownloadIcon />
-                      </IconButton>
-                    </a>
-
-                    <IconButton
-                      size="small"
-                      onClick={() => goToContacts(contactList.id)}
-                    >
-                      <PeopleIcon />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditContactList(contactList)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={(e) => {
-                        setConfirmModalOpen(true);
-                        setDeletingContactList(contactList);
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </IconButton>
+                  <TableCell align="center" className={classes.rowCell}>
+                    {i18n.t("contactLists.table.contacts")}
+                  </TableCell>
+                  <TableCell align="center" className={classes.rowActions}>
+                    {i18n.t("contactLists.table.actions")}
                   </TableCell>
                 </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={3} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+              </TableHead>
+              <TableBody>
+                <>
+                  {contactLists.map((contactList) => (
+                    <TableRow key={contactList.id}>
+                      <TableCell align="center">{contactList.name}</TableCell>
+                      <TableCell align="center">
+                        {contactList.contactsCount || 0}
+                      </TableCell>
+                      <TableCell align="center">
+                        <a href={planilhaExemplo} download="planilha.xlsx">
+                          <IconButton size="small" title="Baixar Planilha Exemplo">
+                            <DownloadIcon />
+                          </IconButton>
+                        </a>
+                        <IconButton
+                          size="small"
+                          onClick={() => goToContacts(contactList.id)}
+                        >
+                          <PeopleIcon />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEditContactList(contactList)}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            setConfirmModalOpen(true);
+                            setDeletingContactList(contactList);
+                          }}
+                        >
+                          <DeleteOutlineIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {loading && <TableRowSkeleton columns={3} />}
+                </>
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
+      </div>
   );
 };
 
