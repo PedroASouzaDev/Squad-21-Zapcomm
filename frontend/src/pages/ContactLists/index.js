@@ -15,6 +15,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from "@material-ui/icons/Edit";
@@ -259,45 +260,33 @@ const ContactLists = () => {
           contactListId={selectedContactList && selectedContactList.id}
         />
         <MainHeader>
-          <Grid style={{ width: "99.6%" }} container>
-            <Grid xs={12} sm={8} item>
-              <Title>{i18n.t("contactLists.title")}</Title>
-            </Grid>
-            <Grid xs={12} sm={4} item>
-              <Grid spacing={2} container>
-                <Grid xs={7} sm={6} item>
-                  <TextField
-                    fullWidth
-                    className={classes.textField}
-                    placeholder={i18n.t("contacts.searchPlaceholder")}
-                    type="search"
-                    variant="outlined"
-                    margin="dense"
-                    value={searchParam}
-                    onChange={handleSearch}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <SearchIcon style={{ color: "gray" }} />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>
-                <Grid xs={5} sm={6} item>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    margin="dense"
-                    color="primary"
-                    onClick={handleOpenContactListModal}
-                  >
-                    {i18n.t("contactLists.buttons.add")}
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+          <Title>{i18n.t("contactLists.title")}</Title>
+          <MainHeaderButtonsWrapper>
+            <TextField
+              className={classes.textField}
+              placeholder={i18n.t("contacts.searchPlaceholder")}
+              type="search"
+              variant="outlined"
+              margin="dense"
+              value={searchParam}
+              onChange={handleSearch}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon style={{ color: "gray" }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button
+              variant="contained"
+              margin="dense"
+              color="primary"
+              onClick={handleOpenContactListModal}
+            >
+              {i18n.t("contactLists.buttons.add")}
+            </Button>
+          </MainHeaderButtonsWrapper>
         </MainHeader>
         
         <div className={classes.subroot}>
@@ -309,13 +298,13 @@ const ContactLists = () => {
             <Table size="small" className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell align="center" className={classes.avatar}>
+                  <TableCell align="center">
                     {i18n.t("contactLists.table.name")}
                   </TableCell>
-                  <TableCell align="center" className={classes.rowCell}>
+                  <TableCell align="center">
                     {i18n.t("contactLists.table.contacts")}
                   </TableCell>
-                  <TableCell align="center" className={classes.rowActions}>
+                  <TableCell align="center">
                     {i18n.t("contactLists.table.actions")}
                   </TableCell>
                 </TableRow>
@@ -324,11 +313,11 @@ const ContactLists = () => {
                 <>
                   {contactLists.map((contactList) => (
                     <TableRow key={contactList.id}>
-                      <TableCell align="center">{contactList.name}</TableCell>
-                      <TableCell align="center">
+                      <TableCell align="center"  className={classes.avatar}>{contactList.name}</TableCell>
+                      <TableCell align="center" className={classes.rowCell}>
                         {contactList.contactsCount || 0}
                       </TableCell>
-                      <TableCell align="center">
+                      <TableCell align="center" className={classes.rowActions}>
                         <a href={planilhaExemplo} download="planilha.xlsx">
                           <IconButton size="small" title="Baixar Planilha Exemplo">
                             <DownloadIcon />
