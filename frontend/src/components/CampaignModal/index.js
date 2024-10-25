@@ -378,7 +378,7 @@ const CampaignModal = ({
             <Form>
               <DialogContent dividers>
                 <Grid spacing={2} container>
-                  <Grid xs={12} md={9} item>
+                  <Grid xs={12} md={12} item>
                     <Field
                       as={TextField}
                       label={i18n.t("campaigns.dialog.form.name")}
@@ -392,7 +392,7 @@ const CampaignModal = ({
                       disabled={!campaignEditable}
                     />
                   </Grid>
-                  <Grid xs={12} md={3} item>
+                  <Grid xs={12} md={5} item>
                     <FormControl
                       variant="outlined"
                       margin="dense"
@@ -421,7 +421,37 @@ const CampaignModal = ({
                       </Field>
                     </FormControl>
                   </Grid>
-                  <Grid xs={12} md={4} item>
+                  <Grid xs={12} md={7} item>
+                    <FormControl
+                      variant="outlined"
+                      margin="dense"
+                      fullWidth
+                      className={classes.formControl}
+                    >
+                      <InputLabel id="tagList-selection-label">
+                        {i18n.t("campaigns.dialog.form.tagList")}
+                      </InputLabel>
+                      <Field
+                        as={Select}
+                        label={i18n.t("campaigns.dialog.form.tagList")}
+                        placeholder={i18n.t("campaigns.dialog.form.tagList")}
+                        labelId="tagList-selection-label"
+                        id="tagListId"
+                        name="tagListId"
+                        error={touched.tagListId && Boolean(errors.tagListId)}
+                        disabled={!campaignEditable}
+                      >
+                        <MenuItem value="">Nenhuma</MenuItem>
+                        {Array.isArray(tagLists) &&
+                          tagLists.map((tagList) => (
+                            <MenuItem key={tagList.id} value={tagList.id}>
+                              {tagList.name}
+                            </MenuItem>
+                          ))}
+                      </Field>
+                    </FormControl>
+                  </Grid>
+                  <Grid xs={12} md={5} item>
                     <FormControl
                       variant="outlined"
                       margin="dense"
@@ -458,37 +488,7 @@ const CampaignModal = ({
                       </Field>
                     </FormControl>
                   </Grid>
-                  <Grid xs={12} md={4} item>
-                    <FormControl
-                      variant="outlined"
-                      margin="dense"
-                      fullWidth
-                      className={classes.formControl}
-                    >
-                      <InputLabel id="tagList-selection-label">
-                        {i18n.t("campaigns.dialog.form.tagList")}
-                      </InputLabel>
-                      <Field
-                        as={Select}
-                        label={i18n.t("campaigns.dialog.form.tagList")}
-                        placeholder={i18n.t("campaigns.dialog.form.tagList")}
-                        labelId="tagList-selection-label"
-                        id="tagListId"
-                        name="tagListId"
-                        error={touched.tagListId && Boolean(errors.tagListId)}
-                        disabled={!campaignEditable}
-                      >
-                        <MenuItem value="">Nenhuma</MenuItem>
-                        {Array.isArray(tagLists) &&
-                          tagLists.map((tagList) => (
-                            <MenuItem key={tagList.id} value={tagList.id}>
-                              {tagList.name}
-                            </MenuItem>
-                          ))}
-                      </Field>
-                    </FormControl>
-                  </Grid>
-                  <Grid xs={12} md={4} item>
+                  <Grid xs={12} md={7} item>
                     <FormControl
                       variant="outlined"
                       margin="dense"
@@ -518,7 +518,7 @@ const CampaignModal = ({
                       </Field>
                     </FormControl>
                   </Grid>
-                  <Grid xs={12} md={4} item>
+                  <Grid xs={12} md={5} item>
                     <Field
                       as={TextField}
                       label={i18n.t("campaigns.dialog.form.scheduledAt")}
@@ -536,7 +536,7 @@ const CampaignModal = ({
                       disabled={!campaignEditable}
                     />
                   </Grid>
-                  <Grid xs={12} md={4} item>
+                <Grid xs={12} md={7} item>
                   <FormControl
                       variant="outlined"
                       margin="dense"
@@ -571,9 +571,6 @@ const CampaignModal = ({
                       onChange={(e, v) => setMessageTab(v)}
                       variant="fullWidth"
                       centered
-                      style={{
-                        borderRadius: 2,
-                      }}
                     >
                       <Tab label="Msg. 1" index={0} />
                       <Tab label="Msg. 2" index={1} />
