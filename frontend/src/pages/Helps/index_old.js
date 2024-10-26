@@ -8,20 +8,7 @@ import { i18n } from "../../translate/i18n";
 import useHelps from "../../hooks/useHelps";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        height: "100vh",
-        backgroundColor: theme.palette.background.main,
-        display: "flex",
-        flexDirection: "column",
-        gap: theme.spacing(4),
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(6),
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(6),
-        overflowY: "scroll",
-        ...theme.scrollbarStylesSoft
-      },
-    mainPaperContainer: {
+  mainPaperContainer: {
     overflowY: 'auto',
     maxHeight: 'calc(100vh - 200px)',
   },
@@ -169,16 +156,16 @@ const Helps = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <MainContainer>
       <MainHeader>
         <Title>{i18n.t("helps.title")} ({records.length})</Title>
-        <MainHeaderButtonsWrapper>Vídeos</MainHeaderButtonsWrapper>
+        <MainHeaderButtonsWrapper></MainHeaderButtonsWrapper>
       </MainHeader>
       <div className={classes.mainPaper}>
         {renderHelps()}
       </div>
       {renderVideoModal()}
-    </div>
+    </MainContainer>
   );
 };
 
