@@ -199,7 +199,6 @@ const Helps = () => {
         </TableRow>
       </Table>
     </div>
-    
   );
 };
 
