@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { makeStyles, Paper, Typography, Modal, IconButton, Table, TableRow, TableCell } from "@material-ui/core";
+import { makeStyles, Paper, Typography, Modal, IconButton } from "@material-ui/core";
 import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
@@ -8,22 +8,9 @@ import { i18n } from "../../translate/i18n";
 import useHelps from "../../hooks/useHelps";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-      height: "100vh",
-      backgroundColor: theme.palette.background.main,
-      display: "flex",
-      flexDirection: "column",
-      gap: theme.spacing(4),
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(6),
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(6),
-      overflowY: "scroll",
-      ...theme.scrollbarStylesSoft
-    },
   mainPaperContainer: {
     overflowY: 'auto',
-    maxHeight: 'calc(100vh - 200px)', 
+    maxHeight: 'calc(100vh - 200px)',
   },
   mainPaper: {
     width: '100%',
@@ -82,17 +69,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     borderRadius: theme.spacing(1),
     overflow: 'hidden',
-  },
-  tableRow: {
-    borderCollapse:"separate",
-    borderSpacing:"0 1em",
-    backgroundColor:"white",
-    borderRadius: theme.spacing(1),
-  },
-  tabletitle: {
-    fontWeight:"bold",
-    fontSize:"10px",
-
   },
 }));
 
@@ -180,26 +156,16 @@ const Helps = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <MainContainer>
       <MainHeader>
-        <Title>Ajuda ({records.length})</Title>
+        <Title>{i18n.t("helps.title")} ({records.length})</Title>
         <MainHeaderButtonsWrapper></MainHeaderButtonsWrapper>
       </MainHeader>
-      <Table size= "fit-content">
-        <tableRow>
-          <Title className={classes.tabletitle}><h3>Vídeos</h3></Title>
-        </tableRow>
-        <TableRow>
-          <TableCell className={classes.tableRow}>
-            <div className={classes.mainPaper}>
-              {renderHelps()}
-            </div>
-            {renderVideoModal()}
-          </TableCell>
-        </TableRow>
-      </Table>
-    </div>
-    
+      <div className={classes.mainPaper}>
+        {renderHelps()}
+      </div>
+      {renderVideoModal()}
+    </MainContainer>
   );
 };
 
