@@ -27,7 +27,13 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import "./Schedules.css"; // Importe o arquivo CSS
 import { Tabs, Tab } from "@material-ui/core/";
 import Typography from "@material-ui/core/Typography";
-import { Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Avatar, Divider, IconButton } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
+} from "@mui/material";
 
 // Defina a função getUrlParam antes de usá-la
 function getUrlParam(paramName) {
@@ -424,6 +430,13 @@ const Schedules = () => {
           >
             {i18n.t("schedules.buttons.add")}
           </Button>
+          <br/>
+          <Divider/>
+          <Typography>### FALTA O MINI CALENDARIO ###</Typography>
+          <Typography>### é necessário definir função ###</Typography>
+          <Divider/>
+          <br/>
+
           <Typography
             color="primary"
             style={{
