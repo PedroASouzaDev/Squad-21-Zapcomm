@@ -18,6 +18,7 @@ import moment, { relativeTimeRounding } from "moment";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { Calendar, momentLocalizer } from "react-big-calendar";
+import Calendar from "react-calen"
 import "moment/locale/pt-br";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import SearchIcon from "@material-ui/icons/Search";
@@ -285,117 +286,14 @@ const Schedules = () => {
     }
   };
 
-  const calendar = () => {
-    if (calendarType === 0){
-      return (
-        <Calendar
-          className={classes.calendar}
-          view='month'
-          views={['month']}
-          messages={defaultMessages}
-          formats={{
-            agendaDateFormat: "DD/MM ddd",
-            weekdayFormat: "dddd"
-          }}
-          localizer={localizer}
-          events={schedules.map((schedule) => ({
-            title: (
-              <div className="event-container">
-                <div style={eventTitleStyle}>{schedule.contact.name}</div>
-                <EditRoundedIcon
-                  onClick={() => {
-                    handleEditSchedule(schedule);
-                    setScheduleModalOpen(true);
-                  }}
-                  className="edit-icon"
-                />
-                <DeleteRoundedIcon
-                  onClick={() => handleDeleteSchedule(schedule.id)}
-                  className="delete-icon"
-                />
-              </div>
-            ),
-            start: new Date(schedule.sendAt),
-            end: new Date(schedule.sendAt),
-          }))}
-          startAccessor="start"
-          endAccessor="end"
-        />
-      )
-    }
-    if (calendarType === 1){
-      return (
-        <Calendar
-          className={classes.calendar}
-          view='week'
-          views={['week']}
-          messages={defaultMessages}
-          formats={{
-            agendaDateFormat: "DD/MM ddd",
-            weekdayFormat: "dddd"
-          }}
-          localizer={localizer}
-          events={schedules.map((schedule) => ({
-            title: (
-              <div className="event-container">
-                <div style={eventTitleStyle}>{schedule.contact.name}</div>
-                <DeleteRoundedIcon
-                  onClick={() => handleDeleteSchedule(schedule.id)}
-                  className="delete-icon"
-                />
-                <EditRoundedIcon
-                  onClick={() => {
-                    handleEditSchedule(schedule);
-                    setScheduleModalOpen(true);
-                  }}
-                  className="edit-icon"
-                />
-              </div>
-            ),
-            start: new Date(schedule.sendAt),
-            end: new Date(schedule.sendAt),
-          }))}
-          startAccessor="start"
-          endAccessor="end"
-        />
-      )
-    }
-    if (calendarType === 2){
-      return (
-        <Calendar
-          className={classes.calendar}
-          view='day'
-          views={['day']}
-          messages={defaultMessages}
-          formats={{
-            agendaDateFormat: "DD/MM ddd",
-            weekdayFormat: "dddd"
-          }}
-          localizer={localizer}
-          events={schedules.map((schedule) => ({
-            title: (
-              <div className="event-container">
-                <div style={eventTitleStyle}>{schedule.contact.name}</div>
-                  <DeleteRoundedIcon
-                    onClick={() => handleDeleteSchedule(schedule.id)}
-                    className="delete-icon"
-                  />
-                  <EditRoundedIcon
-                    onClick={() => {
-                      handleEditSchedule(schedule);
-                      setScheduleModalOpen(true);
-                    }}
-                    className="edit-icon"
-                  />
-              </div>
-            ),
-            start: new Date(schedule.sendAt),
-            end: new Date(schedule.sendAt),
-          }))}
-          startAccessor="start"
-          endAccessor="end"
-        />
-      )
+  const calendarProp = () => {
+    switch ( calendarType ){
+      case 0:
+        return('month')
+      case 1:
+        return('week')
+      case 2:
+        return('day')
     }
   }
 
@@ -430,12 +328,6 @@ const Schedules = () => {
           >
             {i18n.t("schedules.buttons.add")}
           </Button>
-          <br/>
-          <Divider/>
-          <Typography>### FALTA O MINI CALENDARIO ###</Typography>
-          <Typography>### é necessário definir função ###</Typography>
-          <Divider/>
-          <br/>
 
           <Typography
             color="primary"
@@ -492,7 +384,39 @@ const Schedules = () => {
           </div>
         </Paper>
         <Paper className={classes.mainPaper} elevation={0} onScroll={handleScroll}>
-            {calendar()}
+          <Calendar
+            className={classes.calendar}
+            view={calendarProp()}
+            views={[calendarProp()]}
+            messages={defaultMessages}
+            formats={{
+              agendaDateFormat: "DD/MM ddd",
+              weekdayFormat: "dddd"
+            }}
+            localizer={localizer}
+            events={schedules.map((schedule) => ({
+              title: (
+                <div className="event-container">
+                  <div style={eventTitleStyle}>{schedule.contact.name}</div>
+                  <DeleteRoundedIcon
+                    onClick={() => handleDeleteSchedule(schedule.id)}
+                    className="delete-icon"
+                  />
+                  <EditRoundedIcon
+                    onClick={() => {
+                      handleEditSchedule(schedule);
+                      setScheduleModalOpen(true);
+                    }}
+                    className="edit-icon"
+                  />
+                </div>
+              ),
+              start: new Date(schedule.sendAt),
+              end: new Date(schedule.sendAt),
+            }))}
+            startAccessor="start"
+            endAccessor="end"
+          />
         </Paper>
       </div>
       <ConfirmationModal
