@@ -18,7 +18,7 @@ import moment, { relativeTimeRounding } from "moment";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import Calendar from "react-calen"
+import { Calendar as CalendarSmall } from "react-calendar";
 import "moment/locale/pt-br";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import SearchIcon from "@material-ui/icons/Search";
@@ -137,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: "20%",
     padding: theme.spacing(2),
+    gap: theme.spacing(3),
   },
   textField: {
     ...theme.textField,
@@ -328,7 +329,7 @@ const Schedules = () => {
           >
             {i18n.t("schedules.buttons.add")}
           </Button>
-
+          <CalendarSmall/>
           <Typography
             color="primary"
             style={{
