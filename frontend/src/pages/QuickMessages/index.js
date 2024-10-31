@@ -106,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
     borderSpacing: "0 1em", // Gap Width
   },
   avatar: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
@@ -116,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomRightRadius: "10px",
   },
   rowCell: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     height: "4em",
   },
@@ -285,8 +287,8 @@ const Quickemessages = () => {
             <>
               {quickemessages.map((quickemessage) => (
                 <TableRow key={quickemessage.id}>
-                  <TableCell align="center" className={classes.avatar}>{quickemessage.shortcode}</TableCell>
-                  <TableCell align="center" className={classes.rowCell}>
+                  <TableCell align="center" className={classes.avatar} onClick={() => handleEditQuickemessage(quickemessage)}>{quickemessage.shortcode}</TableCell>
+                  <TableCell align="center" className={classes.rowCell} onClick={() => handleEditQuickemessage(quickemessage)}>
                     {quickemessage.mediaName ?? i18n.t("quickMessages.noAttachment")}
                   </TableCell>
                   <TableCell align="center" className={classes.rowActions}>
