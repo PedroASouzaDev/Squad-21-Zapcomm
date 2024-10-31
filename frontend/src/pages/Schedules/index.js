@@ -19,6 +19,8 @@ import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import { Calendar as CalendarSmall } from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
+import './calendar.css';
 import "moment/locale/pt-br";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import SearchIcon from "@material-ui/icons/Search";
@@ -28,13 +30,14 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import "./Schedules.css"; // Importe o arquivo CSS
 import { Tabs, Tab } from "@material-ui/core/";
 import Typography from "@material-ui/core/Typography";
-import { Avatar, Divider, IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import {
   List,
   ListItem,
   ListItemAvatar,
   ListItemText
 } from "@mui/material";
+import { ImportExport } from "@material-ui/icons";
 
 // Defina a função getUrlParam antes de usá-la
 function getUrlParam(paramName) {
@@ -121,9 +124,8 @@ const useStyles = makeStyles((theme) => ({
   },
   mainPaper: {
     flex: 1,
-    padding: "0px",
     borderRadius: theme.spacing(.5),
-    maxHeight: "750px",
+    maxHeight: "870px",
     overflowY: "auto",
     ...theme.scrollbarStylesSoft,
   },
@@ -329,7 +331,7 @@ const Schedules = () => {
           >
             {i18n.t("schedules.buttons.add")}
           </Button>
-          <CalendarSmall/>
+          <CalendarSmall />
           <Typography
             color="primary"
             style={{
