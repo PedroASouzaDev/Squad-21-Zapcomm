@@ -9,21 +9,17 @@ import useHelps from "../../hooks/useHelps";
 
 const useStyles = makeStyles(theme => ({
   root: {
-      height: "100vh",
-      backgroundColor: theme.palette.background.main,
-      display: "flex",
-      flexDirection: "column",
-      gap: theme.spacing(4),
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(6),
-      paddingLeft: theme.spacing(4),
-      paddingRight: theme.spacing(6),
-      overflowY: "scroll",
-      ...theme.scrollbarStylesSoft
-    },
-  mainPaperContainer: {
-    overflowY: 'auto',
-    maxHeight: 'calc(100vh - 200px)', 
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(4),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
+    paddingLeft: theme.spacing(4),
+    paddingRight: theme.spacing(6),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
   },
   mainPaper: {
     width: '100%',
@@ -158,7 +154,7 @@ const Helps = () => {
   const renderHelps = () => {
     return (
       <>
-        <div className={`${classes.mainPaper} ${classes.mainPaperContainer}`}>
+        <div className={classes.mainPaper}>
           {records.length ? records.map((record, key) => (
             <Paper key={key} className={`${classes.helpPaper} ${classes.paperHover}`} onClick={() => openVideoModal(record.video)}>
               <img
@@ -185,19 +181,11 @@ const Helps = () => {
         <Title>Ajuda ({records.length})</Title>
         <MainHeaderButtonsWrapper></MainHeaderButtonsWrapper>
       </MainHeader>
-      <Table size= "fit-content">
-        <tableRow>
-          <Title className={classes.tabletitle}><h3>Vídeos</h3></Title>
-        </tableRow>
-        <TableRow>
-          <TableCell className={classes.tableRow}>
-            <div className={classes.mainPaper}>
-              {renderHelps()}
-            </div>
-            {renderVideoModal()}
-          </TableCell>
-        </TableRow>
-      </Table>
+      <Title className={classes.tabletitle}><h3>Vídeos</h3></Title>
+      <Paper className={classes.mainPaper}>
+        {renderHelps()}
+        {renderVideoModal()}
+      </Paper>
     </div>
   );
 };

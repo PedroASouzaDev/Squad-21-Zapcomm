@@ -54,9 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(3),
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft,
   },
