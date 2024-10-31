@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
   mainPaper: {
     width: "100%",
     flex: 1,
-    padding: theme.spacing(2),
   },
   fullWidth: {
     width: "100%",
@@ -46,7 +45,29 @@ const useStyles = makeStyles((theme) => ({
   tableContainer: {
     width: "100%",
     overflowX: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
+  },
+  table: {
+    borderCollapse: "separate", 
+    borderSpacing: "0 1em", // Gap Width
+  },
+  rowStart: {
+    cursor: "pointer",
+    backgroundColor: "#F7F7F8",
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+    paddingRight: "0",
+  },
+  rowEnd: {
+    cursor: "pointer",
+    backgroundColor: "#F7F7F8",
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    cursor: "pointer",
+    backgroundColor: "#F7F7F8",
+    height: "4em",
   },
   textfield: {
     width: "100%",
@@ -206,7 +227,6 @@ export function CompanyForm(props) {
                   name="name"
                   variant="outlined"
                   className={classes.fullWidth}
-                  margin="dense"
                 />
               </Grid>
               <Grid xs={12} sm={6} md={2} item>
@@ -216,7 +236,6 @@ export function CompanyForm(props) {
                   name="email"
                   variant="outlined"
                   className={classes.fullWidth}
-                  margin="dense"
                   required
                 />
               </Grid>
@@ -227,11 +246,10 @@ export function CompanyForm(props) {
                   name="phone"
                   variant="outlined"
                   className={classes.fullWidth}
-                  margin="dense"
                 />
               </Grid>
               <Grid xs={12} sm={6} md={2} item>
-                <FormControl margin="dense" variant="outlined" fullWidth>
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel htmlFor="plan-selection">Plano</InputLabel>
                   <Field
                     as={Select}
@@ -239,7 +257,6 @@ export function CompanyForm(props) {
                     label="Plano"
                     labelId="plan-selection-label"
                     name="planId"
-                    margin="dense"
                     required
                   >
                     {plans.map((plan, key) => (
@@ -251,7 +268,7 @@ export function CompanyForm(props) {
                 </FormControl>
               </Grid>
               <Grid xs={12} sm={6} md={2} item>
-                <FormControl margin="dense" variant="outlined" fullWidth>
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel htmlFor="status-selection">Status</InputLabel>
                   <Field
                     as={Select}
@@ -259,7 +276,6 @@ export function CompanyForm(props) {
                     label="Status"
                     labelId="status-selection-label"
                     name="status"
-                    margin="dense"
                   >
                     <MenuItem value={true}>Sim</MenuItem>
                     <MenuItem value={false}>Não</MenuItem>
@@ -267,7 +283,7 @@ export function CompanyForm(props) {
                 </FormControl>
               </Grid>
               <Grid xs={12} sm={6} md={2} item>
-                <FormControl margin="dense" variant="outlined" fullWidth>
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel htmlFor="status-selection">Campanhas</InputLabel>
                   <Field
                     as={Select}
@@ -275,7 +291,6 @@ export function CompanyForm(props) {
                     label="Campanhas"
                     labelId="campaigns-selection-label"
                     name="campaignsEnabled"
-                    margin="dense"
                   >
                     <MenuItem value={true}>Habilitadas</MenuItem>
                     <MenuItem value={false}>Desabilitadas</MenuItem>
@@ -294,12 +309,11 @@ export function CompanyForm(props) {
                     }}
                     variant="outlined"
                     fullWidth
-                    margin="dense"
                   />
                 </FormControl>
               </Grid>
               <Grid xs={12} sm={6} md={2} item>
-                <FormControl margin="dense" variant="outlined" fullWidth>
+                <FormControl variant="outlined" fullWidth>
                   <InputLabel htmlFor="recorrencia-selection">
                     Recorrência
                   </InputLabel>
@@ -309,7 +323,6 @@ export function CompanyForm(props) {
                     labelId="recorrencia-selection-label"
                     id="recurrence"
                     name="recurrence"
-                    margin="dense"
                   >
                     <MenuItem value="MENSAL">Mensal</MenuItem>
                     {/*<MenuItem value="BIMESTRAL">Bimestral</MenuItem>*/}
@@ -320,7 +333,7 @@ export function CompanyForm(props) {
                 </FormControl>
               </Grid>
               <Grid xs={12} item>
-                <Grid justifyContent="flex-end" spacing={1} container>
+                <Grid justifyContent="flex-end" spacing={2} container>
                   <Grid xs={4} md={1} item>
                     <ButtonWithSpinner
                       className={classes.fullWidth}
@@ -440,52 +453,52 @@ export function CompaniesManagerGrid(props) {
   };
 
   return (
-    <Paper className={classes.tableContainer}>
+    <div className={classes.tableContainer}>
       <Table
-        className={classes.fullWidth}
+        className={classes.table}
         size="small"
         aria-label="a dense table"
       >
         <TableHead>
           <TableRow>
+            <TableCell align="center">Nome</TableCell>
+            <TableCell align="center">E-mail</TableCell>
+            <TableCell align="center">Telefone</TableCell>
+            <TableCell align="center">Plano</TableCell>
+            <TableCell align="center">Campanhas</TableCell>
+            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Criada Em</TableCell>
+            <TableCell align="center">Vencimento</TableCell>
             <TableCell align="center" style={{ width: "1%" }}>
               #
             </TableCell>
-            <TableCell align="left">Nome</TableCell>
-            <TableCell align="left">E-mail</TableCell>
-            <TableCell align="left">Telefone</TableCell>
-            <TableCell align="left">Plano</TableCell>
-            <TableCell align="left">Campanhas</TableCell>
-            <TableCell align="left">Status</TableCell>
-            <TableCell align="left">Criada Em</TableCell>
-            <TableCell align="left">Vencimento</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {records.map((row, key) => (
             <TableRow style={rowStyle(row)} key={key}>
-              <TableCell align="center" style={{ width: "1%" }}>
-                <IconButton onClick={() => onSelect(row)} aria-label="delete">
-                  <EditIcon />
-                </IconButton>
-              </TableCell>
-              <TableCell align="left">{row.name || "-"}</TableCell>
-              <TableCell align="left">{row.email || "-"}</TableCell>
-              <TableCell align="left">{row.phone || "-"}</TableCell>
-              <TableCell align="left">{renderPlan(row)}</TableCell>
-              <TableCell align="left">{renderCampaignsStatus(row)}</TableCell>
-              <TableCell align="left">{renderStatus(row)}</TableCell>
-              <TableCell align="left">{dateToClient(row.createdAt)}</TableCell>
-              <TableCell align="left">
+              <TableCell align="center" className={classes.rowStart} onClick={() => onSelect(row)}>{row.name || "-"}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>{row.email || "-"}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>{row.phone || "-"}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>{renderPlan(row)}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>{renderCampaignsStatus(row)}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>{renderStatus(row)}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>{dateToClient(row.createdAt)}</TableCell>
+              <TableCell align="center" className={classes.rowCell} onClick={() => onSelect(row)}>
                 {dateToClient(row.dueDate)}
                 <br />
                 <span>{row.recurrence}</span>
+              </TableCell>
+              <TableCell align="center" style={{ width: "1%" }} className={classes.rowEnd}>
+              <IconButton onClick={() => onSelect(row)} aria-label="delete">
+                  <EditIcon />
+                </IconButton>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </Paper>
+    </div>
   );
 }
 
@@ -600,20 +613,14 @@ export default function CompaniesManager() {
 
   return (
     <Paper className={classes.mainPaper} elevation={0}>
-      <Grid spacing={2} container>
-        <Grid xs={12} item>
-          <CompanyForm
-            initialValue={record}
-            onDelete={handleOpenDeleteDialog}
-            onSubmit={handleSubmit}
-            onCancel={handleCancel}
-            loading={loading}
-          />
-        </Grid>
-        <Grid xs={12} item>
-          <CompaniesManagerGrid records={records} onSelect={handleSelect} />
-        </Grid>
-      </Grid>
+      <CompanyForm
+        initialValue={record}
+        onDelete={handleOpenDeleteDialog}
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+        loading={loading}
+      />
+      <CompaniesManagerGrid records={records} onSelect={handleSelect} />
       <ConfirmationModal
         title="Exclusão de Registro"
         open={showConfirmDialog}

@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
     mainPaper: {
         width: '100%',
         flex: 1,
-        padding: theme.spacing(2)
     },
     fullWidth: {
         width: '100%'
@@ -41,7 +40,29 @@ const useStyles = makeStyles(theme => ({
     tableContainer: {
         width: '100%',
         overflowX: "scroll",
-        ...theme.scrollbarStyles
+        ...theme.scrollbarStylesSoft,
+    },
+    table: {
+        borderCollapse: "separate",
+        borderSpacing: "0 1em", // Gap Width
+    },
+    rowStart: {
+        cursor: "pointer",
+        backgroundColor: "#F7F7F8",
+        borderTopLeftRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        paddingRight: "0",
+    },
+    rowEnd: {
+        cursor: "pointer",
+        backgroundColor: "#F7F7F8",
+        borderTopRightRadius: "10px",
+        borderBottomRightRadius: "10px",
+    },
+    rowCell: {
+        cursor: "pointer",
+        backgroundColor: "#F7F7F8",
+        height: "4em",
     },
     textfield: {
         width: '100%'
@@ -104,7 +125,7 @@ export function PlanManagerForm(props) {
         >
             {(values) => (
                 <Form className={classes.fullWidth}>
-                    <Grid spacing={1} justifyContent="flex-start" container>
+                    <Grid spacing={2} justifyContent="flex-end" container>
                         {/* NOME */}
                         <Grid xs={12} sm={6} md={2} item>
                             <Field
@@ -113,7 +134,6 @@ export function PlanManagerForm(props) {
                                 name="name"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                             />
                         </Grid>
 
@@ -125,7 +145,6 @@ export function PlanManagerForm(props) {
                                 name="users"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                                 type="number"
                             />
                         </Grid>
@@ -138,7 +157,6 @@ export function PlanManagerForm(props) {
                                 name="connections"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                                 type="number"
                             />
                         </Grid>
@@ -151,7 +169,6 @@ export function PlanManagerForm(props) {
                                 name="queues"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                                 type="number"
                             />
                         </Grid>
@@ -164,14 +181,13 @@ export function PlanManagerForm(props) {
                                 name="value"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                                 type="text"
                             />
                         </Grid>
 
                         {/* CAMPANHAS */}
                         <Grid xs={12} sm={6} md={2} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useCampaigns-selection">{i18n.t("plans.form.campaigns")}</InputLabel>
                                 <Field
                                     as={Select}
@@ -179,7 +195,6 @@ export function PlanManagerForm(props) {
                                     label={i18n.t("plans.form.campaigns")}
                                     labelId="useCampaigns-selection-label"
                                     name="useCampaigns"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
@@ -189,7 +204,7 @@ export function PlanManagerForm(props) {
 
                         {/* AGENDAMENTOS */}
                         <Grid xs={12} sm={8} md={2} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useSchedules-selection">{i18n.t("plans.form.schedules")}</InputLabel>
                                 <Field
                                     as={Select}
@@ -197,7 +212,6 @@ export function PlanManagerForm(props) {
                                     label={i18n.t("plans.form.schedules")}
                                     labelId="useSchedules-selection-label"
                                     name="useSchedules"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
@@ -207,7 +221,7 @@ export function PlanManagerForm(props) {
 
                         {/* CHAT INTERNO */}
                         <Grid xs={12} sm={8} md={2} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useInternalChat-selection">Chat Interno</InputLabel>
                                 <Field
                                     as={Select}
@@ -215,7 +229,6 @@ export function PlanManagerForm(props) {
                                     label="Chat Interno"
                                     labelId="useInternalChat-selection-label"
                                     name="useInternalChat"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
@@ -225,7 +238,7 @@ export function PlanManagerForm(props) {
 
                         {/* API Externa */}
                         <Grid xs={12} sm={8} md={4} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useExternalApi-selection">API Externa</InputLabel>
                                 <Field
                                     as={Select}
@@ -233,7 +246,6 @@ export function PlanManagerForm(props) {
                                     label="API Externa"
                                     labelId="useExternalApi-selection-label"
                                     name="useExternalApi"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
@@ -243,7 +255,7 @@ export function PlanManagerForm(props) {
 
                         {/* KANBAN */}
                         <Grid xs={12} sm={8} md={2} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useKanban-selection">Kanban</InputLabel>
                                 <Field
                                     as={Select}
@@ -251,7 +263,6 @@ export function PlanManagerForm(props) {
                                     label="Kanban"
                                     labelId="useKanban-selection-label"
                                     name="useKanban"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
@@ -261,7 +272,7 @@ export function PlanManagerForm(props) {
 
                         {/* OPENAI */}
                         <Grid xs={12} sm={8} md={2} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useOpenAi-selection">Open.Ai</InputLabel>
                                 <Field
                                     as={Select}
@@ -269,7 +280,6 @@ export function PlanManagerForm(props) {
                                     label="Talk.Ai"
                                     labelId="useOpenAi-selection-label"
                                     name="useOpenAi"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
@@ -279,7 +289,7 @@ export function PlanManagerForm(props) {
 
                         {/* INTEGRACOES */}
                         <Grid xs={12} sm={8} md={2} item>
-                            <FormControl margin="dense" variant="outlined" fullWidth>
+                            <FormControl variant="outlined" fullWidth>
                                 <InputLabel htmlFor="useIntegrations-selection">Integrações</InputLabel>
                                 <Field
                                     as={Select}
@@ -287,32 +297,32 @@ export function PlanManagerForm(props) {
                                     label="Integrações"
                                     labelId="useIntegrations-selection-label"
                                     name="useIntegrations"
-                                    margin="dense"
                                 >
                                     <MenuItem value={true}>{i18n.t("plans.form.enabled")}</MenuItem>
                                     <MenuItem value={false}>{i18n.t("plans.form.disabled")}</MenuItem>
                                 </Field>
                             </FormControl>
                         </Grid>
-                    </Grid>
-                    <Grid spacing={2} justifyContent="flex-end" container>
-
-                        <Grid sm={3} md={2} item>
-                            <ButtonWithSpinner className={classes.fullWidth} loading={loading} onClick={() => onCancel()} variant="contained">
-                                {i18n.t("plans.form.clear")}
-                            </ButtonWithSpinner>
-                        </Grid>
-                        {record.id !== undefined ? (
-                            <Grid sm={3} md={2} item>
-                                <ButtonWithSpinner className={classes.fullWidth} loading={loading} onClick={() => onDelete(record)} variant="contained" color="secondary">
-                                    {i18n.t("plans.form.delete")}
-                                </ButtonWithSpinner>
+                        <Grid xs={12} item>
+                            <Grid spacing={2} justifyContent="flex-end" container>
+                                <Grid sm={4} md={1} item>
+                                    <ButtonWithSpinner className={classes.fullWidth} loading={loading} onClick={() => onCancel()} variant="contained" style={{ marginTop: 7 }}>
+                                        {i18n.t("plans.form.clear")}
+                                    </ButtonWithSpinner>
+                                </Grid>
+                                {record.id !== undefined ? (
+                                    <Grid sm={4} md={1} item>
+                                        <ButtonWithSpinner className={classes.fullWidth} loading={loading} onClick={() => onDelete(record)} variant="contained" color="secondary" style={{ marginTop: 7 }}>
+                                            {i18n.t("plans.form.delete")}
+                                        </ButtonWithSpinner>
+                                    </Grid>
+                                ) : null}
+                                <Grid sm={4} md={1} item>
+                                    <ButtonWithSpinner className={classes.fullWidth} loading={loading} type="submit" variant="contained" color="primary" style={{ marginTop: 7 }}>
+                                        {i18n.t("plans.form.save")}
+                                    </ButtonWithSpinner>
+                                </Grid>
                             </Grid>
-                        ) : null}
-                        <Grid sm={3} md={2} item>
-                            <ButtonWithSpinner className={classes.fullWidth} loading={loading} type="submit" variant="contained" color="primary">
-                                {i18n.t("plans.form.save")}
-                            </ButtonWithSpinner>
                         </Grid>
                     </Grid>
                 </Form>
@@ -354,17 +364,16 @@ export function PlansManagerGrid(props) {
     };
 
     return (
-        <Paper className={classes.tableContainer}>
+        <div className={classes.tableContainer}>
             <Table
-                className={classes.fullWidth}
+                className={classes.table}
                 // size="small"
                 padding="none"
                 aria-label="a dense table"
             >
                 <TableHead>
                     <TableRow>
-                        <TableCell align="center" style={{ width: '1%' }}>#</TableCell>
-                        <TableCell align="left">{i18n.t("plans.form.name")}</TableCell>
+                        <TableCell align="center">{i18n.t("plans.form.name")}</TableCell>
                         <TableCell align="center">{i18n.t("plans.form.users")}</TableCell>
                         <TableCell align="center">{i18n.t("plans.form.connections")}</TableCell>
                         <TableCell align="center">Filas</TableCell>
@@ -376,33 +385,34 @@ export function PlansManagerGrid(props) {
                         <TableCell align="center">Kanban</TableCell>
                         <TableCell align="center">Open.Ai</TableCell>
                         <TableCell align="center">Integrações</TableCell>
+                        <TableCell align="center" style={{ width: '1%' }}>#</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {records.map((row) => (
                         <TableRow key={row.id}>
-                            <TableCell align="center" style={{ width: '1%' }}>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowStart}>{row.name || '-'}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{row.users || '-'}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{row.connections || '-'}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{row.queues || '-'}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{i18n.t("plans.form.money")} {row.value ? row.value.toLocaleString('pt-br', { minimumFractionDigits: 2 }) : '00.00'}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderCampaigns(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderSchedules(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderInternalChat(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderExternalApi(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderKanban(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderOpenAi(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{renderIntegrations(row)}</TableCell>
+                            <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowEnd}>
                                 <IconButton onClick={() => onSelect(row)} aria-label="delete">
                                     <EditIcon />
                                 </IconButton>
                             </TableCell>
-                            <TableCell align="left">{row.name || '-'}</TableCell>
-                            <TableCell align="center">{row.users || '-'}</TableCell>
-                            <TableCell align="center">{row.connections || '-'}</TableCell>
-                            <TableCell align="center">{row.queues || '-'}</TableCell>
-                            <TableCell align="center">{i18n.t("plans.form.money")} {row.value ? row.value.toLocaleString('pt-br', { minimumFractionDigits: 2 }) : '00.00'}</TableCell>
-                            <TableCell align="center">{renderCampaigns(row)}</TableCell>
-                            <TableCell align="center">{renderSchedules(row)}</TableCell>
-                            <TableCell align="center">{renderInternalChat(row)}</TableCell>
-                            <TableCell align="center">{renderExternalApi(row)}</TableCell>
-                            <TableCell align="center">{renderKanban(row)}</TableCell>
-                            <TableCell align="center">{renderOpenAi(row)}</TableCell>
-                            <TableCell align="center">{renderIntegrations(row)}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
-        </Paper>
+        </div>
     )
 }
 
