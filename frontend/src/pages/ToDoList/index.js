@@ -9,8 +9,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { Typography } from '@material-ui/core';
 import Title from '../../components/Title';
+import ConfirmationModal from '../../components/ConfirmationModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +50,8 @@ const ToDoList = () => {
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState([]);
   const [editIndex, setEditIndex] = useState(-1);
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+  const [deletingTask, setDeletingTask] = useState(null);
 
   const input = useRef(null);
   
@@ -96,47 +98,94 @@ const ToDoList = () => {
   };
 
   const handleDeleteTask = (index) => {
+    console.log("deletando");
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
     setTasks(newTasks);
   };
 
+  const handleLabel = (v) => {
+    switch (v) {
+      case 0:
+        if (editIndex >= 0) {
+          return 'Editar Tarefa'
+        } else {
+          return 'Nova Tarefa'
+        }
+      case 1:
+        if (editIndex >= 0) {
+          return 'Salvar'
+        } else {
+          return 'Adicionar'
+        }
+    }
+  }
+
+  // Debugging
+  const divRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (divRef.current && !divRef.current.contains(event.target)) {
+      setEditIndex(-1);
+      setTask('');
+      console.log("Lost Focus");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={classes.root}>
       <Title>Tarefas</Title>
       <div>
-        <div className={classes.inputContainer}>
-          <TextField
-            className={classes.textField}
-            inputRef={input}
-            fullWidth
-            label={editIndex >= 0 ? 'Editar Tarefa' : 'Nova Tarefa'}
-
-            value={task}
-            onChange={handleTaskChange}
-            variant="outlined"
-          />
-          <Button
-            variant="contained"
-            size='medium'
-            color="primary"
-            onClick={handleAddTask}
+        <div >
+          <form 
+            className={classes.inputContainer}
+            ref={divRef}
+            onSubmit={(e) => e.preventDefault()}
           >
-            {editIndex >= 0 ? 'Salvar' : 'Adicionar'}
-          </Button>
+            <TextField
+              className={classes.textField}
+              inputRef={input}
+              fullWidth
+              // label={editIndex >= 0 ? 'Editar Tarefa' : 'Nova Tarefa'}
+              label={handleLabel(0)}
+              value={task}
+              onChange={handleTaskChange}
+              variant="outlined"
+            />
+            <Button
+              type='submit'
+              variant="contained"
+              size='medium'
+              color="primary"
+              onClick={handleAddTask}
+            >
+              {/* {editIndex >= 0 ? 'Salvar' : 'Adicionar'} */}
+              {handleLabel(1)}
+            </Button>
+          </form>
         </div>
         <div className={classes.listContainer}>
-          <List
-            dense
-          >
+          <List dense>
             {tasks.map((task, index) => (
-              <ListItem key={index} className={classes.listItem}>
-                <ListItemText primary={task.text} secondary={task.updatedAt.toLocaleString()} />
+              <ListItem  key={index} className={classes.listItem}>
+                <ListItemText style={{ cursor: "pointer" }} primary={task.text} secondary={task.updatedAt.toLocaleString()} onClick={() => handleEditTask(index)}/>
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => handleEditTask(index)}>
                     <EditIcon />
                   </IconButton>
-                  <IconButton onClick={() => handleDeleteTask(index)}>
+                  <IconButton
+                    onClick={(e) => {
+                      setConfirmModalOpen(true);
+                      setDeletingTask(task);
+                    }}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -145,6 +194,14 @@ const ToDoList = () => {
           </List>
         </div>
       </div>
+      <ConfirmationModal
+        title={deletingTask && `Excluir "${deletingTask.text}"?`}
+        open={confirmModalOpen}
+        onClose={setConfirmModalOpen}
+        onConfirm={() => handleDeleteTask(deletingTask)}
+      >
+        Esta ação é irreversível! Deseja prosseguir?
+      </ConfirmationModal>
     </div>
   );
 };
