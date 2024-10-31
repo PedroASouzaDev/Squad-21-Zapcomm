@@ -89,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
     borderSpacing: "0 1em", // Gap Width
   },
   avatar: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
@@ -100,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomRightRadius: "10px",
   },
   rowCell: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     height: "4em",
   },
@@ -315,31 +317,31 @@ const Listing = () => {
           <>
             {campaigns.map((campaign) => (
               <TableRow key={campaign.id}>
-                <TableCell align="center" className={classes.avatar}>{campaign.name}</TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center" className={classes.avatar} onClick={() => handleEditCampaign(campaign)}>{campaign.name}</TableCell>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditCampaign(campaign)}>
                   {formatStatus(campaign.status)}
                 </TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditCampaign(campaign)}>
                   {campaign.contactListId
                     ? campaign.contactList.name
                     : "Não definida"}
                 </TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditCampaign(campaign)}>
                   {campaign.whatsappId
                     ? campaign.whatsapp.name
                     : "Não definido"}
                 </TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditCampaign(campaign)}>
                   {campaign.scheduledAt
                     ? datetimeToClient(campaign.scheduledAt)
                     : "Sem agendamento"}
                 </TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditCampaign(campaign)}>
                   {campaign.completedAt
                     ? datetimeToClient(campaign.completedAt)
                     : "Não concluída"}
                 </TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditCampaign(campaign)}>
                   {campaign.confirmation ? "Habilitada" : "Desabilitada"}
                 </TableCell>
                 <TableCell align="center" className={classes.rowActions}>

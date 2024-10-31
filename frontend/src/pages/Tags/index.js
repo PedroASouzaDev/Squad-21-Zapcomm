@@ -107,9 +107,13 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
   },
   Cell_left: {
+    cursor: "pointer",
     borderTopLeftRadius: theme.shape.borderRadius,
     borderBottomLeftRadius: theme.shape.borderRadius,
     overflow: "hidden",
+  },
+  cell: {
+    cursor: "pointer",
   },
   Cell_right: {
     borderTopRightRadius: theme.shape.borderRadius,
@@ -276,7 +280,7 @@ const useStyles = makeStyles((theme) => ({
               <>
                 {tags.map((tag) => (
                   <TableRow key={tag.id} className={classes.tableRow}>
-                    <TableCell className={classes.Cell_left} align="center">
+                    <TableCell className={classes.Cell_left} align="center" onClick={() => handleEditTag(tag)}>
                     <Chip
                         style={{
                           backgroundColor: tag.color,
@@ -286,8 +290,8 @@ const useStyles = makeStyles((theme) => ({
                         size="small"
                       />
                     </TableCell>
-                    <TableCell align="center">{tag.ticketsCount}</TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" className={classes.cell} onClick={() => handleEditTag(tag)}>{tag.ticketsCount}</TableCell>
+                    <TableCell align="center" className={classes.cell} onClick={() => handleEditTag(tag)}>
                         <Chip
                             style={{
                                 backgroundColor: '#2B99431A',

@@ -116,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
     borderSpacing: "0 1em", // Gap Width
   },
   avatar: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
@@ -127,6 +128,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomRightRadius: "10px",
   },
   rowCell: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     height: "4em",
   },
@@ -384,12 +386,12 @@ const Contacts = () => {
               <>
                 {contacts.map((contact) => (
                   <TableRow key={contact.id} className={classes.row}>
-                    <TableCell className={classes.avatar}>
+                    <TableCell className={classes.avatar} onClick={() => hadleEditContact(contact.id)}>
                       {<Avatar src={contact.profilePicUrl} />}
                     </TableCell>
-                    <TableCell className={classes.rowCell}>{contact.name}</TableCell>
-                    <TableCell className={classes.rowCell} align="center">{contact.number}</TableCell>
-                    <TableCell className={classes.rowCell} align="center">{contact.email}</TableCell>
+                    <TableCell className={classes.rowCell} onClick={() => hadleEditContact(contact.id)}>{contact.name}</TableCell>
+                    <TableCell className={classes.rowCell} align="center" onClick={() => hadleEditContact(contact.id)}>{contact.number}</TableCell>
+                    <TableCell className={classes.rowCell} align="center" onClick={() => hadleEditContact(contact.id)}>{contact.email}</TableCell>
                     <TableCell className={classes.rowActions} align="right">
                       <IconButton
                         size="small"

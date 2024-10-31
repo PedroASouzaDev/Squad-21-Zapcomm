@@ -92,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
     borderSpacing: "0 1em",
   },
   avatar: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     borderTopLeftRadius: "10px",
     borderBottomLeftRadius: "10px",
@@ -102,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottomRightRadius: "10px",
   },
   rowCell: {
+    cursor: "pointer",
     backgroundColor: theme.palette.light.main,
     height: "4em",
   },
@@ -266,8 +268,8 @@ const ContactLists = () => {
           <>
             {contactLists.map((contactList) => (
               <TableRow key={contactList.id}>
-                <TableCell align="center"  className={classes.avatar}>{contactList.name}</TableCell>
-                <TableCell align="center" className={classes.rowCell}>
+                <TableCell align="center"  className={classes.avatar} onClick={() => handleEditContactList(contactList)}>{contactList.name}</TableCell>
+                <TableCell align="center" className={classes.rowCell} onClick={() => handleEditContactList(contactList)}>
                   {contactList.contactsCount || 0}
                 </TableCell>
                 <TableCell align="center" className={classes.rowActions}>
