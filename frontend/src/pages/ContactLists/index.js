@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
+import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -15,13 +15,13 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditIcon from "@material-ui/icons/Edit";
-import PeopleIcon from "@material-ui/icons/People";
-import DownloadIcon from "@material-ui/icons/GetApp";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
+import GetAppRoundedIcon from "@material-ui/icons/GetAppRounded";
 
-import MainContainer from "../../components/MainContainer";
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
 
@@ -31,7 +31,6 @@ import TableRowSkeleton from "../../components/TableRowSkeleton";
 import ContactListDialog from "../../components/ContactListDialog";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import toastError from "../../errors/toastError";
-import { Grid } from "@material-ui/core";
 
 import planilhaExemplo from "../../assets/planilha.xlsx";
 import { SocketContext } from "../../context/Socket/SocketContext";
@@ -81,11 +80,34 @@ const reducer = (state, action) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  mainPaper: {
+  subroot: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(3),
+    flexGrow: 1,
+  },
+  table: {
+    padding: "8px",
+    borderCollapse: "separate",
+    borderSpacing: "0 1em",
+  },
+  avatar: {
+    backgroundColor: theme.palette.light.main,
+    borderTopLeftRadius: "10px",
+    borderBottomLeftRadius: "10px",
+  },
+  rowActions: {
+    backgroundColor: theme.palette.light.main,
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+  },
+  rowCell: {
+    backgroundColor: theme.palette.light.main,
+    height: "4em",
+  },
+  textField: {
     flex: 1,
-    padding: theme.spacing(1),
-    overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.textField,
   },
 }));
 
@@ -197,7 +219,91 @@ const ContactLists = () => {
   };
 
   return (
-    <MainContainer>
+    <div className={classes.root}>
+      <MainHeader>
+        <MainHeaderButtonsWrapper>
+          <TextField
+            className={classes.textField}
+            placeholder={i18n.t("contacts.searchPlaceholder")}
+            type="search"
+            variant="outlined"
+            margin="dense"
+            value={searchParam}
+            onChange={handleSearch}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon style={{ color: "gray" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            variant="contained"
+            margin="dense"
+            color="primary"
+            onClick={handleOpenContactListModal}
+          >
+            {i18n.t("contactLists.buttons.add")}
+          </Button>
+        </MainHeaderButtonsWrapper>
+      </MainHeader>
+      <Table size="small" className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">
+              {i18n.t("contactLists.table.name")}
+            </TableCell>
+            <TableCell align="center">
+              {i18n.t("contactLists.table.contacts")}
+            </TableCell>
+            <TableCell align="center">
+              {i18n.t("contactLists.table.actions")}
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <>
+            {contactLists.map((contactList) => (
+              <TableRow key={contactList.id}>
+                <TableCell align="center"  className={classes.avatar}>{contactList.name}</TableCell>
+                <TableCell align="center" className={classes.rowCell}>
+                  {contactList.contactsCount || 0}
+                </TableCell>
+                <TableCell align="center" className={classes.rowActions}>
+                  <a href={planilhaExemplo} download="planilha.xlsx">
+                    <IconButton size="small" title="Baixar Planilha Exemplo">
+                      <GetAppRoundedIcon />
+                    </IconButton>
+                  </a>
+                  <IconButton
+                    size="small"
+                    onClick={() => goToContacts(contactList.id)}
+                  >
+                    <PeopleRoundedIcon />
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={() => handleEditContactList(contactList)}
+                  >
+                    <EditRoundedIcon />
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={(e) => {
+                      setConfirmModalOpen(true);
+                      setDeletingContactList(contactList);
+                    }}
+                  >
+                    <DeleteRoundedIcon />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+            {loading && <TableRowSkeleton columns={3} />}
+          </>
+        </TableBody>
+      </Table>
       <ConfirmationModal
         title={
           deletingContactList &&
@@ -217,109 +323,7 @@ const ContactLists = () => {
         aria-labelledby="form-dialog-title"
         contactListId={selectedContactList && selectedContactList.id}
       />
-      <MainHeader>
-        <Grid style={{ width: "99.6%" }} container>
-          <Grid xs={12} sm={8} item>
-            <Title>{i18n.t("contactLists.title")}</Title>
-          </Grid>
-          <Grid xs={12} sm={4} item>
-            <Grid spacing={2} container>
-              <Grid xs={7} sm={6} item>
-                <TextField
-                  fullWidth
-                  placeholder={i18n.t("contacts.searchPlaceholder")}
-                  type="search"
-                  value={searchParam}
-                  onChange={handleSearch}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon style={{ color: "gray" }} />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid xs={5} sm={6} item>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  onClick={handleOpenContactListModal}
-                >
-                  {i18n.t("contactLists.buttons.add")}
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </MainHeader>
-      <Paper
-        className={classes.mainPaper}
-        variant="outlined"
-        onScroll={handleScroll}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">
-                {i18n.t("contactLists.table.name")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("contactLists.table.contacts")}
-              </TableCell>
-              <TableCell align="center">
-                {i18n.t("contactLists.table.actions")}
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <>
-              {contactLists.map((contactList) => (
-                <TableRow key={contactList.id}>
-                  <TableCell align="center">{contactList.name}</TableCell>
-                  <TableCell align="center">
-                    {contactList.contactsCount || 0}
-                  </TableCell>
-                  <TableCell align="center">
-                    <a href={planilhaExemplo} download="planilha.xlsx">
-                      <IconButton size="small" title="Baixar Planilha Exemplo">
-                        <DownloadIcon />
-                      </IconButton>
-                    </a>
-
-                    <IconButton
-                      size="small"
-                      onClick={() => goToContacts(contactList.id)}
-                    >
-                      <PeopleIcon />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={() => handleEditContactList(contactList)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-
-                    <IconButton
-                      size="small"
-                      onClick={(e) => {
-                        setConfirmModalOpen(true);
-                        setDeletingContactList(contactList);
-                      }}
-                    >
-                      <DeleteOutlineIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-              {loading && <TableRowSkeleton columns={3} />}
-            </>
-          </TableBody>
-        </Table>
-      </Paper>
-    </MainContainer>
+    </div>
   );
 };
 

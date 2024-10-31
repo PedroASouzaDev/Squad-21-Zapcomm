@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     padding: theme.spacing(1),
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
   },
   textRight: {
     textAlign: "right",
@@ -113,23 +113,8 @@ const CampaignsConfig = () => {
   };
 
   return (
-    <MainContainer>
-      <ConfirmationModal
-        title={i18n.t("campaigns.confirmationModal.deleteTitle")}
-        open={confirmationOpen}
-        onClose={() => setConfirmationOpen(false)}
-        onConfirm={removeVariable}
-      >
-        {i18n.t("campaigns.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <MainHeader>
-        <Grid style={{ width: "99.6%" }} container>
-          <Grid xs={12} item>
-            <Title>{i18n.t("campaignsConfig.title")}</Title>
-          </Grid>
-        </Grid>
-      </MainHeader>
-      <Paper className={classes.mainPaper} variant="outlined">
+    <>
+      <Paper className={classes.mainPaper} elevation={0}>
         <Box className={classes.tabPanelsContainer}>
           <Grid spacing={2} container>
             <Grid xs={12} item>
@@ -316,7 +301,15 @@ const CampaignsConfig = () => {
           </Grid>
         </Box>
       </Paper>
-    </MainContainer>
+      <ConfirmationModal
+        title={i18n.t("campaigns.confirmationModal.deleteTitle")}
+        open={confirmationOpen}
+        onClose={() => setConfirmationOpen(false)}
+        onConfirm={removeVariable}
+      >
+        {i18n.t("campaigns.confirmationModal.deleteMessage")}
+      </ConfirmationModal>
+  </>
   );
 };
 

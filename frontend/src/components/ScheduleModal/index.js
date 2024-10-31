@@ -309,9 +309,6 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 										label={i18n.t("scheduleModal.form.sendAt")}
 										type="datetime-local"
 										name="sendAt"
-										InputLabelProps={{
-											shrink: true,
-										}}
 										error={touched.sendAt && Boolean(errors.sendAt)}
 										helperText={touched.sendAt && errors.sendAt}
 										variant="outlined"

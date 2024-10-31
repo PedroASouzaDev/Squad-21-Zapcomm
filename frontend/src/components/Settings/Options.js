@@ -378,9 +378,12 @@ export default function Options(props) {
                 </Grid> */}
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="ratings-label">Avaliações</InputLabel>
+            <Typography id="ratings-label" color="textSecondary">
+              Avaliações
+            </Typography>
             <Select
               labelId="ratings-label"
+              variant="outlined"
               value={userRating}
               onChange={async (e) => {
                 handleChangeUserRating(e.target.value);
@@ -396,11 +399,12 @@ export default function Options(props) {
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="schedule-type-label">
+            <Typography id="schedule-type-label" color="textSecondary">
               Gerenciamento de Expediente
-            </InputLabel>
+            </Typography>
             <Select
               labelId="schedule-type-label"
+              variant="outlined"
               value={scheduleType}
               onChange={async (e) => {
                 handleScheduleType(e.target.value);
@@ -417,11 +421,12 @@ export default function Options(props) {
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="group-type-label">
+            <Typography id="group-type-label" color="textSecondary">
               Ignorar Mensagens de Grupos
-            </InputLabel>
+            </Typography>
             <Select
               labelId="group-type-label"
+              variant="outlined"
               value={CheckMsgIsGroup}
               onChange={async (e) => {
                 handleGroupType(e.target.value);
@@ -437,11 +442,12 @@ export default function Options(props) {
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="call-type-label">
+            <Typography id="call-type-label" color="textSecondary">
               Aceitar Chamada
-            </InputLabel>
+            </Typography>
             <Select
               labelId="call-type-label"
+              variant="outlined"
               value={callType}
               onChange={async (e) => {
                 handleCallType(e.target.value);
@@ -457,11 +463,12 @@ export default function Options(props) {
         </Grid>
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="chatbot-type-label">
+            <Typography id="chatbot-type-label" color="textSecondary">
               Tipo Chatbot
-            </InputLabel>
+            </Typography>
             <Select
               labelId="chatbot-type-label"
+              variant="outlined"
               value={chatbotType}
               onChange={async (e) => {
                 handleChatbotType(e.target.value);
@@ -476,12 +483,15 @@ export default function Options(props) {
             </FormHelperText>
           </FormControl>
         </Grid>
-		{/* ENVIAR SAUDAÇÃO AO ACEITAR O TICKET */}
+        {/* ENVIAR SAUDAÇÃO AO ACEITAR O TICKET */}
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="sendGreetingAccepted-label">Enviar saudação ao aceitar o ticket</InputLabel>
+            <Typography id="sendGreetingAccepted-label" color="textSecondary">
+              Enviar saudação ao aceitar o ticket
+            </Typography>
             <Select
               labelId="sendGreetingAccepted-label"
+              variant="outlined"
               value={SendGreetingAccepted}
               onChange={async (e) => {
                 handleSendGreetingAccepted(e.target.value);
@@ -497,12 +507,15 @@ export default function Options(props) {
         </Grid>
 		{/* ENVIAR SAUDAÇÃO AO ACEITAR O TICKET */}
 		
-		{/* ENVIAR MENSAGEM DE TRANSFERENCIA DE SETOR/ATENDENTE */}
+        {/* ENVIAR MENSAGEM DE TRANSFERENCIA DE SETOR/ATENDENTE */}
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="sendMsgTransfTicket-label">Enviar mensagem de transferencia de Fila/agente</InputLabel>
+            <Typography id="sendMsgTransfTicket-label" color="textSecondary">
+              Enviar mensagem de transferencia de Fila/agente
+            </Typography>
             <Select
               labelId="sendMsgTransfTicket-label"
+              variant="outlined"
               value={SettingsTransfTicket}
               onChange={async (e) => {
                 handleSettingsTransfTicket(e.target.value);
@@ -517,12 +530,15 @@ export default function Options(props) {
           </FormControl>
         </Grid>
 		
-		{/* ENVIAR SAUDAÇÃO QUANDO HOUVER SOMENTE 1 FILA */}
+        {/* ENVIAR SAUDAÇÃO QUANDO HOUVER SOMENTE 1 FILA */}
         <Grid xs={12} sm={6} md={4} item>
           <FormControl className={classes.selectContainer}>
-            <InputLabel id="sendGreetingMessageOneQueues-label">Enviar saudação quando houver somente 1 fila</InputLabel>
+            <Typography id="sendGreetingMessageOneQueues-label" color="textSecondary">
+              Enviar saudação quando houver somente 1 fila
+            </Typography>
             <Select
               labelId="sendGreetingMessageOneQueues-label"
+              variant="outlined"
               value={sendGreetingMessageOneQueues}
               onChange={async (e) => {
                 handleSendGreetingMessageOneQueues(e.target.value);
@@ -695,25 +711,23 @@ export default function Options(props) {
           <Tab label="ASAAS" />
 
         </Tabs>
-        <Grid xs={12} sm={12} md={12} item>
-          <FormControl className={classes.selectContainer}>
-            <TextField
-              id="asaas"
-              name="asaas"
-              margin="dense"
-              label="Token Asaas"
-              variant="outlined"
-              value={asaasType}
-              onChange={async (e) => {
-                handleChangeAsaas(e.target.value);
-              }}
-            >
-            </TextField>
-            <FormHelperText>
-              {loadingAsaasType && "Atualizando..."}
-            </FormHelperText>
-          </FormControl>
-        </Grid>
+        <FormControl className={classes.selectContainer}>
+          <TextField
+            id="asaas"
+            name="asaas"
+            margin="dense"
+            label="Token Asaas"
+            variant="outlined"
+            value={asaasType}
+            onChange={async (e) => {
+              handleChangeAsaas(e.target.value);
+            }}
+          >
+          </TextField>
+          <FormHelperText>
+            {loadingAsaasType && "Atualizando..."}
+          </FormHelperText>
+        </FormControl>
       </Grid>
     </>
   );
