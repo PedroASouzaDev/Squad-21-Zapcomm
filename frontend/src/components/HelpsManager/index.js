@@ -36,7 +36,29 @@ const useStyles = makeStyles(theme => ({
     tableContainer: {
 		width: '100%',
 		overflowX: "scroll",
-		...theme.scrollbarStyles
+        ...theme.scrollbarStylesSoft,
+    },
+    table: {
+        borderCollapse: "separate",
+        borderSpacing: "0 1em", // Gap Width
+    },
+    rowStart: {
+        cursor: "pointer",
+        backgroundColor: "#F7F7F8",
+        borderTopLeftRadius: "10px",
+        borderBottomLeftRadius: "10px",
+        paddingRight: "0",
+    },
+    rowEnd: {
+        cursor: "pointer",
+        backgroundColor: "#F7F7F8",
+        borderTopRightRadius: "10px",
+        borderBottomRightRadius: "10px",
+    },
+    rowCell: {
+        cursor: "pointer",
+        backgroundColor: "#F7F7F8",
+        height: "4em",
     },
 	textfield: {
 		width: '100%'
@@ -94,7 +116,6 @@ export function HelpManagerForm (props) {
                                 name="title"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                             />
                         </Grid>
                         <Grid xs={12} sm={6} md={3} item>
@@ -104,7 +125,6 @@ export function HelpManagerForm (props) {
                                 name="video"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                             />
                         </Grid>
                         <Grid xs={12} sm={12} md={6} item>
@@ -114,7 +134,6 @@ export function HelpManagerForm (props) {
                                 name="description"
                                 variant="outlined"
                                 className={classes.fullWidth}
-                                margin="dense"
                             />
                         </Grid>
                         <Grid sm={3} md={1} item>
@@ -146,32 +165,32 @@ export function HelpsManagerGrid (props) {
     const classes = useStyles()
 
     return (
-        <Paper className={classes.tableContainer}>
-            <Table className={classes.fullWidth} size="small" aria-label="a dense table">
+        <div className={classes.tableContainer}>
+            <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                 <TableRow>
-                    <TableCell align="center" style={{width: '1%'}}>#</TableCell>
-                    <TableCell align="left">Título</TableCell>
-                    <TableCell align="left">Descrição</TableCell>
-                    <TableCell align="left">Vídeo</TableCell>
+                    <TableCell align="center">Título</TableCell>
+                    <TableCell align="center">Descrição</TableCell>
+                    <TableCell align="center">Vídeo</TableCell>
+                    <TableCell align="center" >#</TableCell>
                 </TableRow>
                 </TableHead>
                 <TableBody>
                 {records.map((row) => (
                     <TableRow key={row.id}>
-                        <TableCell align="center" style={{width: '1%'}}>
+                        <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowStart}>{row.title || '-'}</TableCell>
+                        <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{row.description || '-'}</TableCell>
+                        <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowCell}>{row.video || '-'}</TableCell>
+                        <TableCell align="center" onClick={() => onSelect(row)} className={classes.rowEnd}>
                             <IconButton onClick={() => onSelect(row)} aria-label="delete">
                                 <EditIcon />
                             </IconButton>
                         </TableCell>
-                        <TableCell align="left">{row.title || '-'}</TableCell>
-                        <TableCell align="left">{row.description || '-'}</TableCell>
-                        <TableCell align="left">{row.video || '-'}</TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
             </Table>
-        </Paper>
+        </div>
     )
 }
 

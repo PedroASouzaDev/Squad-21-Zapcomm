@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import TextField from "@material-ui/core/TextField";
-import Title from "../Title";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import useSettings from "../../hooks/useSettings";
 import { ToastContainer, toast } from 'react-toastify';
@@ -31,17 +28,16 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   tab: {
-    backgroundColor: theme.palette.options,  //DARK MODE PLW DESIGN//
-    borderRadius: 4,
+    backgroundColor: theme.palette.light.main,
+    width: "fit-content",
     width: "100%",
     "& .MuiTab-wrapper": {
       color: theme.palette.fontecor,
     },   //DARK MODE PLW DESIGN//
     "& .MuiTabs-flexContainer": {
-      justifyContent: "center"
-    }
-
-
+      justifyContent: "space-around"
+    },
+    ...theme.shape,
   },
   paper: {
     padding: theme.spacing(2),
@@ -554,25 +550,20 @@ export default function Options(props) {
         </Grid>
 		
       </Grid>
-      <Grid spacing={3} container>
-        <Tabs
-          indicatorColor="primary"
-          textColor="primary"
-          scrollButtons="on"
-          variant="scrollable"
-          className={classes.tab}
-          style={{
-            marginBottom: 20,
-            marginTop: 20
-          }}
-        >
-          <Tab
-
-            label="INTEGRAÇÕES" />
-
-        </Tabs>
-
-      </Grid>
+      <Tabs
+        indicatorColor="primary"
+        textColor="primary"
+        scrollButtons="on"
+        variant="scrollable"
+        className={classes.tab}
+        style={{
+          marginBottom: 20,
+          marginTop: 20
+        }}
+      >
+        <Tab label="INTEGRAÇÕES" />
+        <Tab label="ASAAS" />
+      </Tabs>
       {/*-----------------IXC DESATIVADO 4.6.5-----------------*/}
       {/*<Grid spacing={3} container
         style={{ marginBottom: 10 }}>
@@ -699,36 +690,23 @@ export default function Options(props) {
         </Grid>
       </Grid>*/}
       {/*-----------------ASAAS-----------------*/}
-      <Grid spacing={3} container
-        style={{ marginBottom: 10 }}>
-        <Tabs
-          indicatorColor="primary"
-          textColor="primary"
-          scrollButtons="on"
-          variant="scrollable"
-          className={classes.tab}
+      <FormControl className={classes.selectContainer}>
+        <TextField
+          id="asaas"
+          name="asaas"
+          margin="dense"
+          label="Token Asaas"
+          variant="outlined"
+          value={asaasType}
+          onChange={async (e) => {
+            handleChangeAsaas(e.target.value);
+          }}
         >
-          <Tab label="ASAAS" />
-
-        </Tabs>
-        <FormControl className={classes.selectContainer}>
-          <TextField
-            id="asaas"
-            name="asaas"
-            margin="dense"
-            label="Token Asaas"
-            variant="outlined"
-            value={asaasType}
-            onChange={async (e) => {
-              handleChangeAsaas(e.target.value);
-            }}
-          >
-          </TextField>
-          <FormHelperText>
-            {loadingAsaasType && "Atualizando..."}
-          </FormHelperText>
-        </FormControl>
-      </Grid>
+        </TextField>
+        <FormHelperText>
+          {loadingAsaasType && "Atualizando..."}
+        </FormHelperText>
+      </FormControl>
     </>
   );
 }

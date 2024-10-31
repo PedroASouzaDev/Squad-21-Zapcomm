@@ -12,7 +12,6 @@ import PlansManager from "../../components/PlansManager";
 import HelpsManager from "../../components/HelpsManager";
 import Options from "../../components/Settings/Options";
 
-import { i18n } from "../../translate/i18n.js";
 import { toast } from "react-toastify";
 
 import useCompanies from "../../hooks/useCompanies";
@@ -50,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     backgroundColor: theme.palette.light.main,
+    width: "fit-content",
     ...theme.shape,
   },
   paper: {
@@ -166,7 +166,6 @@ const SettingsCustom = () => {
         <MainHeaderButtonsWrapper>
           <Tabs
             value={tab}
-            indicatorColor="primary"
             textColor="primary"
             onChange={handleTabChange}
             className={classes.tab}
