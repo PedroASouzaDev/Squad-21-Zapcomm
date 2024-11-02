@@ -41,11 +41,9 @@ const useStyles = makeStyles(theme => ({
 			marginRight: theme.spacing(1),
 		},
 	},
-
 	btnWrapper: {
 		position: "relative",
 	},
-
 	buttonProgress: {
 		color: green[500],
 		position: "absolute",
@@ -68,7 +66,7 @@ const ScheduleSchema = Yup.object().shape({
 	sendAt: Yup.string().required("Obrigatório")
 });
 
-const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, reload }) => {
+const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, reload, activeDate }) => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { user } = useContext(AuthContext);
@@ -76,7 +74,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 	const initialState = {
 		body: "",
 		contactId: "",
-		sendAt: moment().add(1, 'hour').format('YYYY-MM-DDTHH:mm'),
+		sendAt: moment(activeDate).format('YYYY-MM-DDTHH:mm'),
 		sentAt: ""
 	};
 
@@ -92,6 +90,13 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 	const attachmentFile = useRef(null);
 	const [confirmationOpen, setConfirmationOpen] = useState(false);
 	const messageInputRef = useRef();
+
+	useEffect(() => {
+		setSchedule(prevState => {
+			return { ...prevState, sendAt: initialState.sendAt }
+		})
+
+	}, [activeDate])	
 
 	useEffect(() => {
 		if (contactId && contacts.length) {
@@ -136,6 +141,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 		onClose();
 		setAttachment(null);
 		setSchedule(initialState);
+		setCurrentContact(initialContact);
 	};
 
 	const handleAttachmentFile = (e) => {
@@ -316,7 +322,7 @@ const ScheduleModal = ({ open, onClose, scheduleId, contactId, cleanContact, rel
 									/>
 								</div>
 								{(schedule.mediaPath || attachment) && (
-									<Grid xs={12} item>
+									<Grid container justifyContent="space-between" item>
 										<Button startIcon={<AttachFile />}>
 											{attachment ? attachment.name : schedule.mediaName}
 										</Button>
