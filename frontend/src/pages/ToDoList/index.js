@@ -14,7 +14,8 @@ import ConfirmationModal from '../../components/ConfirmationModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    minHeight: "fit-content",
+    height: "100%",
     backgroundColor: theme.palette.background.main,
     display: 'flex',
     flexDirection: 'column',
