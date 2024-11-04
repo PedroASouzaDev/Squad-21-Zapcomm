@@ -197,24 +197,6 @@ const Queues = () => {
 
   return (
     <div className={classes.root}>
-      <ConfirmationModal
-        title={
-          selectedQueue &&
-          `${i18n.t("queues.confirmationModal.deleteTitle")} ${
-            selectedQueue.name
-          }?`
-        }
-        open={confirmModalOpen}
-        onClose={handleCloseConfirmationModal}
-        onConfirm={() => handleDeleteQueue(selectedQueue.id)}
-      >
-        {i18n.t("queues.confirmationModal.deleteMessage")}
-      </ConfirmationModal>
-      <QueueModal
-        open={queueModalOpen}
-        onClose={handleCloseQueueModal}
-        queueId={selectedQueue?.id}
-      />
       <MainHeader>
         <Title>{i18n.t("queues.title")}</Title>
         <MainHeaderButtonsWrapper>
@@ -317,6 +299,24 @@ const Queues = () => {
           </TableBody>
         </Table>
       </Paper>
+      <ConfirmationModal
+        title={
+          selectedQueue &&
+          `${i18n.t("queues.confirmationModal.deleteTitle")} ${
+            selectedQueue.name
+          }?`
+        }
+        open={confirmModalOpen}
+        onClose={handleCloseConfirmationModal}
+        onConfirm={() => handleDeleteQueue(selectedQueue.id)}
+      >
+        {i18n.t("queues.confirmationModal.deleteMessage")}
+      </ConfirmationModal>
+      <QueueModal
+        open={queueModalOpen}
+        onClose={handleCloseQueueModal}
+        queueId={selectedQueue?.id}
+      />
     </div>
   );
 };
