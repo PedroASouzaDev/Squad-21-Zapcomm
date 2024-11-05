@@ -75,7 +75,7 @@ const TagModal = ({ open, onClose, tagId, reload }) => {
 
 	const initialState = {
 		name: "",
-		color: "",
+		color: "#000",
 		kanban: 0
 	};
 
