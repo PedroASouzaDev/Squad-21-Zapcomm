@@ -14,7 +14,6 @@ import SendIcon from "@material-ui/icons/Send";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { useDate } from "../../hooks/useDate";
 import api from "../../services/api";
-import { green } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -25,14 +24,14 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     borderRadius: 0,
     height: "100%",
-    borderLeft: "1px solid rgba(0, 0, 0, 0.12)",
+    ...theme.shape,
   },
   messageList: {
     position: "relative",
     overflowY: "auto",
     height: "100%",
-    ...theme.scrollbarStyles,
-    backgroundColor: theme.palette.chatlist, //DARK MODE PLW DESIGN//
+    ...theme.scrollbarStylesSoft,
+    backgroundColor: theme.palette.light.main, //DARK MODE PLW DESIGN//
   },
   inputArea: {
     position: "relative",
@@ -52,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 300,
     borderRadius: 10,
     borderBottomLeftRadius: 0,
-    border: "1px solid rgba(0, 0, 0, 0.12)",
   },
   boxRight: {
     padding: "10px 10px 5px",
@@ -63,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 300,
     borderRadius: 10,
     borderBottomRightRadius: 0,
-    border: "1px solid rgba(0, 0, 0, 0.12)",
   },
 }));
 

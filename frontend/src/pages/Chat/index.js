@@ -27,6 +27,16 @@ import { AuthContext } from "../../context/Auth/AuthContext";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(4),
+    padding: theme.spacing(4),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
   mainContainer: {
     display: "flex",
     flexDirection: "column",
@@ -38,9 +48,10 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid rgba(0, 0, 0, 0.12)",
   },
   gridContainer: {
+    display: "flex",
+    gap: theme.spacing(4),
     flex: 1,
     height: "100%",
-    border: "1px solid rgba(0, 0, 0, 0.12)",
     backgroundColor: theme.palette.dark,
   },
   gridItem: {
@@ -332,22 +343,24 @@ function Chat(props) {
 
   const renderGrid = () => {
     return (
-      <Grid className={classes.gridContainer} container>
-        <Grid className={classes.gridItem} md={3} item>
-          
-            <div className={classes.btnContainer}>
-              <Button
-                onClick={() => {
-                  setDialogType("new");
-                  setShowDialog(true);
-                }}
-                color="primary"
-                variant="contained"
-              >
-                Nova
-              </Button>
-            </div>
-          
+      <div className={classes.gridContainer} container>
+        <Paper className={classes.gridItem} style={{
+          width: "400px"
+        }}>
+
+          <div className={classes.btnContainer}>
+            <Button
+              onClick={() => {
+                setDialogType("new");
+                setShowDialog(true);
+              }}
+              color="primary"
+              variant="contained"
+            >
+              Nova
+            </Button>
+          </div>
+
           <ChatList
             chats={chats}
             pageInfo={chatsPageInfo}
@@ -359,8 +372,8 @@ function Chat(props) {
               setShowDialog(true);
             }}
           />
-        </Grid>
-        <Grid className={classes.gridItem} md={9} item>
+        </Paper>
+        <Paper className={classes.gridItem} style={{ flex: 1}}>
           {isObject(currentChat) && has(currentChat, "id") && (
             <ChatMessages
               chat={currentChat}
@@ -372,14 +385,14 @@ function Chat(props) {
               handleLoadMore={loadMoreMessages}
             />
           )}
-        </Grid>
-      </Grid>
+        </Paper>
+      </div>
     );
   };
 
   const renderTab = () => {
     return (
-      <Grid className={classes.gridContainer} container>
+      <Grid className={classes.gridContainer} spacing={5} container>
         <Grid md={12} item>
           <Tabs
             value={tab}
@@ -431,7 +444,7 @@ function Chat(props) {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <ChatModal
         type={dialogType}
         open={showDialog}
@@ -445,10 +458,8 @@ function Chat(props) {
         }}
         handleClose={() => setShowDialog(false)}
       />
-      <Paper className={classes.mainContainer}>
-        {isWidthUp("md", props.width) ? renderGrid() : renderTab()}
-      </Paper>
-    </>
+      {isWidthUp("md", props.width) ? renderGrid() : renderTab()}
+    </div>
   );
 }
 
