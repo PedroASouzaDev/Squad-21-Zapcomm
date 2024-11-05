@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useCallback, useContext, useMemo } from "react";
+import React, { useState, useEffect, useReducer, useCallback, useContext } from "react";
 
 import { toast } from "react-toastify";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,11 +14,13 @@ import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper"
 import ScheduleModal from "../../components/ScheduleModal";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import toastError from "../../errors/toastError";
-import moment, { relativeTimeRounding } from "moment";
+import moment from "moment";
 import { SocketContext } from "../../context/Socket/SocketContext";
 import { AuthContext } from "../../context/Auth/AuthContext";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import { Calendar as CalendarSmall } from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
+import './calendar.css';
 import "moment/locale/pt-br";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import SearchIcon from "@material-ui/icons/Search";
@@ -28,13 +30,14 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import "./Schedules.css"; // Importe o arquivo CSS
 import { Tabs, Tab } from "@material-ui/core/";
 import Typography from "@material-ui/core/Typography";
-import { Avatar, Divider, IconButton } from "@mui/material";
+import { Avatar, Box, Divider, IconButton } from "@mui/material";
 import {
   List,
   ListItem,
   ListItemAvatar,
   ListItemText
 } from "@mui/material";
+import { BackspaceRounded } from "@material-ui/icons";
 
 // Defina a função getUrlParam antes de usá-la
 function getUrlParam(paramName) {
@@ -121,9 +124,8 @@ const useStyles = makeStyles((theme) => ({
   },
   mainPaper: {
     flex: 1,
-    padding: "0px",
     borderRadius: theme.spacing(.5),
-    maxHeight: "750px",
+    maxHeight: "870px",
     overflowY: "auto",
     ...theme.scrollbarStylesSoft,
   },
@@ -149,11 +151,9 @@ const useStyles = makeStyles((theme) => ({
   },
   listContainer: {
     width: '100%',
-    marginTop: theme.spacing(2),
   },
   listItem: {
     backgroundColor: theme.palette.background.main,
-    marginTop: theme.spacing(2),
     ...theme.shape,
   },
 }));
@@ -174,6 +174,7 @@ const Schedules = () => {
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
   const [contactId, setContactId] = useState(+getUrlParam("contactId"));
   const [calendarType, setCalendarType] = useState(0);
+  const [date, setDate] = useState(new Date());
 
 
   const fetchSchedules = useCallback(async () => {
@@ -329,7 +330,19 @@ const Schedules = () => {
           >
             {i18n.t("schedules.buttons.add")}
           </Button>
-          <CalendarSmall/>
+          <Box display={"flex"} flexDirection={"column"} alignItems={"flex-end"} style={{ width: "100%" }}>
+            <CalendarSmall
+              value={date}
+              onChange={(v) => setDate(v)}
+            />
+            <IconButton
+              onClick={() => setDate(new Date())}
+            >
+              <BackspaceRounded 
+                color="primary"
+              />
+            </IconButton>
+          </Box>
           <Typography
             color="primary"
             style={{
@@ -337,7 +350,7 @@ const Schedules = () => {
             }}
             variant="h6"
           >
-            Clientes
+            Agendamentos
           </Typography>
           <TextField
             fullWidth
@@ -357,10 +370,11 @@ const Schedules = () => {
             }}
           />
           <div className={classes.listContainer}>
-          <List dense>
+            <List dense>
               {schedules.map((schedule) => (
                 <ListItem key={schedule.id} className={classes.listItem}>
                   <ListItemAvatar>
+                    {/* É necessário analizar a origem (GET?) do Objeto Schedules */}
                     <Avatar src={schedule.contact.profilePicUrl} />
                   </ListItemAvatar>
                   <ListItemText
@@ -381,11 +395,12 @@ const Schedules = () => {
                   </IconButton>
                 </ListItem>
               ))}
-          </List>
+            </List>
           </div>
         </Paper>
         <Paper className={classes.mainPaper} elevation={0} onScroll={handleScroll}>
           <Calendar
+            date={date}
             className={classes.calendar}
             view={calendarProp()}
             views={[calendarProp()]}
@@ -439,6 +454,7 @@ const Schedules = () => {
         scheduleId={selectedSchedule && selectedSchedule.id}
         contactId={contactId}
         cleanContact={cleanContact}
+        activeDate={date}
       />
     </div>
   );

@@ -6,7 +6,8 @@ import OutlinedDiv from "../OutlinedDiv";
 const useStyles = makeStyles(theme => ({
     chip: {
         margin: theme.spacing(0.5),
-        cursor: "pointer"
+        cursor: "pointer",
+        borderRadius: ".5rem",
     }
 }));
 

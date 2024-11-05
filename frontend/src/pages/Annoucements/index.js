@@ -67,9 +67,9 @@ const reducer = (state, action) => {
   }
 
   if (action.type === "DELETE_ANNOUNCEMENT") {
-    const announcementId = action.payload;
+    const announcement = action.payload;
 
-    const announcementIndex = state.findIndex((u) => u.id === announcementId);
+    const announcementIndex = state.findIndex((u) => u.id === announcement.id);
     if (announcementIndex !== -1) {
       state.splice(announcementIndex, 1);
     }
@@ -239,6 +239,7 @@ const Announcements = () => {
     } catch (err) {
       toastError(err);
     }
+    dispatch({ type: "DELETE_ANNOUNCEMENT", payload: announcement });
     setDeletingAnnouncement(null);
     setSearchParam("");
     setPageNumber(1);
@@ -370,8 +371,7 @@ const Announcements = () => {
       <ConfirmationModal
         title={
           deletingAnnouncement &&
-          `${i18n.t("announcements.confirmationModal.deleteTitle")} ${deletingAnnouncement.title
-          }?`
+          `${i18n.t("announcements.confirmationModal.deleteTitle")} ${deletingAnnouncement.title}?`
         }
         open={confirmModalOpen}
         onClose={setConfirmModalOpen}
