@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     height: "100%",
     flexDirection: "column",
-    overflow: "hidden",
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
   },
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     maxHeight: "100%",
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
     borderTop: "2px solid rgba(0, 0, 0, 0.12)",
   },
 

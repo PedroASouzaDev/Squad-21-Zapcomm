@@ -1,4 +1,4 @@
-import { Chip, Paper, TextField } from "@material-ui/core";
+import { Chip, Paper, Select, TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import React, { useEffect, useRef, useState } from "react";
 import { isArray, isString } from "lodash";
@@ -78,7 +78,6 @@ export function TagsContainer({ ticket }) {
     }
 
     return (
-        <Paper style={{ padding: 12 }}>
             <Autocomplete
                 multiple
                 size="small"
@@ -107,7 +106,7 @@ export function TagsContainer({ ticket }) {
                     ))
                 }
                 renderInput={(params) => (
-                    <TextField {...params} variant="outlined" placeholder="Tags" />
+                    <TextField {...params} variant="outlined" placeholder="Tags"/>
                 )}
                 PaperComponent={({ children }) => (
                     <Paper style={{ width: 400, marginLeft: 12 }}>
@@ -115,6 +114,5 @@ export function TagsContainer({ ticket }) {
                     </Paper>
                 )}
             />
-        </Paper>
     )
 }
