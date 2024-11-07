@@ -9,7 +9,6 @@ import {
   useTheme,
 } from "@material-ui/core";
 
-import { ChevronLeft } from "@material-ui/icons";
 
 import MainListItems from "./MainListItems";
 import UserModal from "../components/UserModal";
@@ -139,7 +138,6 @@ const useStyles = makeStyles((theme) => ({
     // color: theme.barraSuperior.secondary.main,
   },
   logo: {
-    width: "80%",
     height: "auto",
     maxWidth: 180,
     [theme.breakpoints.down("sm")]: {
@@ -150,9 +148,8 @@ const useStyles = makeStyles((theme) => ({
     logo: theme.logo
   },
   logoFav: {
-    width: "80%",
     height: "auto",
-    maxWidth: 180,
+    maxWidth: 30,
     [theme.breakpoints.down("sm")]: {
       width: "auto",
       height: "80%",

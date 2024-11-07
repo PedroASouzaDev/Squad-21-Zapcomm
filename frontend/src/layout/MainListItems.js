@@ -20,13 +20,8 @@ import CodeRoundedIcon from "@material-ui/icons/CodeRounded";
 import EventIcon from "@material-ui/icons/Event";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PeopleIcon from "@material-ui/icons/People";
-import ListIcon from "@material-ui/icons/ListAlt";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import ForumIcon from "@material-ui/icons/Forum";
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { i18n } from "../translate/i18n";
 import { WhatsAppsContext } from "../context/WhatsApp/WhatsAppsContext";
 import { AuthContext } from "../context/Auth/AuthContext";
@@ -40,7 +35,6 @@ import toastError from "../errors/toastError";
 import { makeStyles } from "@material-ui/core/styles";
 import { AllInclusive, AttachFile, BlurCircular, DeviceHubOutlined, Schedule } from '@material-ui/icons';
 import usePlans from "../hooks/usePlans";
-import Typography from "@material-ui/core/Typography";
 import useVersion from "../hooks/useVersion";
 import Box from "@material-ui/core/Box";
 
@@ -52,7 +46,6 @@ import {
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import UserModal from "../components/UserModal";
-import { DigitalClock } from "@mui/x-date-pickers";
 
 const useStyles = makeStyles((theme) => ({
   ListSubheader: {
