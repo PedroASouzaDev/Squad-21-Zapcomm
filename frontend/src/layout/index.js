@@ -1,46 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
 import clsx from "clsx";
-import moment from "moment";
 import {
   makeStyles,
   Drawer,
   AppBar,
-  Toolbar,
   List,
-  Typography,
-  Divider,
-  MenuItem,
   IconButton,
-  Menu,
   useTheme,
-  useMediaQuery,
 } from "@material-ui/core";
 
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import CachedIcon from "@material-ui/icons/Cached";
+import { ChevronLeft } from "@material-ui/icons";
 
 import MainListItems from "./MainListItems";
-import NotificationsPopOver from "../components/NotificationsPopOver";
-import NotificationsVolume from "../components/NotificationsVolume";
 import UserModal from "../components/UserModal";
 import { AuthContext } from "../context/Auth/AuthContext";
 import BackdropLoading from "../components/BackdropLoading";
-import DarkMode from "../components/DarkMode";
-import { i18n } from "../translate/i18n";
 import toastError from "../errors/toastError";
-import AnnouncementsPopover from "../components/AnnouncementsPopover";
 
 import logo from "../assets/logo.png";
+import logoFav from "../assets/logoFav.png"
 import { SocketContext } from "../context/Socket/SocketContext";
-import ChatPopover from "../pages/Chat/ChatPopover";
-
-import { useDate } from "../hooks/useDate";
-
-import ColorModeContext from "./themeContext";
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 const drawerWidth = 240;
 
@@ -72,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarIcon: {
     display: "flex",
+    padding: theme.spacing(2),
     alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0 8px",
+    justifyContent: "center",
     minHeight: "48px",
     [theme.breakpoints.down("sm")]: {
       height: "48px"
@@ -170,13 +149,22 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: theme.logo
   },
+  logoFav: {
+    width: "80%",
+    height: "auto",
+    maxWidth: 180,
+    [theme.breakpoints.down("sm")]: {
+      width: "auto",
+      height: "80%",
+      maxWidth: 180,
+    },
+    logo: theme.logo
+  },
 }));
 
 const LoggedInLayout = ({ children, themeToggle }) => {
   const classes = useStyles();
   const [userModalOpen, setUserModalOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const { handleLogout, loading } = useContext(AuthContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerVariant, setDrawerVariant] = useState("permanent");
@@ -184,12 +172,6 @@ const LoggedInLayout = ({ children, themeToggle }) => {
   const { user } = useContext(AuthContext);
 
   const theme = useTheme();
-  const { colorMode } = useContext(ColorModeContext);
-  const greaterThenSm = useMediaQuery(theme.breakpoints.up("sm"));
-
-  const [volume, setVolume] = useState(localStorage.getItem("volume") || 1);
-
-  const { dateToClient } = useDate();
 
 
   //################### CODIGOS DE TESTE #########################################
@@ -282,46 +264,23 @@ const LoggedInLayout = ({ children, themeToggle }) => {
     };
   }, [socketManager]);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-    setMenuOpen(true);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-    setMenuOpen(false);
-  };
-
-  const handleOpenUserModal = () => {
-    setUserModalOpen(true);
-    handleCloseMenu();
-  };
-
-  const handleClickLogout = () => {
-    handleCloseMenu();
-    handleLogout();
-  };
-
   const drawerClose = () => {
     if (document.body.offsetWidth < 600) {
       setDrawerOpen(false);
     }
   };
 
-  const handleRefreshPage = () => {
-    window.location.reload(false);
-  }
-
-  const handleMenuItemClick = () => {
-    const { innerWidth: width } = window;
-    if (width <= 600) {
-      setDrawerOpen(false);
-    }
-  };
-
-  const toggleColorMode = () => {
-    colorMode.toggleColorMode();
-  }
+  const handleLogo = () => {
+    if (!drawerOpen) {
+      return (
+        <img src={logo} className={classes.logo} alt="logo.png" />
+      )
+    } else {
+      return (
+        <img src={logoFav} className={classes.logoFav} alt="logo.png" />
+      )
+    };
+};
 
   if (loading) {
     return <BackdropLoading />;
@@ -331,23 +290,22 @@ const LoggedInLayout = ({ children, themeToggle }) => {
     <div className={classes.root}>
       <Drawer
         variant={drawerVariant}
-        className={drawerOpen ? classes.drawerPaper : classes.drawerPaperClose}
+        className={!drawerOpen ? classes.drawerPaper : classes.drawerPaperClose}
         classes={{
           paper: clsx(
             classes.drawerPaper,
-            !drawerOpen && classes.drawerPaperClose
+            drawerOpen && classes.drawerPaperClose
           ),
         }}
-        open={drawerOpen}
+        open={!drawerOpen}
+        onMouseEnter={() => setDrawerOpen(!drawerOpen)}
+        onMouseLeave={() => setDrawerOpen(!drawerOpen)}
       >
         <div className={classes.toolbarIcon}>
-          <img src={logo} className={classes.logo} alt="logo" />
-          <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
-            <ChevronLeftIcon />
-          </IconButton>
+          {handleLogo()}
         </div>
         <List className={classes.containerWithScroll}>
-          <MainListItems drawerClose={drawerClose} collapsed={!drawerOpen} />
+          <MainListItems drawerClose={drawerClose} collapsed={drawerOpen} />
         </List>
       </Drawer>
       <UserModal
