@@ -126,8 +126,7 @@ export default function ChatList({
       </ConfirmationModal>
       <div className={classes.chatList}>
         <List>
-          {Array.isArray(chats) &&
-            chats.length > 0 &&
+          {Array.isArray(chats) && chats.length > 0 &&
             chats.map((chat, key) => (
               <ListItem
                 onClick={() => goToMessages(chat)}
