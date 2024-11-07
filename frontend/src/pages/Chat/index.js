@@ -25,6 +25,9 @@ import { has, isObject } from "lodash";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import MainHeader from "../../components/MainHeader";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
+import Title from "../../components/Title";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,8 +35,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.main,
     display: "flex",
     flexDirection: "column",
-    gap: theme.spacing(4),
-    padding: theme.spacing(4),
+    padding: theme.spacing(2),
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft
   },
@@ -49,13 +51,24 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     display: "flex",
-    gap: theme.spacing(4),
+    gap: theme.spacing(2),
     flex: 1,
     height: "100%",
     backgroundColor: theme.palette.dark,
   },
+  sideHeader: {
+    padding: theme.spacing(1),
+  },
+  newBtn: {
+    width:  36,
+    height: 36,
+    borderRadius: "50%",
+    minWidth: 0,
+    minHeight: 0,
+  },
   gridItem: {
     height: "100%",
+    width: "400px",
   },
   gridItemTab: {
     height: "92%",
@@ -344,21 +357,24 @@ function Chat(props) {
   const renderGrid = () => {
     return (
       <div className={classes.gridContainer} container>
-        <Paper className={classes.gridItem} style={{
-          width: "400px"
-        }}>
-
-          <div className={classes.btnContainer}>
-            <Button
-              onClick={() => {
-                setDialogType("new");
-                setShowDialog(true);
-              }}
-              color="primary"
-              variant="contained"
-            >
-              Nova
-            </Button>
+        <Paper elevation={0} className={classes.gridItem}>
+          <div className={classes.sideHeader}>
+            <MainHeader>
+              <Title>Chat Interno</Title>
+              <MainHeaderButtonsWrapper>
+                <Button
+                  className={classes.newBtn}
+                  onClick={() => {
+                    setDialogType("new");
+                    setShowDialog(true);
+                  }}
+                  color="primary"
+                  variant="contained"
+                >
+                  +
+                </Button>
+              </MainHeaderButtonsWrapper>
+            </MainHeader>
           </div>
 
           <ChatList
@@ -373,7 +389,7 @@ function Chat(props) {
             }}
           />
         </Paper>
-        <Paper className={classes.gridItem} style={{ flex: 1}}>
+        <Paper className={classes.gridItem} elevation={0} style={{ flex: 1}}>
           {isObject(currentChat) && has(currentChat, "id") && (
             <ChatMessages
               chat={currentChat}

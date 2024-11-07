@@ -3,10 +3,10 @@ import {
   Box,
   FormControl,
   IconButton,
-  Input,
   InputAdornment,
   makeStyles,
   Paper,
+  TextField,
   Typography,
 } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
@@ -35,13 +35,16 @@ const useStyles = makeStyles((theme) => ({
   },
   inputArea: {
     position: "relative",
-    height: "auto",
   },
   input: {
-    padding: "20px",
+    margin: 0,
   },
   buttonSend: {
     margin: theme.spacing(1),
+  },
+  formControl: {
+    backgroundColor: "#eee",
+    ...theme.shape,
   },
   boxLeft: {
     padding: "10px 10px 5px",
@@ -146,9 +149,11 @@ export default function ChatMessages({
         <div ref={baseRef}></div>
       </div>
       <div className={classes.inputArea}>
-        <FormControl variant="outlined" fullWidth>
-          <Input
-            multiline
+        <FormControl variant="filled" className={classes.formControl} fullWidth>
+          <TextField
+            variant="outlined"
+            className={classes.input}
+            placeholder="Type a Message"
             value={contentMessage}
             onKeyUp={(e) => {
               if (e.key === "Enter" && contentMessage.trim() !== "") {
@@ -157,22 +162,23 @@ export default function ChatMessages({
               }
             }}
             onChange={(e) => setContentMessage(e.target.value)}
-            className={classes.input}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => {
-                    if (contentMessage.trim() !== "") {
-                      handleSendMessage(contentMessage);
-                      setContentMessage("");
-                    }
-                  }}
-                  className={classes.buttonSend}
-                >
-                  <SendIcon />
-                </IconButton>
-              </InputAdornment>
-            }
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => {
+                      if (contentMessage.trim() !== "") {
+                        handleSendMessage(contentMessage);
+                        setContentMessage("");
+                      }
+                    }}
+                    className={classes.buttonSend}
+                  >
+                    <SendIcon color="primary"/>
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </FormControl>
       </div>
