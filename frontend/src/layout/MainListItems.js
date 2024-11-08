@@ -494,7 +494,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
         )}
       />
       <Divider />
-      <ListItem button dense className={classes.listItem}>
+      <ListItem button className={classes.listItem}>
         <ListItemIcon>
           <IconButton
             aria-label="account of current user"
@@ -506,7 +506,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
             <AccountCircle />
           </IconButton>
         </ListItemIcon>
-        <Box onClick={() => setUserModalOpen(true)}>
+        <Box onClick={() => setUserModalOpen(true)} flex={1}>
           {user.name}
         </Box>
       </ListItem>

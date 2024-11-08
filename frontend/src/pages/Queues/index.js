@@ -21,7 +21,7 @@ import Title from "../../components/Title";
 import { i18n } from "../../translate/i18n";
 import toastError from "../../errors/toastError";
 import api from "../../services/api";
-import { DeleteOutline, Edit } from "@material-ui/icons";
+import { DeleteRounded, EditRounded } from "@material-ui/icons";
 import QueueModal from "../../components/QueueModal";
 import { toast } from "react-toastify";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   },
   tableRow: {
     backgroundColor: 'white',
-    height: "70px",
     borderRadius: theme.shape.borderRadius,
     overflow: "hidden",
   },
@@ -228,7 +227,7 @@ const Queues = () => {
         </MainHeaderButtonsWrapper>
       </MainHeader>
       <Paper className={classes.mainPaper} variant="outlined">
-        <Table size="small" className={classes.Table}>
+        <Table className={classes.Table}>
           <TableHead>
             <TableRow>
 			   <TableCell align="center">
@@ -255,7 +254,7 @@ const Queues = () => {
             <>
               {queues.map((queue) => (
                 <TableRow key={queue.id} className={classes.tableRow}>
-				<TableCell align="center" className={classes.Cell_left}>{queue.id}</TableCell>
+                  <TableCell align="center" className={classes.Cell_left}>{queue.id}</TableCell>
                   <TableCell align="center">{queue.name}</TableCell>
                   <TableCell align="center">
                     <div className={classes.customTableCell}>
@@ -297,7 +296,7 @@ const Queues = () => {
                       size="small"
                       onClick={() => handleEditQueue(queue)}
                     >
-                      <Edit />
+                      <EditRounded />
                     </IconButton>
 
                     <IconButton
@@ -307,7 +306,7 @@ const Queues = () => {
                         setConfirmModalOpen(true);
                       }}
                     >
-                      <DeleteOutline />
+                      <DeleteRounded />
                     </IconButton>
                   </TableCell>
                 </TableRow>
