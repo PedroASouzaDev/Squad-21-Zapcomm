@@ -46,6 +46,7 @@ import {
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import UserModal from "../components/UserModal";
+import { useLocation } from "react-router-dom/cjs/react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   ListSubheader: {
@@ -53,12 +54,24 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-15px",
     marginBottom: "-10px",
   },
+  listItem: {
+    paddingLeft: theme.spacing(3),
+    borderRadius: theme.spacing(.4),
+  },
+  listItemActive: {
+    backgroundColor: theme.palette.secondaryLight.main,
+    "&:hover": {
+      backgroundColor: theme.palette.secondaryLightHover.main,
+    },
+  }
 }));
 
 
-function ListItemLink(props) {
-  const { icon, primary, to, className } = props;
-
+const ListItemLink = ({ icon, primary, to, className }) => {
+  const classes = useStyles();
+  const location = useLocation();
+  // console.log(location);
+  // console.log(to);
   const renderLink = React.useMemo(
     () =>
       React.forwardRef((itemProps, ref) => (
@@ -68,12 +81,10 @@ function ListItemLink(props) {
   );
 
   return (
-    <li>
-      <ListItem button dense component={renderLink} className={className}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
+    <ListItem button dense component={renderLink} className={`${className} ${ to == location.pathname ? classes.listItemActive : null} ${classes.listItem}`}>
+      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItemText primary={primary} />
+    </ListItem>
   );
 }
 
@@ -395,17 +406,11 @@ const MainListItems = (props) => {
 			
             {showCampaigns && (
               <>
-                <ListItem
-                  button
-                  onClick={() => history.push("/campaigns")}
-                >
-                  <ListItemIcon>
-                    <EventAvailableIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={i18n.t("mainDrawer.listItems.campaigns")}
-                  />
-                </ListItem>
+                <ListItemLink
+                  to="/campaigns"
+                  primary={i18n.t("mainDrawer.listItems.campaigns")}
+                  icon={<EventAvailableIcon />}
+                />
               </>
             )}
             {user.super && (
@@ -490,7 +495,7 @@ const MainListItems = (props) => {
         )}
       />
       <Divider />
-      <ListItem>
+      <ListItem className={classes.listItem}>
         <Box display={"flex"} alignItems={"center"} sx={{ gap: "1.5em", }}>
           <IconButton
             aria-label="account of current user"

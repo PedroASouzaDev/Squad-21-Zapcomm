@@ -130,7 +130,6 @@ const useStyles = makeStyles((theme) => ({
   },
   containerWithScroll: {
     flex: 1,
-    padding: theme.spacing(1),
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft,
   },
