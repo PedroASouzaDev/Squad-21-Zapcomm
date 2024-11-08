@@ -144,10 +144,13 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     ...theme.textField,
   },
-  tab: {
+  tabs: {
     backgroundColor: theme.palette.light.main,
     width: "fit-content",
     ...theme.shape,
+  },
+  tab: {
+    zIndex: 1,
   },
   listContainer: {
     width: '100%',
@@ -309,11 +312,22 @@ const Schedules = () => {
             indicatorColor="primary"
             textColor="primary"
             onChange={(e, v) => setCalendarType(v)}
-            className={classes.tab}
+            className={classes.tabs}
+            TabIndicatorProps={{
+              style: {
+                height: "100%",
+              }
+            }}
           >
-            <Tab label="Mês"/>
-            <Tab label="Semana"/>
-            <Tab label="Dia"/>
+            <Tab label="Mês" className={classes.tab} style={{
+              color: calendarType === 0 ? "#fff" : "inherit"
+            }}/>
+            <Tab label="Semana" className={classes.tab} style={{
+              color: calendarType === 1 ? "#fff" : "inherit"
+            }}/>
+            <Tab label="Dia" className={classes.tab} style={{
+              color: calendarType === 2 ? "#fff" : "inherit"
+            }}/>
           </Tabs>
         </MainHeaderButtonsWrapper>
       </MainHeader>

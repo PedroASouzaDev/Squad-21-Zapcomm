@@ -47,10 +47,13 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft,
   },
-  tab: {
+  tabs: {
     backgroundColor: theme.palette.light.main,
     width: "fit-content",
     ...theme.shape,
+  },
+  tab: {
+    zIndex: 1,
   },
   paper: {
     padding: theme.spacing(3),
@@ -164,14 +167,30 @@ const SettingsCustom = () => {
           <Tabs
             value={tab}
             textColor="primary"
+            indicatorColor="primary"
             onChange={handleTabChange}
-            className={classes.tab}
+            className={classes.tabs}
+            TabIndicatorProps={{
+              style: {
+                height: "100%",
+              }
+            }}
           >
-            <Tab label="Opções" value={"options"} />
-            {schedulesEnabled && <Tab label="Horários" value={"schedules"} />}
-            {isSuper() ? <Tab label="Empresas" value={"companies"} /> : null}
-            {isSuper() ? <Tab label="Planos" value={"plans"} /> : null}
-            {isSuper() ? <Tab label="Ajuda" value={"helps"} /> : null}
+            <Tab label="Opções" value={"options"} className={classes.tab} style={{
+              color: tab === "options" ? "#fff" : "inherit"
+            }}/>
+            {schedulesEnabled && <Tab label="Horários" value={"schedules"} className={classes.tab} style={{
+              color: tab === "schedules" ? "#fff" : "inherit"
+            }}/>}
+            {isSuper() ? <Tab label="Empresas" value={"companies"} className={classes.tab} style={{
+              color: tab === "companies" ? "#fff" : "inherit"
+            }}/> : null}
+            {isSuper() ? <Tab label="Planos" value={"plans"} className={classes.tab} style={{
+              color: tab === "plans" ? "#fff" : "inherit"
+            }}/> : null}
+            {isSuper() ? <Tab label="Ajuda" value={"helps"} className={classes.tab} style={{
+              color: tab === "helps" ? "#fff" : "inherit"
+            }}/> : null}
           </Tabs>
         </MainHeaderButtonsWrapper>
       </MainHeader>

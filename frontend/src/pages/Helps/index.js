@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     transition: 'transform 0.3s, box-shadow 0.3s',
     '&:hover': {
       transform: 'scale(1.03)',
-      boxShadow: `2px 2px 10px rgb(40,125,100,.3)`,
+      boxShadow: `2px 2px 10px ${theme.palette.primary}`,
       color: theme.palette.primary.main,
     },
   },
