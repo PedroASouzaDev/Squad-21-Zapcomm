@@ -294,14 +294,14 @@ const LoggedInLayout = ({ children, themeToggle }) => {
           ),
         }}
         open={!drawerOpen}
-        onMouseEnter={() => setDrawerOpen(!drawerOpen)}
-        onMouseLeave={() => setDrawerOpen(!drawerOpen)}
+        onMouseEnter={() => setDrawerOpen(false)}
+        onMouseLeave={() => setDrawerOpen(true)}
       >
         <div className={classes.toolbarIcon}>
           {handleLogo()}
         </div>
         <List className={classes.containerWithScroll}>
-          <MainListItems drawerClose={drawerClose} collapsed={drawerOpen} />
+          <MainListItems drawerClose={drawerClose} collapsed={drawerOpen}/>
         </List>
       </Drawer>
       <UserModal

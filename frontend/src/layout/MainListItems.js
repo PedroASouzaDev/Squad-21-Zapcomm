@@ -144,14 +144,13 @@ const reducer = (state, action) => {
   }
 };
 
-const MainListItems = (props) => {
+const MainListItems = ({ drawerClose, collapsed}) => {
   const classes = useStyles();
   // Account buttton
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [userModalOpen, setUserModalOpen] = useState(false);
 
-  const { drawerClose, collapsed } = props;
   const { whatsApps } = useContext(WhatsAppsContext);
   const { user, handleLogout } = useContext(AuthContext);
   const [connectionWarning, setConnectionWarning] = useState(false);
@@ -495,8 +494,8 @@ const MainListItems = (props) => {
         )}
       />
       <Divider />
-      <ListItem className={classes.listItem}>
-        <Box display={"flex"} alignItems={"center"} sx={{ gap: "1.5em", }}>
+      <ListItem button dense className={classes.listItem}>
+        <ListItemIcon>
           <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -506,7 +505,9 @@ const MainListItems = (props) => {
           >
             <AccountCircle />
           </IconButton>
-            {user.name}
+        </ListItemIcon>
+        <Box onClick={() => setUserModalOpen(true)}>
+          {user.name}
         </Box>
       </ListItem>
 
