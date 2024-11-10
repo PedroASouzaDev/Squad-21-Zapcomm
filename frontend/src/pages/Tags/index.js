@@ -288,7 +288,7 @@ const useStyles = makeStyles((theme) => ({
               color="primary"
               onClick={handleOpenTagModal}
             >
-              + Adicionar
+              {i18n.t("tags.buttons.add")}
             </Button>
           </MainHeaderButtonsWrapper>
         </MainHeader>
@@ -300,10 +300,10 @@ const useStyles = makeStyles((theme) => ({
           <Table size="fit-content" className={classes.Table}>
             <TableHead>
               <TableRow>
-                <TableCell align="center">Tag</TableCell>
-                <TableCell align="center">Registros</TableCell>
-                <TableCell align="center">Status</TableCell>
-                <TableCell align="center">Ações</TableCell>
+                <TableCell align="center">{i18n.t("tags.table.name")}</TableCell>
+                <TableCell align="center">{i18n.t("tags.table.tickets")}</TableCell>
+                <TableCell align="center">{i18n.t("tags.table.status")}</TableCell>
+                <TableCell align="center">{i18n.t("tags.table.actions")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -327,7 +327,7 @@ const useStyles = makeStyles((theme) => ({
                                 backgroundColor: '#2B99431A',
                                 color:"green",
                             }}
-                            label={"ATIVO"}
+                            label={i18n.t("tags.table.active")}
                             size="small"
                         />
                     </TableCell>
