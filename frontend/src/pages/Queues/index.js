@@ -205,7 +205,7 @@ const Queues = () => {
             color="primary"
             onClick={handleOpenQueueModal}
           >
-            + Adicionar fila
+            {i18n.t("queues.buttons.add")}
           </Button>
         </MainHeaderButtonsWrapper>
       </MainHeader>

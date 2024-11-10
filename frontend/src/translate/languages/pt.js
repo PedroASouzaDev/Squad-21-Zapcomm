@@ -760,7 +760,7 @@ const messages = {
           orderQueue: "Ordenação da fila (bot)",
         },
         buttons: {
-          add: "Adicionar fila",
+          add: "+Adicionar fila",
         },
         confirmationModal: {
           deleteTitle: "Excluir",
