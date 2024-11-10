@@ -793,7 +793,8 @@ const messages = {
         },
       },
       helps: {
-        title: "Central de Ajuda",
+        title: "Ajuda",
+        videoTitle: "Vídeos",
       },
       schedules: {
         title: "Agendamentos",
