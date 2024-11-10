@@ -760,7 +760,7 @@ const messages = {
           orderQueue: "Ordenação da fila (bot)",
         },
         buttons: {
-          add: "Adicionar fila",
+          add: "+Adicionar fila",
         },
         confirmationModal: {
           deleteTitle: "Excluir",
@@ -793,7 +793,8 @@ const messages = {
         },
       },
       helps: {
-        title: "Central de Ajuda",
+        title: "Ajuda",
+        videoTitle: "Vídeos",
       },
       schedules: {
         title: "Agendamentos",
@@ -825,13 +826,15 @@ const messages = {
 		  deleteAllTitle: "Deletar Todos",
         },
         table: {
-          name: "Nome",
+          name: "Tag",
           color: "Cor",
-          tickets: "Registros Tagdos",
+          tickets: "Registros",
           actions: "Ações",
+          status: "Status",
+          active: "ATIVO",
         },
         buttons: {
-          add: "Nova Tag",
+          add: "+ Adicionar",
 		  deleteAll: "Deletar Todas",
         },
         toasts: {

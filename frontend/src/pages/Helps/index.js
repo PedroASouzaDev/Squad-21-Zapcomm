@@ -178,10 +178,10 @@ const Helps = () => {
   return (
     <div className={classes.root}>
       <MainHeader>
-        <Title>Ajuda ({records.length})</Title>
+        <Title>{i18n.t("helps.title")} ({records.length})</Title>
         <MainHeaderButtonsWrapper></MainHeaderButtonsWrapper>
       </MainHeader>
-      <Title className={classes.tabletitle}><h3>Vídeos</h3></Title>
+      <Title className={classes.tabletitle}><h3>{i18n.t("helps.videoTitle")}</h3></Title>
       <Paper className={classes.mainPaper}>
         {renderHelps()}
         {renderVideoModal()}
