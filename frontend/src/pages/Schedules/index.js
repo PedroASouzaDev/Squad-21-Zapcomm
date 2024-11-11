@@ -125,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   mainPaper: {
     flex: 1,
     borderRadius: theme.spacing(.5),
-    maxHeight: "870px",
+    maxHeight: "760px",
     overflowY: "auto",
     ...theme.scrollbarStylesSoft,
   },
