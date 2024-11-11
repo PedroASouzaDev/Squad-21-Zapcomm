@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     flex: 1,
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
   },
   listItem: {
     cursor: "pointer",
@@ -124,55 +124,52 @@ export default function ChatList({
       >
         Esta ação não pode ser revertida, confirmar?
       </ConfirmationModal>
-      <div className={classes.mainContainer}>
-        <div className={classes.chatList}>
-          <List>
-            {Array.isArray(chats) &&
-              chats.length > 0 &&
-              chats.map((chat, key) => (
-                <ListItem
-                  onClick={() => goToMessages(chat)}
-                  key={key}
-                  className={classes.listItem}
-                  style={getItemStyle(chat)}
-                  button
-                >
-                  <ListItemText
-                    primary={getPrimaryText(chat)}
-                    secondary={getSecondaryText(chat)}
-                  />
-                  {chat.ownerId === user.id && (
-                    <ListItemSecondaryAction>
-                      <IconButton
-                        onClick={() => {
-                          goToMessages(chat).then(() => {
-                            handleEditChat(chat);
-                          });
-                        }}
-                        edge="end"
-                        aria-label="delete"
-                        size="small"
-                        style={{ marginRight: 5 }}
-                      >
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton
-                        onClick={() => {
-                          setSelectedChat(chat);
-                          setConfirmModalOpen(true);
-                        }}
-                        edge="end"
-                        aria-label="delete"
-                        size="small"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  )}
-                </ListItem>
-              ))}
-          </List>
-        </div>
+      <div className={classes.chatList}>
+        <List>
+          {Array.isArray(chats) && chats.length > 0 &&
+            chats.map((chat, key) => (
+              <ListItem
+                onClick={() => goToMessages(chat)}
+                key={key}
+                className={classes.listItem}
+                style={getItemStyle(chat)}
+                button
+              >
+                <ListItemText
+                  primary={getPrimaryText(chat)}
+                  secondary={getSecondaryText(chat)}
+                />
+                {chat.ownerId === user.id && (
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      onClick={() => {
+                        goToMessages(chat).then(() => {
+                          handleEditChat(chat);
+                        });
+                      }}
+                      edge="end"
+                      aria-label="delete"
+                      size="small"
+                      style={{ marginRight: 5 }}
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      onClick={() => {
+                        setSelectedChat(chat);
+                        setConfirmModalOpen(true);
+                      }}
+                      edge="end"
+                      aria-label="delete"
+                      size="small"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                )}
+              </ListItem>
+            ))}
+        </List>
       </div>
     </>
   );

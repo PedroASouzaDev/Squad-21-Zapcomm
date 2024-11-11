@@ -35,11 +35,10 @@ import { SocketContext } from "../../context/Socket/SocketContext";
 
 const useStyles = makeStyles((theme) => ({
   messagesListWrapper: {
-    overflow: "hidden",
     position: "relative",
     display: "flex",
     flexDirection: "column",
-    flexGrow: 1,
+    flex: 1,
     width: "100%",
     minWidth: 300,
     minHeight: 200,
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: "20px 20px 20px 20px",
     overflowY: "scroll",
-    ...theme.scrollbarStyles,
+    ...theme.scrollbarStylesSoft,
   },
 
   circleLoading: {

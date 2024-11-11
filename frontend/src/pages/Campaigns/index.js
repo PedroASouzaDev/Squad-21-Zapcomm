@@ -24,10 +24,13 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft
   },
-  tab: {
+  tabs: {
     backgroundColor: theme.palette.light.main,
     width: "fit-content",
     ...theme.shape,
+  },
+  tab: {
+    zIndex: 1,
   },
 }));
 
@@ -62,12 +65,24 @@ const Campaigns = () => {
           <Tabs
             value={content}
             textColor="primary"
+            indicatorColor="primary"
             onChange={(e, v) => setContent(v)}
-            className={classes.tab}
+            className={classes.tabs}
+            TabIndicatorProps={{
+              style: {
+                height: "100%",
+              }
+            }}
           >
-            <Tab label="Listagem"></Tab>
-            <Tab label="Lista de Contatos"></Tab>
-            <Tab label="Configurações"></Tab>
+            <Tab label="Listagem" className={classes.tab} style={{
+              color: content === 0 ? "#fff" : "inherit"
+            }}/>
+            <Tab label="Lista de Contatos" className={classes.tab} style={{
+              color: content === 1 ? "#fff" : "inherit"
+            }}/>
+            <Tab label="Configurações" className={classes.tab} style={{
+              color: content === 2 ? "#fff" : "inherit"
+            }}/>
           </Tabs>
         </MainHeaderButtonsWrapper>
       </MainHeader>

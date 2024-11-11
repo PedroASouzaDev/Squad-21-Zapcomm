@@ -20,13 +20,8 @@ import CodeRoundedIcon from "@material-ui/icons/CodeRounded";
 import EventIcon from "@material-ui/icons/Event";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PeopleIcon from "@material-ui/icons/People";
-import ListIcon from "@material-ui/icons/ListAlt";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import ForumIcon from "@material-ui/icons/Forum";
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import { i18n } from "../translate/i18n";
 import { WhatsAppsContext } from "../context/WhatsApp/WhatsAppsContext";
 import { AuthContext } from "../context/Auth/AuthContext";
@@ -40,7 +35,6 @@ import toastError from "../errors/toastError";
 import { makeStyles } from "@material-ui/core/styles";
 import { AllInclusive, AttachFile, BlurCircular, DeviceHubOutlined, Schedule } from '@material-ui/icons';
 import usePlans from "../hooks/usePlans";
-import Typography from "@material-ui/core/Typography";
 import useVersion from "../hooks/useVersion";
 import Box from "@material-ui/core/Box";
 
@@ -52,7 +46,7 @@ import {
 } from "@material-ui/core";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import UserModal from "../components/UserModal";
-import { DigitalClock } from "@mui/x-date-pickers";
+import { useLocation } from "react-router-dom/cjs/react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   ListSubheader: {
@@ -60,12 +54,24 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "-15px",
     marginBottom: "-10px",
   },
+  listItem: {
+    paddingLeft: theme.spacing(3),
+    borderRadius: theme.spacing(.4),
+  },
+  listItemActive: {
+    backgroundColor: theme.palette.secondaryLight.main,
+    "&:hover": {
+      backgroundColor: theme.palette.secondaryLightHover.main,
+    },
+  }
 }));
 
 
-function ListItemLink(props) {
-  const { icon, primary, to, className } = props;
-
+const ListItemLink = ({ icon, primary, to, className }) => {
+  const classes = useStyles();
+  const location = useLocation();
+  // console.log(location);
+  // console.log(to);
   const renderLink = React.useMemo(
     () =>
       React.forwardRef((itemProps, ref) => (
@@ -75,12 +81,10 @@ function ListItemLink(props) {
   );
 
   return (
-    <li>
-      <ListItem button dense component={renderLink} className={className}>
-        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
+    <ListItem button dense component={renderLink} className={`${className} ${ to == location.pathname ? classes.listItemActive : null} ${classes.listItem}`}>
+      {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+      <ListItemText primary={primary} />
+    </ListItem>
   );
 }
 
@@ -140,24 +144,20 @@ const reducer = (state, action) => {
   }
 };
 
-const MainListItems = (props) => {
+const MainListItems = ({ drawerClose, collapsed}) => {
   const classes = useStyles();
   // Account buttton
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [userModalOpen, setUserModalOpen] = useState(false);
 
-  const { drawerClose, collapsed } = props;
   const { whatsApps } = useContext(WhatsAppsContext);
   const { user, handleLogout } = useContext(AuthContext);
   const [connectionWarning, setConnectionWarning] = useState(false);
-  const [openCampaignSubmenu, setOpenCampaignSubmenu] = useState(false);
   const [showCampaigns, setShowCampaigns] = useState(false);
   const [showKanban, setShowKanban] = useState(false);
   const [showOpenAi, setShowOpenAi] = useState(false);
   const [showIntegrations, setShowIntegrations] = useState(false); const history = useHistory();
-  const [showSchedules, setShowSchedules] = useState(false);
-  const [showInternalChat, setShowInternalChat] = useState(false);
   const [showExternalApi, setShowExternalApi] = useState(false);
 
 
@@ -214,8 +214,6 @@ const MainListItems = (props) => {
       setShowKanban(planConfigs.plan.useKanban);
       setShowOpenAi(planConfigs.plan.useOpenAi);
       setShowIntegrations(planConfigs.plan.useIntegrations);
-      setShowSchedules(planConfigs.plan.useSchedules);
-      setShowInternalChat(planConfigs.plan.useInternalChat);
       setShowExternalApi(planConfigs.plan.useExternalApi);
     }
     fetchData();
@@ -307,7 +305,7 @@ const MainListItems = (props) => {
   };
 
   const handleClickLogout = () => {
-    //handleCloseMenu();
+    handleCloseMenu();
     handleLogout();
   };
 
@@ -407,17 +405,11 @@ const MainListItems = (props) => {
 			
             {showCampaigns && (
               <>
-                <ListItem
-                  button
-                  onClick={() => history.push("/campaigns")}
-                >
-                  <ListItemIcon>
-                    <EventAvailableIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={i18n.t("mainDrawer.listItems.campaigns")}
-                  />
-                </ListItem>
+                <ListItemLink
+                  to="/campaigns"
+                  primary={i18n.t("mainDrawer.listItems.campaigns")}
+                  icon={<EventAvailableIcon />}
+                />
               </>
             )}
             {user.super && (
@@ -502,8 +494,8 @@ const MainListItems = (props) => {
         )}
       />
       <Divider />
-      <ListItem>
-        <Box display={"flex"} alignItems={"center"} sx={{ gap: "1.5em", }}>
+      <ListItem button className={classes.listItem}>
+        <ListItemIcon>
           <IconButton
             aria-label="account of current user"
             aria-controls="menu-appbar"
@@ -513,7 +505,9 @@ const MainListItems = (props) => {
           >
             <AccountCircle />
           </IconButton>
-            {user.name}
+        </ListItemIcon>
+        <Box onClick={() => setUserModalOpen(true)} flex={1}>
+          {user.name}
         </Box>
       </ListItem>
 

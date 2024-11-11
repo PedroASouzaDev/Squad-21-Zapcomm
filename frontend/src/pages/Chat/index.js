@@ -4,20 +4,15 @@ import { useParams, useHistory } from "react-router-dom";
 
 import {
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   Grid,
   makeStyles,
   Paper,
   Tab,
   Tabs,
-  TextField,
 } from "@material-ui/core";
 import ChatList from "./ChatList";
 import ChatMessages from "./ChatMessages";
-import { UsersFilter } from "../../components/UsersFilter";
+import ChatModal from "../../components/ChatModal";
 import api from "../../services/api";
 import { SocketContext } from "../../context/Socket/SocketContext";
 
@@ -25,8 +20,20 @@ import { has, isObject } from "lodash";
 
 import { AuthContext } from "../../context/Auth/AuthContext";
 import withWidth, { isWidthUp } from "@material-ui/core/withWidth";
+import MainHeader from "../../components/MainHeader";
+import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
+import Title from "../../components/Title";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    backgroundColor: theme.palette.background.main,
+    display: "flex",
+    flexDirection: "column",
+    padding: theme.spacing(2),
+    overflowY: "scroll",
+    ...theme.scrollbarStylesSoft
+  },
   mainContainer: {
     display: "flex",
     flexDirection: "column",
@@ -38,13 +45,25 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid rgba(0, 0, 0, 0.12)",
   },
   gridContainer: {
+    display: "flex",
+    gap: theme.spacing(2),
     flex: 1,
     height: "100%",
-    border: "1px solid rgba(0, 0, 0, 0.12)",
     backgroundColor: theme.palette.dark,
+  },
+  sideHeader: {
+    padding: theme.spacing(1),
+  },
+  newBtn: {
+    width:  36,
+    height: 36,
+    borderRadius: "50%",
+    minWidth: 0,
+    minHeight: 0,
   },
   gridItem: {
     height: "100%",
+    width: "400px",
   },
   gridItemTab: {
     height: "92%",
@@ -56,99 +75,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function ChatModal({
-  open,
-  chat,
-  type,
-  handleClose,
-  handleLoadNewChat,
-}) {
-  const [users, setUsers] = useState([]);
-  const [title, setTitle] = useState("");
-
-  useEffect(() => {
-    setTitle("");
-    setUsers([]);
-    if (type === "edit") {
-      const userList = chat.users.map((u) => ({
-        id: u.user.id,
-        name: u.user.name,
-      }));
-      setUsers(userList);
-      setTitle(chat.title);
-    }
-  }, [chat, open, type]);
-
-  const handleSave = async () => {
-    try {
-      if (!title) {
-        alert("Por favor, preencha o título da conversa.");
-        return;
-      }
-
-      if (!users || users.length === 0) {
-        alert("Por favor, selecione pelo menos um usuário.");
-        return;
-      }
-
-      if (type === "edit") {
-        await api.put(`/chats/${chat.id}`, {
-          users,
-          title,
-        });
-      } else {
-        const { data } = await api.post("/chats", {
-          users,
-          title,
-        });
-        handleLoadNewChat(data);
-      }
-      handleClose();
-    } catch (err) {}
-  };  
-
-  return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">Conversa</DialogTitle>
-      <DialogContent>
-        <Grid spacing={2} container>
-          <Grid xs={12} style={{ padding: 18 }} item>
-            <TextField
-              label="Título"
-              placeholder="Título"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              variant="outlined"
-              size="small"
-              fullWidth
-            />
-          </Grid>
-          <Grid xs={12} item>
-            <UsersFilter
-              onFiltered={(users) => setUsers(users)}
-              initialUsers={users}
-            />
-          </Grid>
-        </Grid>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Fechar
-        </Button>
-        <Button onClick={handleSave} color="primary" variant="contained">
-          Salvar
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
-
-function Chat(props) {
+const Chat= (props) => {
   const classes = useStyles();
   const { user } = useContext(AuthContext);
   const history = useHistory();
@@ -324,6 +251,7 @@ function Chat(props) {
   const findChats = async () => {
     try {
       const { data } = await api.get("/chats");
+      console.log(data);
       return data;
     } catch (err) {
       console.log(err);
@@ -332,22 +260,27 @@ function Chat(props) {
 
   const renderGrid = () => {
     return (
-      <Grid className={classes.gridContainer} container>
-        <Grid className={classes.gridItem} md={3} item>
-          
-            <div className={classes.btnContainer}>
-              <Button
-                onClick={() => {
-                  setDialogType("new");
-                  setShowDialog(true);
-                }}
-                color="primary"
-                variant="contained"
-              >
-                Nova
-              </Button>
-            </div>
-          
+      <div className={classes.gridContainer} container>
+        <Paper elevation={0} className={classes.gridItem}>
+          <div className={classes.sideHeader}>
+            <MainHeader>
+              <Title>Chat Interno</Title>
+              <MainHeaderButtonsWrapper>
+                <Button
+                  className={classes.newBtn}
+                  onClick={() => {
+                    setDialogType("new");
+                    setShowDialog(true);
+                  }}
+                  color="primary"
+                  variant="contained"
+                >
+                  +
+                </Button>
+              </MainHeaderButtonsWrapper>
+            </MainHeader>
+          </div>
+
           <ChatList
             chats={chats}
             pageInfo={chatsPageInfo}
@@ -359,8 +292,8 @@ function Chat(props) {
               setShowDialog(true);
             }}
           />
-        </Grid>
-        <Grid className={classes.gridItem} md={9} item>
+        </Paper>
+        <Paper className={classes.gridItem} elevation={0} style={{ flex: 1}}>
           {isObject(currentChat) && has(currentChat, "id") && (
             <ChatMessages
               chat={currentChat}
@@ -372,14 +305,14 @@ function Chat(props) {
               handleLoadMore={loadMoreMessages}
             />
           )}
-        </Grid>
-      </Grid>
+        </Paper>
+      </div>
     );
   };
 
   const renderTab = () => {
     return (
-      <Grid className={classes.gridContainer} container>
+      <Grid className={classes.gridContainer} spacing={5} container>
         <Grid md={12} item>
           <Tabs
             value={tab}
@@ -431,7 +364,7 @@ function Chat(props) {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <ChatModal
         type={dialogType}
         open={showDialog}
@@ -445,10 +378,8 @@ function Chat(props) {
         }}
         handleClose={() => setShowDialog(false)}
       />
-      <Paper className={classes.mainContainer}>
-        {isWidthUp("md", props.width) ? renderGrid() : renderTab()}
-      </Paper>
-    </>
+      {isWidthUp("md", props.width) ? renderGrid() : renderTab()}
+    </div>
   );
 }
 

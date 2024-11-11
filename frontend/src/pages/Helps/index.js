@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { makeStyles, Paper, Typography, Modal, IconButton, Table, TableRow, TableCell } from "@material-ui/core";
-import MainContainer from "../../components/MainContainer";
+import { makeStyles, Paper, Typography, Modal } from "@material-ui/core";
 import MainHeader from "../../components/MainHeader";
 import MainHeaderButtonsWrapper from "../../components/MainHeaderButtonsWrapper";
 import Title from "../../components/Title";
@@ -31,22 +30,22 @@ const useStyles = makeStyles(theme => ({
   },
   helpPaper: {
     position: 'relative',
-    width: '100%',
-    minHeight: '340px',
-    padding: theme.spacing(2),
-    boxShadow: theme.shadows[3],
-    borderRadius: theme.spacing(1),
-    cursor: 'pointer',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    width: '100%',
+    minHeight: '340px',
     maxWidth: '340px',
+    boxShadow: "0 0 4px rgb(0,0,0,.3)",
+    cursor: 'pointer',
+    padding: theme.spacing(2),
+    ...theme.shape,
   },
   paperHover: {
     transition: 'transform 0.3s, box-shadow 0.3s',
     '&:hover': {
       transform: 'scale(1.03)',
-      boxShadow: `0 0 8px`,
+      boxShadow: `2px 2px 10px ${theme.palette.primary}`,
       color: theme.palette.primary.main,
     },
   },
@@ -79,17 +78,6 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.spacing(1),
     overflow: 'hidden',
   },
-  tableRow: {
-    borderCollapse:"separate",
-    borderSpacing:"0 1em",
-    backgroundColor:"white",
-    borderRadius: theme.spacing(1),
-  },
-  tabletitle: {
-    fontWeight:"bold",
-    fontSize:"10px",
-
-  },
 }));
 
 const Helps = () => {
@@ -102,6 +90,7 @@ const Helps = () => {
     async function fetchData() {
       const helps = await list();
       setRecords(helps);
+      console.log(helps);
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,7 +145,7 @@ const Helps = () => {
       <>
         <div className={classes.mainPaper}>
           {records.length ? records.map((record, key) => (
-            <Paper key={key} className={`${classes.helpPaper} ${classes.paperHover}`} onClick={() => openVideoModal(record.video)}>
+            <Paper key={key} className={`${classes.helpPaper} ${classes.paperHover}`} elevation={0} onClick={() => openVideoModal(record.video)}>
               <img
                 src={`https://img.youtube.com/vi/${record.video}/mqdefault.jpg`}
                 alt="Thumbnail"

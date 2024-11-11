@@ -91,7 +91,15 @@ export function HelpManagerForm (props) {
     }, [initialValue])
 
     const handleSubmit = async(data) => {
-        onSubmit(data)
+        const extractYouTubeCode = (url) => {
+            const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/;
+            if (regex.test(url)){
+                const match = url.match(regex);
+                return match ? match[1] : null; // Return the video code or null if not found
+            } else return url;
+        };
+        data.video = extractYouTubeCode(data.video);
+        onSubmit(data);
     }
 
     return (
