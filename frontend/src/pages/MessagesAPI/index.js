@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 // import api from "../../services/api";
 import axios from "axios";
 import usePlans from "../../hooks/usePlans";
+import Title from "../../components/Title";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,10 +25,12 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(4),
     paddingRight: theme.spacing(6),
     overflowY: "scroll",
+    backgroundColor: theme.palette.background.main,
     ...theme.scrollbarStylesSoft
   },
   mainPaper: {
-    backgroundColor: theme.palette.background.main,
+    backgroundColor: theme.palette.light.main,
+    padding: theme.spacing(2),
   },
   mainHeader: {
     marginTop: theme.spacing(1),
@@ -45,12 +48,10 @@ const useStyles = makeStyles((theme) => ({
     ...theme.textField,
   },
   paper: {
-    backgroundColor: theme.palette.light.main,
     padding: theme.spacing(2),
     display: "flex",
+    marginBottom: theme.spacing(3),
     alignContent: "center",
-    margin: ".6em",
-    ...theme.shape,
   }
 }));
 
@@ -270,12 +271,7 @@ const MessagesAPI = () => {
   return (
     <div className={classes.root}>
       <MainHeader>
-        <Typography
-          variant="h4"
-          color="primary"
-        >
-          Como enviar Mensagens:
-        </Typography>
+        <Title>Como enviar Mensagens:</Title>
       </MainHeader>
       <Paper
         className={classes.mainPaper}
@@ -286,7 +282,12 @@ const MessagesAPI = () => {
         <Typography className={classes.elementMargin} component="div">
           <b>Observações importantes</b><br />
           <ul>
-            <li>Antes de enviar mensagens, é necessário o cadastro do token vinculado à conexão que enviará as mensagens. <br />Para realizar o cadastro acesse o menu "Conexões", clique no botão editar da conexão e insira o token no devido campo.</li>
+            <li>
+              Antes de enviar mensagens, é necessário o cadastro do token vinculado à conexão que enviará as mensagens.
+              <br />
+              Para realizar o cadastro acesse o menu "Conexões", clique no botão editar da conexão e insira o token no devido campo.
+            </li>
+              <br />
             <li>
               O número para envio não deve ter mascara ou caracteres especiais e deve ser composto por:
               <ul>
@@ -298,6 +299,7 @@ const MessagesAPI = () => {
           </ul>
         </Typography>
 
+        <Divider/>
         <div className={classes.paper}>
           <Grid container direction="column">
             <Typography variant="h6" color="primary">
@@ -319,6 +321,7 @@ const MessagesAPI = () => {
           </Grid>
         </div>
 
+        <Divider/>
         <div className={classes.paper}>
           <Grid container direction="column">
             <Typography variant="h6" color="primary">
