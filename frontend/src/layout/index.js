@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaperClose: {
     overflowX: "hidden",
     transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
+      easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7),
