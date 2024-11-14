@@ -131,6 +131,7 @@ const useStyles = makeStyles((theme) => ({
   containerWithScroll: {
     flex: 1,
     overflowY: "scroll",
+    paddingLeft: theme.spacing(1),
     ...theme.scrollbarStylesSoft,
   },
   NotificationsPopOver: {

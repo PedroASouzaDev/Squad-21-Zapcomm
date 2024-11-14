@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "-10px",
   },
   listItem: {
-    paddingLeft: theme.spacing(3),
     borderRadius: theme.spacing(.4),
     transition: theme.transitions.create(["margin", "padding"], {
       easing: theme.transitions.easing.sharp,
