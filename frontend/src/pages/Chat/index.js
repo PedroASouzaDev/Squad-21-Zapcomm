@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.dark,
   },
   sideHeader: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
   },
   newBtn: {
     width:  36,

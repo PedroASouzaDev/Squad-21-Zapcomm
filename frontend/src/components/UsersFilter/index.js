@@ -61,11 +61,7 @@ export function UsersFilter({ onFiltered, initialUsers }) {
           value.map((option, index) => (
             <Chip
               variant="outlined"
-              style={{
-                backgroundColor: "#bfbfbf",
-                textShadow: "1px 1px 1px #000",
-                color: "white",
-              }}
+              color="primary"
               label={option.name}
               {...getUserProps({ index })}
               size="small"
