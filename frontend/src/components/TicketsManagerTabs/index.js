@@ -62,6 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
   tab: {
     flex: 1,
+    zIndex: 1,
   },
 
 	tabsInternal: {
@@ -240,32 +241,49 @@ const TicketsManagerTabs = () => {
     setSelectedUsers(users);
   };
 
+  console.log(tab)
   return (
     <div className={classes.root}>
       <Tabs
         className={classes.tabHeader}
         value={tab}
+        variant="scrollable"
+        scrollButtons="off"
         onChange={handleChangeTab}
         indicatorColor="primary"
         textColor="primary"
+        TabIndicatorProps={{
+          style: {
+            height: "100%",
+          }
+        }}
       >
         <Tab
           value={"open"}
           icon={<MoveToInboxIcon />}
           label={i18n.t("tickets.tabs.open.title")}
           classes={{ root: classes.tab }}
+          style={{
+            color: tab === "open" ? "#fff" : "inherit"
+          }}
         />
         <Tab
           value={"closed"}
           icon={<CheckBoxIcon />}
           label={i18n.t("tickets.tabs.closed.title")}
           classes={{ root: classes.tab }}
+          style={{
+            color: tab === "closed" ? "#fff" : "inherit"
+          }}
         />
         <Tab
           value={"search"}
           icon={<SearchIcon />}
           label={i18n.t("tickets.tabs.search.title")}
           classes={{ root: classes.tab }}
+          style={{
+            color: tab === "search" ? "#fff" : "inherit"
+          }}
         />
       </Tabs>
       <Paper className={classes.lowerPaper}>

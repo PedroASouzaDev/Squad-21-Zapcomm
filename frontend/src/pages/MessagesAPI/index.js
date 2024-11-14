@@ -280,7 +280,9 @@ const MessagesAPI = () => {
         variant="outlined"
       >
         <Typography className={classes.elementMargin} component="div">
-          <b>Observações importantes</b><br />
+          <Typography variant="h6" color="primary">
+            Observações importantes:
+          </Typography>
           <ul>
             <li>
               Antes de enviar mensagens, é necessário o cadastro do token vinculado à conexão que enviará as mensagens.
