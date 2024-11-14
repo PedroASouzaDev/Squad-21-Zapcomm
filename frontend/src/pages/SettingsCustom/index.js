@@ -8,7 +8,6 @@ import TabPanel from "../../components/TabPanel";
 
 import SchedulesForm from "../../components/SchedulesForm";
 import CompaniesManager from "../../components/CompaniesManager";
-import PlansManager from "../../components/PlansManager";
 import HelpsManager from "../../components/HelpsManager";
 import Options from "../../components/Settings/Options";
 
@@ -185,9 +184,6 @@ const SettingsCustom = () => {
             {isSuper() ? <Tab label="Empresas" value={"companies"} className={classes.tab} style={{
               color: tab === "companies" ? "#fff" : "inherit"
             }}/> : null}
-            {isSuper() ? <Tab label="Planos" value={"plans"} className={classes.tab} style={{
-              color: tab === "plans" ? "#fff" : "inherit"
-            }}/> : null}
             {isSuper() ? <Tab label="Ajuda" value={"helps"} className={classes.tab} style={{
               color: tab === "helps" ? "#fff" : "inherit"
             }}/> : null}
@@ -215,18 +211,6 @@ const SettingsCustom = () => {
               name={"companies"}
             >
               <CompaniesManager />
-            </TabPanel>
-          )}
-        />
-        <OnlyForSuperUser
-          user={currentUser}
-          yes={() => (
-            <TabPanel
-              className={classes.container}
-              value={tab}
-              name={"plans"}
-            >
-              <PlansManager />
             </TabPanel>
           )}
         />

@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
-import usePlans from "../../hooks/usePlans";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -108,9 +107,7 @@ const SignUp = () => {
 		companyId = params.companyId
 	}
 
-	const initialState = { name: "", email: "", phone: "", password: "", planId: "", };
 
-	const [user] = useState(initialState);
 	const dueDate = moment().add(3, "day").format();
 	const handleSignUp = async values => {
 		Object.assign(values, { recurrence: "MENSAL" });
@@ -127,17 +124,6 @@ const SignUp = () => {
 		}
 	};
 
-	const [plans, setPlans] = useState([]);
-	const { list: listPlans } = usePlans();
-
-	useEffect(() => {
-		async function fetchData() {
-			const list = await listPlans();
-			setPlans(list);
-		}
-		fetchData();
-	}, []);
-
 
 	return (
 		<div className={classes.root}>
@@ -151,7 +137,6 @@ const SignUp = () => {
 				</Typography>*/}
 				{/* <form className={classes.form} noValidate onSubmit={handleSignUp}> */}
 				<Formik
-					initialValues={user}
 					enableReinitialize={true}
 					validationSchema={UserSchema}
 					onSubmit={(values, actions) => {
@@ -231,25 +216,6 @@ const SignUp = () => {
 										autoComplete="current-password"
 										required
 									/>
-								</Grid>
-								<Grid item xs={12}>
-									<TextField
-										as={Select}
-										variant="outlined"
-										fullWidth
-										select
-										helperText="Selecione seu plano"
-										id="plan-selection"
-										label="Plano"
-										name="planId"
-										required
-									>
-										{plans.map((plan, key) => (
-											<MenuItem key={key} value={plan.id}>
-												{plan.name} - Atendentes: {plan.users} - WhatsApp: {plan.connections} - Filas: {plan.queues} - R$ {plan.value}
-											</MenuItem>
-										))}
-									</TextField>
 								</Grid>
 							</Grid>
 							<Button
