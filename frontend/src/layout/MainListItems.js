@@ -6,7 +6,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Divider from "@material-ui/core/Divider";
-import { Badge, Collapse, List } from "@material-ui/core";
+import { Badge, Collapse, Icon, List } from "@material-ui/core";
 import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import SyncAltIcon from "@material-ui/icons/SyncAlt";
@@ -16,7 +16,6 @@ import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
 import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import CodeRoundedIcon from "@material-ui/icons/CodeRounded";
 import EventIcon from "@material-ui/icons/Event";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
@@ -38,6 +37,27 @@ import usePlans from "../hooks/usePlans";
 import useVersion from "../hooks/useVersion";
 import Box from "@material-ui/core/Box";
 
+import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
+import ForumRoundedIcon from "@mui/icons-material/ForumRounded";
+import ViewKanbanIcon from "@mui/icons-material/ViewKanban";
+import BoltIcon from "@mui/icons-material/Bolt";
+import DoneAllRoundedIcon from "@mui/icons-material/DoneAllRounded";
+import PermContactCalendarRounded from "@mui/icons-material/PermContactCalendarRounded";
+import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
+import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import AllInclusiveRoundedIcon from "@mui/icons-material/AllInclusiveRounded";
+import IntegrationInstructionsRoundedIcon from "@mui/icons-material/IntegrationInstructionsRounded";
+import CloudRoundedIcon from "@mui/icons-material/CloudRounded";
+import CloudOffRoundedIcon from "@mui/icons-material/CloudOffRounded";
+import FolderRoundedIcon from "@mui/icons-material/FolderRounded";
+import ListAltRoundedIcon from "@mui/icons-material/ListAltRounded";
+import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
+import CodeRoundedIcon from "@mui/icons-material/CodeRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
+
 // Account Button
 import {
   MenuItem,
@@ -57,8 +77,24 @@ const useStyles = makeStyles((theme) => ({
   listItem: {
     paddingLeft: theme.spacing(3),
     borderRadius: theme.spacing(.4),
+    transition: theme.transitions.create(["margin", "padding"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.short,
+    }),
   },
   listItemActive: {
+    "&:not(:first-child)": {
+      // paddingTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
+    },
+    "&:not(:last-child)": {
+    // paddingBottom: theme.spacing(1),
+      marginBottom: theme.spacing(2),
+    },
+    transition: theme.transitions.create(["margin", "padding"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.short,
+    }),
     backgroundColor: theme.palette.secondaryLight.main,
     "&:hover": {
       backgroundColor: theme.palette.secondaryLightHover.main,
@@ -311,78 +347,70 @@ const MainListItems = ({ drawerClose, collapsed}) => {
 
   return (
     <div onClick={drawerClose}>
-      <Can
-        role={user.profile}
-        perform="dashboard:view"
-        yes={() => (
+      <div>
+        <Can
+          role={user.profile}
+          perform="dashboard:view"
+          yes={() => (
+            <ListItemLink
+              to="/"
+              primary="Dashboard"
+              icon={<GridViewRoundedIcon />}
+            />
+          )}
+        />
+        <ListItemLink
+          to="/tickets"
+          primary={i18n.t("mainDrawer.listItems.tickets")}
+          icon={<ForumRoundedIcon />}
+        />
+        {showKanban && (
           <ListItemLink
-            to="/"
-            primary="Dashboard"
-            icon={<DashboardOutlinedIcon />}
+            to="/kanban"
+            primary={i18n.t("Kanban")}
+            icon={<ViewKanbanIcon />}
           />
         )}
-      />
-
-      <ListItemLink
-        to="/tickets"
-        primary={i18n.t("mainDrawer.listItems.tickets")}
-        icon={<WhatsAppIcon />}
-      />
-	  
-	{showKanban && (  
-	  <ListItemLink
-        to="/kanban"
-        primary={i18n.t("Kanban")}
-        icon={<TableChartIcon />}
-      />
-	  )}
-
-
-      <ListItemLink
-        to="/quick-messages"
-        primary={i18n.t("mainDrawer.listItems.quickMessages")}
-        icon={<FlashOnIcon />}
-      />
-	  
-	    <ListItemLink
-        to="/todolist"
-        primary={i18n.t("Tarefas")}
-        icon={<BorderColorIcon />}
-      />
-
-      <ListItemLink
-        to="/contacts"
-        primary="Contatos"
-        icon={<ContactPhoneOutlinedIcon />}
-      />
-
-      <ListItemLink
-        to="/schedules"
-        primary={i18n.t("mainDrawer.listItems.schedules")}
-        icon={<EventIcon />}
-      />
-
-      <ListItemLink
-        to="/tags"
-        primary={i18n.t("mainDrawer.listItems.tags")}
-        icon={<LocalOfferIcon />}
-      />
-
-      <ListItemLink
-        to="/chats"
-        primary={i18n.t("mainDrawer.listItems.chats")}
-        icon={
-          <Badge color="secondary" variant="dot" invisible={invisible}>
-            <ForumIcon />
-          </Badge>
-        }
-      />
-
-      <ListItemLink
-        to="/helps"
-        primary={i18n.t("mainDrawer.listItems.helps")}
-        icon={<HelpOutlineIcon />}
-      />
+        <ListItemLink
+          to="/quick-messages"
+          primary={i18n.t("mainDrawer.listItems.quickMessages")}
+          icon={<BoltIcon />}
+        />
+        <ListItemLink
+          to="/todolist"
+          primary={i18n.t("Tarefas")}
+          icon={<DoneAllRoundedIcon />}
+        />
+        <ListItemLink
+          to="/contacts"
+          primary="Contatos"
+          icon={<PermContactCalendarRounded />}
+        />
+        <ListItemLink
+          to="/schedules"
+          primary={i18n.t("mainDrawer.listItems.schedules")}
+          icon={<CalendarMonthRoundedIcon />}
+        />
+        <ListItemLink
+          to="/tags"
+          primary={i18n.t("mainDrawer.listItems.tags")}
+          icon={<LocalOfferRoundedIcon />}
+        />
+        <ListItemLink
+          to="/chats"
+          primary={i18n.t("mainDrawer.listItems.chats")}
+          icon={
+            <Badge color="secondary" variant="dot" invisible={invisible}>
+              <SendRoundedIcon />
+            </Badge>
+          }
+        />
+        <ListItemLink
+          to="/helps"
+          primary={i18n.t("mainDrawer.listItems.helps")}
+          icon={<HelpOutlineRoundedIcon />}
+        />
+      </div>
 
       <Can
         role={user.profile}
@@ -402,7 +430,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               color="inherit">
               {i18n.t("mainDrawer.listItems.administration")}
             </ListSubheader>
-			
+
             {showCampaigns && (
               <>
                 <ListItemLink
@@ -416,14 +444,14 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               <ListItemLink
                 to="/announcements"
                 primary={i18n.t("mainDrawer.listItems.annoucements")}
-                icon={<AnnouncementIcon />}
+                icon={<InfoRoundedIcon />}
               />
             )}
             {showOpenAi && (
               <ListItemLink
                 to="/prompts"
                 primary={i18n.t("mainDrawer.listItems.prompts")}
-                icon={<AllInclusive />}
+                icon={<AllInclusiveRoundedIcon />}
               />
             )}
 
@@ -431,7 +459,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               <ListItemLink
                 to="/queue-integration"
                 primary={i18n.t("mainDrawer.listItems.queueIntegration")}
-                icon={<DeviceHubOutlined />}
+                icon={<IntegrationInstructionsRoundedIcon />}
               />
             )}
             <ListItemLink
@@ -439,24 +467,24 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               primary={i18n.t("mainDrawer.listItems.connections")}
               icon={
                 <Badge badgeContent={connectionWarning ? "!" : 0} color="error">
-                  <SyncAltIcon />
+                  {!connectionWarning ? (<CloudRoundedIcon />) : (<CloudOffRoundedIcon/>)}
                 </Badge>
               }
             />
             <ListItemLink
               to="/files"
               primary={i18n.t("mainDrawer.listItems.files")}
-              icon={<AttachFile />}
+              icon={<FolderRoundedIcon />}
             />
             <ListItemLink
               to="/queues"
               primary={i18n.t("mainDrawer.listItems.queues")}
-              icon={<AccountTreeOutlinedIcon />}
+              icon={<ListAltRoundedIcon />}
             />
             <ListItemLink
               to="/users"
               primary={i18n.t("mainDrawer.listItems.users")}
-              icon={<PeopleAltOutlinedIcon />}
+              icon={<PeopleAltRoundedIcon />}
             />
             {showExternalApi && (
               <>
@@ -476,10 +504,10 @@ const MainListItems = ({ drawerClose, collapsed}) => {
             <ListItemLink
               to="/settings"
               primary={i18n.t("mainDrawer.listItems.settings")}
-              icon={<SettingsOutlinedIcon />}
+              icon={<SettingsRoundedIcon />}
             />
-			
-			
+
+
             {!collapsed && <React.Fragment>
               {/* 
               // IMAGEM NO MENU
@@ -489,7 +517,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               */}
             </React.Fragment>
             }
-			
+
           </>
         )}
       />
