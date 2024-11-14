@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import MainHeader from "../../components/MainHeader";
 import Title from "../../components/Title";
 import "./board.css";
+import { tagTextColor } from "../Tags";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -207,7 +208,7 @@ const Kanban = () => {
             draggable: true,
             href: "/tickets/" + ticket.uuid,          
           })),
-          style: { backgroundColor: tag.color, color: "white", borderRadius: "10px", color: "#0c2454" }
+          style: { backgroundColor: tag.color, color: "white", borderRadius: "10px", color: tagTextColor(tag.color) }
         };
       }),
     ];

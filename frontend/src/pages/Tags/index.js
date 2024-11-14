@@ -125,7 +125,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
   
-  const Tags = () => {
+export const tagTextColor = (backgroundColor) => {
+  // Helper function to convert hex color to RGB
+  const hexToRgb = (hex) => {
+    // Remove the "#" if present
+    hex = hex.replace(/^#/, "");
+    // Convert 3-digit hex to 6-digit hex
+    if (hex.length === 3) {
+      hex = hex.split("").map(char => char + char).join("");
+    }
+    // Parse the hex color into RGB values
+    const bigint = parseInt(hex, 16);
+    return {
+      r: (bigint >> 16) & 255,
+      g: (bigint >> 8) & 255,
+      b: bigint & 255
+    };
+  };
+
+  // Convert background color to RGB format
+  const rgb = /^#/.test(backgroundColor) ? hexToRgb(backgroundColor) : backgroundColor;
+  const { r, g, b } = rgb;
+
+  // Calculate luminance based on RGB values
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  console.log(backgroundColor);
+  // Return dark text for light backgrounds and light text for dark backgrounds
+  return luminance > 0.5 ? "#000000" : "#FFFFFF";
+};
+
+const Tags = () => {
+
   const classes = useStyles();
   const { user } = useContext(AuthContext);
 
@@ -230,36 +261,6 @@ const useStyles = makeStyles((theme) => ({
     if (scrollHeight - (scrollTop + 100) < clientHeight) {
       loadMore();
     }
-  };
-
-  const tagTextColor = (backgroundColor) => {
-    // Helper function to convert hex color to RGB
-    const hexToRgb = (hex) => {
-      // Remove the "#" if present
-      hex = hex.replace(/^#/, "");
-      // Convert 3-digit hex to 6-digit hex
-      if (hex.length === 3) {
-        hex = hex.split("").map(char => char + char).join("");
-      }
-      // Parse the hex color into RGB values
-      const bigint = parseInt(hex, 16);
-      return {
-        r: (bigint >> 16) & 255,
-        g: (bigint >> 8) & 255,
-        b: bigint & 255
-      };
-    };
-  
-    // Convert background color to RGB format
-    const rgb = /^#/.test(backgroundColor) ? hexToRgb(backgroundColor) : backgroundColor;
-    const { r, g, b } = rgb;
-  
-    // Calculate luminance based on RGB values
-    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-    console.log(backgroundColor);
-    // Return dark text for light backgrounds and light text for dark backgrounds
-    return luminance > 0.5 ? "#000000" : "#FFFFFF";
   };
 
   return (

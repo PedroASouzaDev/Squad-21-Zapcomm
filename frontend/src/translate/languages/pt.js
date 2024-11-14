@@ -349,6 +349,11 @@ const messages = {
           cancel: "Cancelar",
         },
         success: "Agendamento salvo com sucesso.",
+        confirmationModal: {
+          deleteTitle: "Excluir",
+          deleteMessage: "Você tem certeza? Essa ação não pode ser revertida!",
+
+        },
       },
       tagModal: {
         title: {
