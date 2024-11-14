@@ -248,7 +248,6 @@ const TicketsManagerTabs = () => {
         className={classes.tabHeader}
         value={tab}
         variant="scrollable"
-        scrollButtons="off"
         onChange={handleChangeTab}
         indicatorColor="primary"
         textColor="primary"

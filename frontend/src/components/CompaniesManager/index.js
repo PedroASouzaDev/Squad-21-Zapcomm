@@ -250,25 +250,6 @@ export function CompanyForm(props) {
               </Grid>
               <Grid xs={12} sm={6} md={2} item>
                 <FormControl variant="outlined" fullWidth>
-                  <InputLabel htmlFor="plan-selection">Plano</InputLabel>
-                  <Field
-                    as={Select}
-                    id="plan-selection"
-                    label="Plano"
-                    labelId="plan-selection-label"
-                    name="planId"
-                    required
-                  >
-                    {plans.map((plan, key) => (
-                      <MenuItem key={key} value={plan.id}>
-                        {plan.name}
-                      </MenuItem>
-                    ))}
-                  </Field>
-                </FormControl>
-              </Grid>
-              <Grid xs={12} sm={6} md={2} item>
-                <FormControl variant="outlined" fullWidth>
                   <InputLabel htmlFor="status-selection">Status</InputLabel>
                   <Field
                     as={Select}
