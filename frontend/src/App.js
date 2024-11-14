@@ -88,7 +88,7 @@ const App = () => {
                 primary: { main: mode === "light" ? "#0C2454" : "#FFFFFF" },
                 secondary: { main: mode === "light" ? "#33d0a1" : "#FFFFFF" },
                 secondaryLight: {main: mode === "light" ? "#9BE8D1" : "#fff"},
-                secondaryLightHover: {main: mode === "light" ? "#CDF4E8" : "#fff"},
+                secondaryLightHover: {main: mode === "light" ? "#7AE1C2" : "#fff"},
                 textPrimary: mode === "light" ? "#0C2454" : "#FFFFFF",
                 borderPrimary: mode === "light" ? "#0C2454" : "#FFFFFF",
                 dark: { main: mode === "light" ? "#333333" : "#F3F3F3" },

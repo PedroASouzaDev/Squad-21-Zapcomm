@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.short,
     }),
   },
-  listItemActive: {
+  activeListItem: {
     "&:not(:first-child)": {
       // paddingTop: theme.spacing(1),
       marginTop: theme.spacing(2),
@@ -83,7 +83,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.secondaryLightHover.main,
     },
-  }
+  },
+  activeItem: {
+    color: theme.palette.light.main,
+  },
 }));
 
 
@@ -101,9 +104,9 @@ const ListItemLink = ({ icon, primary, to, className }) => {
   );
 
   return (
-    <ListItem button dense component={renderLink} className={`${className} ${ to == location.pathname ? classes.listItemActive : null} ${classes.listItem}`}>
+    <ListItem button dense component={renderLink} className={`${className} ${ to == location.pathname ? classes.activeListItem : null} ${classes.listItem}`}>
       {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-      <ListItemText primary={primary} />
+      <ListItemText primary={primary} className={ to == location.pathname ? classes.activeItem : null} />
     </ListItem>
   );
 }
@@ -186,6 +189,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
   const [searchParam] = useState("");
   const [chats, dispatch] = useReducer(reducer, []);
   const { getPlanCompany } = usePlans();
+  const location = useLocation();
   
   const [version, setVersion] = useState(false);
   
@@ -329,6 +333,12 @@ const MainListItems = ({ drawerClose, collapsed}) => {
     handleLogout();
   };
 
+  const handleIconColor = (pathname) => {
+    if (pathname == location.pathname) {
+      return "#fff"
+    }
+  };
+
   return (
     <div onClick={drawerClose}>
       <div>
@@ -339,60 +349,60 @@ const MainListItems = ({ drawerClose, collapsed}) => {
             <ListItemLink
               to="/"
               primary="Dashboard"
-              icon={<GridViewRoundedIcon />}
+              icon={<GridViewRoundedIcon sx={{ color: handleIconColor("/") }} />}
             />
           )}
         />
         <ListItemLink
           to="/tickets"
           primary={i18n.t("mainDrawer.listItems.tickets")}
-          icon={<ForumRoundedIcon />}
+          icon={<ForumRoundedIcon sx={{ color: handleIconColor("/tickets") }} />}
         />
         {showKanban && (
           <ListItemLink
             to="/kanban"
             primary={i18n.t("Kanban")}
-            icon={<ViewKanbanIcon />}
+            icon={<ViewKanbanIcon sx={{ color: handleIconColor("/kanban") }} />}
           />
         )}
         <ListItemLink
           to="/quick-messages"
           primary={i18n.t("mainDrawer.listItems.quickMessages")}
-          icon={<BoltIcon />}
+          icon={<BoltIcon sx={{ color: handleIconColor("/quick-messages") }} />}
         />
         <ListItemLink
           to="/todolist"
           primary={i18n.t("Tarefas")}
-          icon={<DoneAllRoundedIcon />}
+          icon={<DoneAllRoundedIcon sx={{ color: handleIconColor("/todolist") }} />}
         />
         <ListItemLink
           to="/contacts"
           primary="Contatos"
-          icon={<PermContactCalendarRounded />}
+          icon={<PermContactCalendarRounded sx={{ color: handleIconColor("/contacts") }} />}
         />
         <ListItemLink
           to="/schedules"
           primary={i18n.t("mainDrawer.listItems.schedules")}
-          icon={<CalendarMonthRoundedIcon />}
+          icon={<CalendarMonthRoundedIcon sx={{ color: handleIconColor("/schedules") }} />}
         />
         <ListItemLink
           to="/tags"
           primary={i18n.t("mainDrawer.listItems.tags")}
-          icon={<LocalOfferRoundedIcon />}
+          icon={<LocalOfferRoundedIcon sx={{ color: handleIconColor("/tags") }} />}
         />
         <ListItemLink
           to="/chats"
           primary={i18n.t("mainDrawer.listItems.chats")}
           icon={
             <Badge color="secondary" variant="dot" invisible={invisible}>
-              <SendRoundedIcon />
+              <SendRoundedIcon sx={{ color: handleIconColor("/chats") }} />
             </Badge>
           }
         />
         <ListItemLink
           to="/helps"
           primary={i18n.t("mainDrawer.listItems.helps")}
-          icon={<HelpOutlineRoundedIcon />}
+          icon={<HelpOutlineRoundedIcon sx={{ color: handleIconColor("/helps") }} />}
         />
       </div>
 
@@ -420,7 +430,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
                 <ListItemLink
                   to="/campaigns"
                   primary={i18n.t("mainDrawer.listItems.campaigns")}
-                  icon={<EventAvailableRoundedIcon />}
+                  icon={<EventAvailableRoundedIcon sx={{ color: handleIconColor("/campaigns") }} />}
                 />
               </>
             )}
@@ -428,14 +438,14 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               <ListItemLink
                 to="/announcements"
                 primary={i18n.t("mainDrawer.listItems.annoucements")}
-                icon={<InfoRoundedIcon />}
+                icon={<InfoRoundedIcon sx={{ color: handleIconColor("/announcements") }} />}
               />
             )}
             {showOpenAi && (
               <ListItemLink
                 to="/prompts"
                 primary={i18n.t("mainDrawer.listItems.prompts")}
-                icon={<AllInclusiveRoundedIcon />}
+                icon={<AllInclusiveRoundedIcon sx={{ color: handleIconColor("/prompts") }} />}
               />
             )}
 
@@ -443,7 +453,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               <ListItemLink
                 to="/queue-integration"
                 primary={i18n.t("mainDrawer.listItems.queueIntegration")}
-                icon={<IntegrationInstructionsRoundedIcon />}
+                icon={<IntegrationInstructionsRoundedIcon sx={{ color: handleIconColor("/queue-integration") }} />}
               />
             )}
             <ListItemLink
@@ -451,31 +461,31 @@ const MainListItems = ({ drawerClose, collapsed}) => {
               primary={i18n.t("mainDrawer.listItems.connections")}
               icon={
                 <Badge badgeContent={connectionWarning ? "!" : 0} color="error">
-                  {!connectionWarning ? (<CloudRoundedIcon />) : (<CloudOffRoundedIcon/>)}
+                  {!connectionWarning ? (<CloudRoundedIcon sx={{ color: handleIconColor("/connections") }} />) : (<CloudOffRoundedIcon sx={{ color: handleIconColor("/connections") }} />)}
                 </Badge>
               }
             />
             <ListItemLink
               to="/files"
               primary={i18n.t("mainDrawer.listItems.files")}
-              icon={<FolderRoundedIcon />}
+              icon={<FolderRoundedIcon sx={{ color: handleIconColor("/files") }} />}
             />
             <ListItemLink
               to="/queues"
               primary={i18n.t("mainDrawer.listItems.queues")}
-              icon={<ListAltRoundedIcon />}
+              icon={<ListAltRoundedIcon sx={{ color: handleIconColor("/queues") }} />}
             />
             <ListItemLink
               to="/users"
               primary={i18n.t("mainDrawer.listItems.users")}
-              icon={<PeopleAltRoundedIcon />}
+              icon={<PeopleAltRoundedIcon sx={{ color: handleIconColor("/users") }} />}
             />
             {showExternalApi && (
               <>
                 <ListItemLink
                   to="/messages-api"
                   primary={i18n.t("mainDrawer.listItems.messagesAPI")}
-                  icon={<CodeRoundedIcon />}
+                  icon={<CodeRoundedIcon sx={{ color: handleIconColor("/messages-api") }} />}
                 />
               </>
             )}
@@ -488,7 +498,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
             <ListItemLink
               to="/settings"
               primary={i18n.t("mainDrawer.listItems.settings")}
-              icon={<SettingsRoundedIcon />}
+              icon={<SettingsRoundedIcon sx={{ color: handleIconColor("/settings") }} />}
             />
 
 
