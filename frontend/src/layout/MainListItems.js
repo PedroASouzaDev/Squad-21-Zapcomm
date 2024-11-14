@@ -6,33 +6,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Divider from "@material-ui/core/Divider";
-import { Badge, Collapse, Icon, List } from "@material-ui/core";
-import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
-import SyncAltIcon from "@material-ui/icons/SyncAlt";
-import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
-import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
-import ContactPhoneOutlinedIcon from "@material-ui/icons/ContactPhoneOutlined";
-import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
-import FlashOnIcon from "@material-ui/icons/FlashOn";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import EventIcon from "@material-ui/icons/Event";
-import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-import EventAvailableIcon from "@material-ui/icons/EventAvailable";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
-import ForumIcon from "@material-ui/icons/Forum";
+import Badge from "@material-ui/core/Badge";
 import { i18n } from "../translate/i18n";
 import { WhatsAppsContext } from "../context/WhatsApp/WhatsAppsContext";
 import { AuthContext } from "../context/Auth/AuthContext";
 import { Can } from "../components/Can";
 import { SocketContext } from "../context/Socket/SocketContext";
 import { isArray } from "lodash";
-import TableChartIcon from '@material-ui/icons/TableChart';
 import api from "../services/api";
-import BorderColorIcon from '@material-ui/icons/BorderColor';
 import toastError from "../errors/toastError";
 import { makeStyles } from "@material-ui/core/styles";
-import { AllInclusive, AttachFile, BlurCircular, DeviceHubOutlined, Schedule } from '@material-ui/icons';
 import usePlans from "../hooks/usePlans";
 import useVersion from "../hooks/useVersion";
 import Box from "@material-ui/core/Box";
@@ -47,6 +30,7 @@ import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
+import EventAvailableRoundedIcon from "@mui/icons-material/EventAvailableRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import AllInclusiveRoundedIcon from "@mui/icons-material/AllInclusiveRounded";
 import IntegrationInstructionsRoundedIcon from "@mui/icons-material/IntegrationInstructionsRounded";
@@ -436,7 +420,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
                 <ListItemLink
                   to="/campaigns"
                   primary={i18n.t("mainDrawer.listItems.campaigns")}
-                  icon={<EventAvailableIcon />}
+                  icon={<EventAvailableRoundedIcon />}
                 />
               </>
             )}
