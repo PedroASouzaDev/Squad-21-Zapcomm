@@ -19,6 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import usePlans from "../hooks/usePlans";
 import useVersion from "../hooks/useVersion";
 import Box from "@material-ui/core/Box";
+import BackdropLoading from "../components/BackdropLoading";
 
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import ForumRoundedIcon from "@mui/icons-material/ForumRounded";
@@ -174,7 +175,7 @@ const MainListItems = ({ drawerClose, collapsed}) => {
   const [userModalOpen, setUserModalOpen] = useState(false);
 
   const { whatsApps } = useContext(WhatsAppsContext);
-  const { user, handleLogout } = useContext(AuthContext);
+  const { user, handleLogout, loading } = useContext(AuthContext);
   const [connectionWarning, setConnectionWarning] = useState(false);
   const [showCampaigns, setShowCampaigns] = useState(false);
   const [showKanban, setShowKanban] = useState(false);
@@ -337,6 +338,10 @@ const MainListItems = ({ drawerClose, collapsed}) => {
       return "#fff"
     }
   };
+
+  if (loading) {
+    return <BackdropLoading />;
+  }
 
   return (
     <div onClick={drawerClose}>

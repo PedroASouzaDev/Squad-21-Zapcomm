@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Formik, Form, Field } from "formik";
+import usePlans from "../../hooks/usePlans/index.js";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -106,8 +107,9 @@ const SignUp = () => {
 	if (params.companyId !== undefined) {
 		companyId = params.companyId
 	}
+	const initialState = { name: "", email: "", phone: "", password: "", planId: 1, };
 
-
+	const [user] = useState(initialState);
 	const dueDate = moment().add(3, "day").format();
 	const handleSignUp = async values => {
 		Object.assign(values, { recurrence: "MENSAL" });
@@ -137,6 +139,7 @@ const SignUp = () => {
 				</Typography>*/}
 				{/* <form className={classes.form} noValidate onSubmit={handleSignUp}> */}
 				<Formik
+				 	initialValues={user}
 					enableReinitialize={true}
 					validationSchema={UserSchema}
 					onSubmit={(values, actions) => {
