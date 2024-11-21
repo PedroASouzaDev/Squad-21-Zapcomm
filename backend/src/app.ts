@@ -29,8 +29,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL
-  })
+    origin: 'http://squad-21-zapcomm.vercel.app/'  })
 );
 app.use(cookieParser());
 app.use(express.json());
