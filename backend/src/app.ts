@@ -29,7 +29,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(
   cors({
     credentials: true,
-    origin: "https://2e6a-2804-18-783d-d82b-da38-a745-6fb5-532b.ngrok-free.app" })
+    origin: "https://squad-21-zapcomm.vercel.app" })
 );
 app.use(cookieParser());
 app.use(express.json());
