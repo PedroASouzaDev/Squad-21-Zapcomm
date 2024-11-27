@@ -20,6 +20,8 @@ import logo from "../assets/logo.png";
 import logoFav from "../assets/logoFav.png"
 import { SocketContext } from "../context/Socket/SocketContext";
 
+import ChevronRight from "@mui/icons-material/ChevronRightRounded"
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarIcon: {
     display: "flex",
+    flexWrap: "wrap",
     padding: theme.spacing(2),
     alignItems: "center",
     justifyContent: "center",
@@ -139,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: "auto",
-    maxWidth: 180,
+    maxWidth: 120,
     [theme.breakpoints.down("sm")]: {
       width: "auto",
       height: "80%",
@@ -157,6 +160,12 @@ const useStyles = makeStyles((theme) => ({
     },
     logo: theme.logo
   },
+  chevron: {
+    transition: theme.transitions.create("tranform", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
 }));
 
 const LoggedInLayout = ({ children, themeToggle }) => {
@@ -165,10 +174,9 @@ const LoggedInLayout = ({ children, themeToggle }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerVariant, setDrawerVariant] = useState("permanent");
   // const [dueDate, setDueDate] = useState("");
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   const theme = useTheme();
-
 
   //################### CODIGOS DE TESTE #########################################
   // useEffect(() => {
@@ -266,6 +274,12 @@ const LoggedInLayout = ({ children, themeToggle }) => {
     }
   };
 
+  if (loading) {
+    return (
+      <BackdropLoading />
+    )
+  }
+
   const handleLogo = () => {
     if (!drawerOpen) {
       return (
@@ -276,7 +290,15 @@ const LoggedInLayout = ({ children, themeToggle }) => {
         <img src={logoFav} className={classes.logoFav} alt="logo.png" />
       )
     };
-};
+  };
+
+  const handleChevronRotation = () => {
+    if (drawerOpen == false) {
+      return '180deg'
+    } else {
+      return '0'
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -295,6 +317,10 @@ const LoggedInLayout = ({ children, themeToggle }) => {
       >
         <div className={classes.toolbarIcon}>
           {handleLogo()}
+          <IconButton onClick={() => setDrawerOpen(!drawerOpen)}>
+            {() => console.log(handleChevronRotation())}
+            <ChevronRight className={classes.chevron} style={{ transform: `rotate(${handleChevronRotation()})` }} />
+          </IconButton>
         </div>
         <List className={classes.containerWithScroll}>
           <MainListItems drawerClose={drawerClose} collapsed={drawerOpen}/>
