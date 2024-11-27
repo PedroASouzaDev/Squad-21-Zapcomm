@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -53,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "scroll",
     ...theme.scrollbarStylesSoft
   },
+  header: {
+    flexWrap: "wrap",
+  },
   subroot: {
     display: "flex",
     gap: theme.spacing(5),
@@ -88,8 +90,6 @@ const useStyles = makeStyles((theme) => ({
 
   // Cards
   card: {
-    minWidth: "320px",
-    maxWidth: "350px",
     padding: theme.spacing(2.5),
     //backgroundColor: theme.palette.primary.main,
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
@@ -154,12 +154,12 @@ const useStyles = makeStyles((theme) => ({
 
   //Grafico lateral
   graficoLateral: {
+    height: "100%",
     display: "flex",
-    flex: 1,
     flexDirection: "column",
     gap: theme.spacing(3),
     justifyContent: "space-evenly",
-    minWidth: "450px",
+    minWidth: "350px",
     padding: theme.spacing(2.5),
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.boxticket.main : theme.palette.light.main,
   },
@@ -188,8 +188,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
   },
   blueRectangle: {
-    width: "60%", //Backend Integration
-    backgroundColor: "#0C2454",
+    width: "50%", //Backend Integration
+    backgroundColor: theme.palette.primary.main,
     borderBottomRightRadius: "20px",
     borderTopRightRadius: "20px",
     borderTopLeftRadius: "5px",
@@ -197,8 +197,8 @@ const useStyles = makeStyles((theme) => ({
     height: "32px",
   },
   greenRectangle: {
-    width: "75%", //Backend Integration
-    backgroundColor: "#34D3A3",
+    width: "65%", //Backend Integration
+    backgroundColor: theme.palette.secondary.main,
     borderBottomRightRadius: "20px",
     borderTopRightRadius: "20px",
     borderTopLeftRadius: "5px",
@@ -403,7 +403,7 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>
-      <MainHeader>
+      <MainHeader className={classes.header} >
         <Title>Dashboard</Title>
         <MainHeaderButtonsWrapper>
           {/* FILTROS */}
@@ -434,363 +434,364 @@ const Dashboard = () => {
         </MainHeaderButtonsWrapper>
       </MainHeader>
 
-      <div className={classes.subroot}>
-        <Box display={"flex"} flexDirection={"column"} className={classes.flexSpacing}>
-          <Box display={"flex"} justifyContent={"space-between"} className={classes.flexRowSpacing}>
-            {/* PENDENTE */}
-            <Grid item>
-              <Paper
-                className={classes.card}
-                //elevation={6}  - "Box Shadow"
-                elevation={0}
-              >
-                <Grid container alignItems="center" spacing={8}>
-                  <Grid item>
-                    <Paper className={classes.pendenteIcon}>
-                      <PriorityHighRoundedIcon
-                        style={{
-                          fontSize: 36,
-                          color: "#5B93FF",
-                        }}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid item>
-                    <Grid container direction="column" item spacing={3}>
-                      <Typography
-                        variant="h5"
-                      >
-                        {counters.supportPending}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                      >
-                        Pendente
-                      </Typography>
+        <Grid container spacing={2}>
+          <Grid container item md={8} spacing={2}>
+              <Grid container item spacing={2}>
+
+                {/* PENDENTE */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.card}
+                    //elevation={6}  - "Box Shadow"
+                    elevation={0}
+                  >
+                    <Grid container alignItems="center" spacing={8} wrap="nowrap">
+                      <Grid item>
+                        <Paper className={classes.pendenteIcon}>
+                          <PriorityHighRoundedIcon
+                            style={{
+                              fontSize: 36,
+                              color: "#5B93FF",
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                      <Grid item>
+                        <Grid container direction="column" item spacing={3}>
+                          <Typography
+                            variant="h5"
+                          >
+                            {counters.supportPending}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                          >
+                            Pendente
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
-            </Grid>
-            {/* NOVOS CHAMADOS */}
-            <Grid item>
-              <Paper
-                className={classes.card}
-                //elevation={6}  - "Box Shadow"
-                elevation={0}
-              >
-                <Grid container alignItems="center" spacing={8}>
-                  <Grid item>
-                    <Paper className={classes.novosIcon}>
-                      <AddBoxRoundedIcon
-                        style={{
-                          fontSize: 36,
-                          color: "#605BFF",
-                        }}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid item>
-                    <Grid container direction="column" item spacing={3}>
-                      <Typography
-                        variant="h5"
-                      >
-                        {GetContacts(true)}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                      >
-                        Novos
-                      </Typography>
+                {/* NOVOS CHAMADOS */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.card}
+                    //elevation={6}  - "Box Shadow"
+                    elevation={0}
+                  >
+                    <Grid container alignItems="center" spacing={8} wrap="nowrap">
+                      <Grid item>
+                        <Paper className={classes.novosIcon}>
+                          <AddBoxRoundedIcon
+                            style={{
+                              fontSize: 36,
+                              color: "#605BFF",
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                      <Grid item>
+                        <Grid container direction="column" item spacing={3}>
+                          <Typography
+                            variant="h5"
+                          >
+                            {GetContacts(true)}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                          >
+                            Novos
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
-            </Grid>
-            {/* T.M. DE ESPERA */}
-            <Grid item>
-              <Paper
-                className={classes.card}
-                //elevation={6}  - "Box Shadow"
-                elevation={0}
-              >
-                <Grid container alignItems="center" spacing={8}>
-                  <Grid item>
-                      <Paper className={classes.esperaIcon}>
-                        <TimerRoundedIcon
-                          style={{
-                            fontSize: 36,
-                            color: "#0C2454",
-                          }}
-                        />
-                      </Paper>
-                  </Grid>
-                  <Grid item>
-                    <Grid container direction="column" item spacing={3}>
-                      <Typography
-                        variant="h5"
-                      >
-                        {formatTime(counters.avgWaitTime)}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                      >
-                        T.M. de Espera
-                      </Typography>
+                {/* T.M. DE ESPERA */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.card}
+                    //elevation={6}  - "Box Shadow"
+                    elevation={0}
+                  >
+                    <Grid container alignItems="center" spacing={8} wrap="nowrap">
+                      <Grid item>
+                        <Paper className={classes.esperaIcon}>
+                          <TimerRoundedIcon
+                            style={{
+                              fontSize: 36,
+                              color: "#0C2454",
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                      <Grid item>
+                        <Grid container direction="column" item spacing={3}>
+                          <Typography
+                            variant="h5"
+                          >
+                            {formatTime(counters.avgWaitTime)}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                          >
+                            T.M. de Espera
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
-            </Grid>
-          </Box>
-          {/* Segunda Row */}
-          <Box display={"flex"} justifyContent={"space-between"}>
-            {/* EM ANDAMENTO */}
-            <Grid item>
-              <Paper
-                className={classes.card}
-                //elevation={4} - "Box Shadow"
-                elevation={0}
-              >
-                <Grid container alignItems="center" spacing={8}>
-                  <Grid item>
-                    <Paper className={classes.andamentoIcon}>
-                      <UpdateRoundedIcon
-                        style={{
-                          fontSize: 36,
-                          color: "#d9b353",
-                        }}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid item>
-                    <Grid container direction="column" item spacing={3}>
-                      <Typography
-                        variant="h5"
-                      >
-                        {counters.supportHappening}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                      >
-                        Andamento
-                      </Typography>
+                {/* EM ANDAMENTO */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.card}
+                    //elevation={4} - "Box Shadow"
+                    elevation={0}
+                  >
+                    <Grid container alignItems="center" spacing={8} wrap="nowrap">
+                      <Grid item>
+                        <Paper className={classes.andamentoIcon}>
+                          <UpdateRoundedIcon
+                            style={{
+                              fontSize: 36,
+                              color: "#d9b353",
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                      <Grid item>
+                        <Grid container direction="column" item spacing={3}>
+                          <Typography
+                            variant="h5"
+                          >
+                            {counters.supportHappening}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                          >
+                            Andamento
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
-            </Grid>
-            {/* FINALIZADOS */}
-            <Grid item>
-              <Paper
-                className={classes.card}
-                //elevation={6}  - "Box Shadow"
-                elevation={0}
-              >
-                <Grid container alignItems="center" spacing={8}>
-                  <Grid item>
-                    <Paper className={classes.finalizadoIcon}>
-                      <CheckRoundedIcon
-                        style={{
-                          fontSize: 36,
-                          color: "#33d0a1",
-                        }}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid item>
-                    <Grid container direction="column" item spacing={3}>
-                      <Typography
-                        variant="h5"
-                      >
-                        {counters.supportFinished}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                      >
-                        Finalizados
-                      </Typography>
+                {/* FINALIZADOS */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.card}
+                    //elevation={6}  - "Box Shadow"
+                    elevation={0}
+                  >
+                    <Grid container alignItems="center" spacing={8} wrap="nowrap">
+                      <Grid item>
+                        <Paper className={classes.finalizadoIcon}>
+                          <CheckRoundedIcon
+                            style={{
+                              fontSize: 36,
+                              color: "#33d0a1",
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                      <Grid item>
+                        <Grid container direction="column" item spacing={3}>
+                          <Typography
+                            variant="h5"
+                          >
+                            {counters.supportFinished}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                          >
+                            Finalizados
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
-            </Grid>
-            {/* T.M. DE ATENDIMENTO */}
-            <Grid item>
-              <Paper
-                className={classes.card}
-                //elevation={6}  - "Box Shadow"
-                elevation={0}
-              >
-                <Grid container alignItems="center" spacing={8}>
-                  <Grid item>
-                    <Paper className={classes.atendimentoIcon}>
-                      <AccessAlarmIcon
-                        style={{
-                          fontSize: 36,
-                          color: "#33d0a1",
-                        }}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid item>
-                    <Grid container direction="column" item spacing={3}>
-                      <Typography
-                        variant="h5"
-                      >
-                        {formatTime(counters.avgSupportTime)}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                      >
-                        T.M. de Atendimento
-                      </Typography>
+                {/* T.M. DE ATENDIMENTO */}
+                <Grid item xs={12} sm={6} md={4}>
+                  <Paper
+                    className={classes.card}
+                    //elevation={6}  - "Box Shadow"
+                    elevation={0}
+                  >
+                    <Grid container alignItems="center" spacing={8} wrap="nowrap">
+                      <Grid item>
+                        <Paper className={classes.atendimentoIcon}>
+                          <AccessAlarmIcon
+                            style={{
+                              fontSize: 36,
+                              color: "#33d0a1",
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                      <Grid item>
+                        <Grid container direction="column" item spacing={3}>
+                          <Typography
+                            variant="h5"
+                          >
+                            {formatTime(counters.avgSupportTime)}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                          >
+                            T.M. de Atend.
+                          </Typography>
+                        </Grid>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
             </Grid>
-          </Box>
-          {/* Gráfico */}
-          <Grid item>
-            <Paper elevation={0} className={classes.graphPaper}>
-              <Select
-                margin="dense"
-                variant="outlined"
-                value={graphType}
-                onChange={(e) => handleChangeGraphType(e.target.value)}
+
+              {/* Gráfico */}
+              <Grid item md={12}>
+                <Paper elevation={0} className={classes.graphPaper}>
+                  <Select
+                    margin="dense"
+                    variant="outlined"
+                    value={graphType}
+                    onChange={(e) => handleChangeGraphType(e.target.value)}
+                  >
+                    <MenuItem value={1}>Atendimentos</MenuItem>
+                    <MenuItem value={2}>Atendimentos por Usuário</MenuItem>
+                  </Select>
+                  {renderGraph()}
+                </Paper>
+              </Grid>
+          </Grid>
+
+          <Grid item md={4} >
+            {/* GRAFICO LATERAL */}
+            <Paper elevation={0} className={classes.graficoLateral}>
+              <Typography
+                variant="h5"
+                color="primary"
+                style={{
+                  textAlign: "center",
+                }}
               >
-                <MenuItem value={1}>Atendimentos</MenuItem>
-                <MenuItem value={2}>Atendimentos por Usuário</MenuItem>
-              </Select>
-              {renderGraph()}
+                Chamados Mensal
+              </Typography>
+              <Grid container direction="column" spacing={2}>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Jan
+                  </Typography>
+                  <div className={classes.blueRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    42
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Fev
+                  </Typography>
+                  <div className={classes.greenRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    52
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Mar
+                  </Typography>
+                  <div className={classes.blueRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    42
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Abr
+                  </Typography>
+                  <div className={classes.greenRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    52
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Mai
+                  </Typography>
+                  <div className={classes.blueRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    42
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Jun
+                  </Typography>
+                  <div className={classes.greenRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    52
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Jul
+                  </Typography>
+                  <div className={classes.blueRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    42
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Ago
+                  </Typography>
+                  <div className={classes.greenRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    52
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Set
+                  </Typography>
+                  <div className={classes.blueRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    42
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Out
+                  </Typography>
+                  <div className={classes.greenRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    52
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Nov
+                  </Typography>
+                  <div className={classes.blueRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    42
+                  </Typography>
+                </Grid>
+                <Grid container item justifyContent="flex-start" alignItems="center">
+                  <Typography className={classes.monthName} variant="p" color="primary">
+                    Dez
+                  </Typography>
+                  <div className={classes.greenRectangle}></div>
+                  <Typography className={classes.monthNumber} variant="p" color="primary">
+                    52
+                  </Typography>
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
-        </Box>
-      
-        {/* GRAFICO LATERAL */}
-        <Paper elevation={0} className={classes.graficoLateral}>
-          <Typography
-            variant="h5"
-            color="primary"
-            style={{
-              textAlign: "center",
-            }}
-          >
-            Chamados Mensal
-          </Typography>
-          <Grid container direction="column" spacing={2}>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Jan
-              </Typography>
-              <div className={classes.blueRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                42
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Fev
-              </Typography>
-              <div className={classes.greenRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                52
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Mar
-              </Typography>
-              <div className={classes.blueRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                42
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Abr
-              </Typography>
-              <div className={classes.greenRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                52
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Mai
-              </Typography>
-              <div className={classes.blueRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                42
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Jun
-              </Typography>
-              <div className={classes.greenRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                52
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Jul
-              </Typography>
-              <div className={classes.blueRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                42
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Ago
-              </Typography>
-              <div className={classes.greenRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                52
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Set
-              </Typography>
-              <div className={classes.blueRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                42
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Out
-              </Typography>
-              <div className={classes.greenRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                52
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Nov
-              </Typography>
-              <div className={classes.blueRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                42
-              </Typography>
-            </Grid>
-            <Grid container item justifyContent="flex-start" alignItems="center">
-              <Typography className={classes.monthName} variant="p" color="primary">
-                Dez
-              </Typography>
-              <div className={classes.greenRectangle}></div>
-              <Typography className={classes.monthNumber} variant="p" color="primary">
-                52
-              </Typography>
-            </Grid>
-          </Grid>
-        </Paper>
-      </div>
+        </Grid>
     </div >
   );
 };

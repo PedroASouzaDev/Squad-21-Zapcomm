@@ -9,10 +9,10 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const MainHeader = ({ children }) => {
+const MainHeader = ({ children, className }) => {
 	const classes = useStyles();
 
-	return <div className={classes.contactsHeader}>{children}</div>;
+	return <div className={`${classes.contactsHeader} ${className}`}>{children}</div>;
 };
 
 export default MainHeader;
