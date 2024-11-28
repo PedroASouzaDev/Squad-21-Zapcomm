@@ -330,6 +330,24 @@ const Dashboard = () => {
     return count;
   };
   
+  // FALTA IMPLEMENTAÇÃO COM BACKEND
+  const sideRectangles = [
+    { id: 0, month: "Jan", count: 42},
+    { id: 1, month: "Fev", count: 52},
+    { id: 2, month: "Mar", count: 42},
+    { id: 3, month: "Abr", count: 52},
+    { id: 4, month: "Mai", count: 42},
+    { id: 5, month: "Jun", count: 52},
+    { id: 6, month: "Jul", count: 42},
+    { id: 7, month: "Ago", count: 52},
+    { id: 8, month: "Set", count: 42},
+    { id: 9, month: "Out", count: 52},
+    { id: 10, month: "Nov", count: 42},
+    { id: 11, month: "Dez", count: 52},
+  ];
+
+  console.log(sideRectangles)
+
   function renderFilters() {
     if (filterType === 1) {
       return (
@@ -679,116 +697,20 @@ const Dashboard = () => {
               >
                 Chamados Mensal
               </Typography>
-              <Grid container direction="column" spacing={2}>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Jan
-                  </Typography>
-                  <div className={classes.blueRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    42
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Fev
-                  </Typography>
-                  <div className={classes.greenRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    52
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Mar
-                  </Typography>
-                  <div className={classes.blueRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    42
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Abr
-                  </Typography>
-                  <div className={classes.greenRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    52
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Mai
-                  </Typography>
-                  <div className={classes.blueRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    42
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Jun
-                  </Typography>
-                  <div className={classes.greenRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    52
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Jul
-                  </Typography>
-                  <div className={classes.blueRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    42
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Ago
-                  </Typography>
-                  <div className={classes.greenRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    52
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Set
-                  </Typography>
-                  <div className={classes.blueRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    42
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Out
-                  </Typography>
-                  <div className={classes.greenRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    52
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Nov
-                  </Typography>
-                  <div className={classes.blueRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    42
-                  </Typography>
-                </Grid>
-                <Grid container item justifyContent="flex-start" alignItems="center">
-                  <Typography className={classes.monthName} variant="p" color="primary">
-                    Dez
-                  </Typography>
-                  <div className={classes.greenRectangle}></div>
-                  <Typography className={classes.monthNumber} variant="p" color="primary">
-                    52
-                  </Typography>
-                </Grid>
-              </Grid>
+
+                {sideRectangles && sideRectangles.map(rec => (
+                  <Grid container direction="column" spacing={2}>
+                    <Grid container item justifyContent="flex-start" alignItems="center">
+                      <Typography className={classes.monthName} variant="p" color="primary">
+                        {rec.month}
+                      </Typography>
+                      <div className={`${rec.id % 2 ? classes.blueRectangle : classes.greenRectangle}`}></div>
+                      <Typography className={classes.monthNumber} variant="p" color="primary">
+                        {rec.count}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                ))}
             </Paper>
           </Grid>
         </Grid>
