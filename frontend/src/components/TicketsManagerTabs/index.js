@@ -249,6 +249,7 @@ const TicketsManagerTabs = () => {
         value={tab}
         variant="scrollable"
         onChange={handleChangeTab}
+        scrollButtons="off"
         indicatorColor="primary"
         textColor="primary"
         TabIndicatorProps={{

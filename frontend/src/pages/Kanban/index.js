@@ -36,6 +36,10 @@ const useStyles = makeStyles(theme => ({
     color: "0c2454",
     fontSize: "100px",
   },
+  header: {
+    left: 0,
+    position: "sticky",
+  },
 }));
 
 const Kanban = () => {
@@ -102,7 +106,7 @@ const Kanban = () => {
       {
         id: "lane0",
         title: i18n.t("Em Aberto"),
-        label: pendingTickets.length,
+        label: `${pendingTickets.length}`,
         style: { 
           backgroundColor: "#FFFFFF", 
           borderRadius: "10px", 
@@ -140,7 +144,7 @@ const Kanban = () => {
       {
         id: "lane1",
         title: i18n.t("Em Atendimento"),
-        label: openTickets.length,
+        label: `${openTickets.length}`,
         style: { 
           backgroundColor: "#FFFFFF", 
           borderRadius: "10px", 
@@ -176,7 +180,7 @@ const Kanban = () => {
       },
       {
         id: "lane2",
-        title: i18n.t("Aguardando Fornecedor [Blank]"),
+        title: i18n.t("Aguardando Fornecedor"),
         label: "0",
         style: { 
           backgroundColor: "#FFFFFF", 
@@ -213,7 +217,7 @@ const Kanban = () => {
       },
       {
         id: "lane3",
-        title: i18n.t("Impedido [Blank]"),
+        title: i18n.t("Impedido"),
         label: "0",
         style: { 
           backgroundColor: "#FFFFFF", 
@@ -250,7 +254,7 @@ const Kanban = () => {
       },
       {
         id: "lane4",
-        title: i18n.t("Finalizados [Blanks]"),
+        title: i18n.t("Finalizados"),
         label: "0",
         style: { 
           backgroundColor: "#FFFFFF", 
@@ -351,7 +355,7 @@ const Kanban = () => {
 
   return (
     <div className={classes.root}>
-        <MainHeader>
+        <MainHeader className={classes.header}>
           <Title>Kanban</Title>
         </MainHeader>
         <Board
